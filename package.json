@@ -4,7 +4,6 @@
   "version": "1.1.0",
   "author": "Austin Green",
   "dependencies": {
-    "bulma": "^0.6.0",
     "gatsby": "^1.9.63",
     "gatsby-link": "^1.6.21",
     "gatsby-plugin-netlify-cms": "^1.0.2",
