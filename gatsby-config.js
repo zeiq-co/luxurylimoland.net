@@ -1,7 +1,12 @@
 module.exports = {
   siteMetadata: {
     title: 'Gatsby Default Starter',
+    IndexPage:[{
+     Banner:"ghjcvkjgcxkgv",
+     BannerDes:"gdchjsgcjhdsg"
+    }],  
   },
+
   plugins: [
     'gatsby-plugin-react-helmet',
     'gatsby-plugin-sass',
@@ -32,6 +37,15 @@ module.exports = {
       options: {
         modulePath: `${__dirname}/src/cms/cms.js`,
       },
+    },
+    {
+      resolve: `gatsby-source-airtable`,
+      options: {
+        apiKey: `keycbEvfGXAQ6ROBz`,
+        baseId: `appUjzGbUtHYwEnG6`,
+        tableName: `Cars`,
+        tableView: `Kanban`
+      }
     },
   ],
 };

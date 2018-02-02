@@ -1,34 +1,18 @@
 import React from "react";
 import Link from "gatsby-link";
-import Script from "react-load-script";
 import graphql from "graphql";
-import Banner from "../components/Banner"
-import CarList from '../components/CarList'
-import Separator from '../components/Separator'
-export default class IndexPage extends React.Component {
-  handleScriptLoad() {
-    if (typeof window !== `undefined` && window.netlifyIdentity) {
-      window.netlifyIdentity.on("init", user => {
-        if (!user) {
-          window.netlifyIdentity.on("login", () => {
-            document.location.href = "/admin/";
-          });
-        }
-      });
-    }
-    window.netlifyIdentity.init();
-  }
+import PageHeading from '../components/PageHeading'
+
+export default class Blogs extends React.Component {
+
 
   render() {
     const { data } = this.props;
     const { edges: posts } = data.allMarkdownRemark;
-    const { edges: carItems } = data.allAirtable;
 
     return (
         <div>
-          <Banner/>
-          <Separator/>
-          <CarList carItems={carItems}/>
+          <PageHeading/>
          <section id="three" className="wrapper style3 special">
          <div className="inner">
           <header className="major">
@@ -56,8 +40,8 @@ export default class IndexPage extends React.Component {
   }
 }
 
-export const pageQuery = graphql`
-  query IndexQuery {
+export const blogsPageQuery = graphql`
+  query BlogsQuery {
     allMarkdownRemark(sort: { order: DESC, fields: [frontmatter___date] }) {
       edges {
         node {
@@ -72,15 +56,5 @@ export const pageQuery = graphql`
         }
       }
     }
-  allAirtable{
-    edges{
-      node{
-        name
-        image{
-          url
-        }
-      }
-    }
-}
   }
 `;
