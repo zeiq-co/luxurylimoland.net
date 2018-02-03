@@ -9,10 +9,11 @@ export default class Cars extends React.Component {
 
   render() {
     const { data } = this.props;
+    const { TopContent: pageHeading } = data.site.siteMetadata.CarsPage[0];
 
     return (
         <div>
-            <PageHeading/>
+            <PageHeading pageHeading={pageHeading}/>
           <section  className=" style3 special">
           <div className="inner">
 
@@ -36,5 +37,15 @@ export const CarPageQuery = graphql`
       }
     }
 }
+site{
+    siteMetadata{
+      CarsPage{
+        TopContent{
+          title
+          description
+        }
+      }
+    }
+  }
   }
 `;

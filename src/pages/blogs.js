@@ -4,22 +4,16 @@ import graphql from "graphql";
 import PageHeading from '../components/PageHeading'
 
 export default class Blogs extends React.Component {
-
-
   render() {
     const { data } = this.props;
     const { edges: posts } = data.allMarkdownRemark;
+    const { Posts: pageHeading } = data.site.siteMetadata.BlogsPage[0];
 
     return (
         <div>
-          <PageHeading/>
+          <PageHeading pageHeading={pageHeading}/>
          <section id="three" className="wrapper style3 special">
          <div className="inner">
-          <header className="major">
-            <h2>See Our latest post</h2>
-            <p>Aliquam ut ex ut augue consectetur interdum. Donec amet imperdiet eleifend<br />
-            fringilla tincidunt. Nullam dui leo Aenean mi ligula, rhoncus ullamcorper.</p>
-          </header>
           <ul className="features">
           {posts
             .filter(post => post.node.frontmatter.templateKey === "blog-post")
@@ -56,5 +50,15 @@ export const blogsPageQuery = graphql`
         }
       }
     }
+  site{
+    siteMetadata{
+      BlogsPage{
+        Posts{
+          title
+          description
+        }
+      }
+    }
+  }
   }
 `;

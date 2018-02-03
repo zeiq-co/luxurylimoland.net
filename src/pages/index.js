@@ -23,10 +23,12 @@ export default class IndexPage extends React.Component {
     const { data } = this.props;
     const { edges: posts } = data.allMarkdownRemark;
     const { edges: carItems } = data.allAirtable;
+    const { Banner: banner } = data.site.siteMetadata.IndexPage[0];
+    console.log("banner", data.site.siteMetadata.IndexPage);
 
     return (
-        <div>
-          <Banner/>
+        <div id="main">
+          <Banner banner={banner}/>
           <Separator/>
           <CarList carItems={carItems}/>
          <section id="three" className="wrapper style3 special">
@@ -72,6 +74,16 @@ export const pageQuery = graphql`
         }
       }
     }
+  site{
+    siteMetadata{
+      IndexPage{
+        Banner{
+          title
+          heading
+        }
+      }
+    }
+  }
   allAirtable{
     edges{
       node{
