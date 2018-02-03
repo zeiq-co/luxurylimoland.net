@@ -9,7 +9,7 @@ export const BlogPostTemplate = ({
 }) => {
   const PostContent = contentComponent || Content;
   const pageHeading ={title, description};
-  console.log("blog", pageHeading )
+  // console.log("blog", pageHeading )
   return (
    <div>
      <PageHeading pageHeading={pageHeading}/>

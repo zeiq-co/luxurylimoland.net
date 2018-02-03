@@ -24,7 +24,6 @@ export default class IndexPage extends React.Component {
     const { edges: posts } = data.allMarkdownRemark;
     const { edges: carItems } = data.allAirtable;
     const { Banner: banner } = data.site.siteMetadata.IndexPage[0];
-    console.log("banner", data.site.siteMetadata.IndexPage);
 
     return (
         <div id="main">
@@ -35,20 +34,18 @@ export default class IndexPage extends React.Component {
          <div className="inner">
           <header className="major">
             <h2>See Our latest post</h2>
-            <p>Aliquam ut ex ut augue consectetur interdum. Donec amet imperdiet eleifend<br />
-            fringilla tincidunt. Nullam dui leo Aenean mi ligula, rhoncus ullamcorper.</p>
           </header>
           <ul className="features">
           {posts
             .filter(post => post.node.frontmatter.templateKey === "blog-post")
             .map(({ node: post }) =>(
-            <li className="icon fa-paper-plane-o">
+            <li className="icon fa-paper-plane-o" key={post.frontmatter.id}>
             <h3>{post.frontmatter.title}</h3>
             <p>{post.excerpt}</p>
-            <Link className="button is-small" to={post.frontmatter.path}>
-                Keep Reading →
-              </Link>
-          </li>
+                <Link className="button is-small" to={post.frontmatter.path}>
+                   Keep Reading →
+                </Link>
+            </li>
            ))}
           </ul>
           </div>
@@ -60,7 +57,7 @@ export default class IndexPage extends React.Component {
 
 export const pageQuery = graphql`
   query IndexQuery {
-    allMarkdownRemark(sort: { order: DESC, fields: [frontmatter___date] }) {
+    allMarkdownRemark(sort: { order: DESC, fields: [frontmatter___date] } limit: 4) {
       edges {
         node {
           excerpt(pruneLength: 100)
