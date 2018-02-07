@@ -1,4 +1,4 @@
-# Gatsby + Netlify CMS Starter
+# Luxury Limoland .Net
 
 This repo contains an example business website that is built with [Gatsby](https://www.gatsbyjs.org/), and [Netlify CMS](https://www.netlifycms.org): **[Demo Link](https://gatsby-netlify-cms.netlify.com/)**.
 
@@ -19,8 +19,6 @@ After clicking that button, you’ll authenticate with GitHub and choose a repos
 
 ### Access Locally
 ```
-$ git clone https://github.com/[GITHUB_USERNAME]/[REPO_NAME].git
-$ cd [REPO_NAME]
 $ yarn
 $ npm run develop
 ```
