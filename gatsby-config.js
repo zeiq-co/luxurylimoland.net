@@ -1,8 +1,8 @@
 module.exports = {
   siteMetadata: {
     title: 'Gatsby Default Starter',
-    SoicalLinks:{
-      twiiter: "https://twitter.com/luxurylimoland",
+    SocialLinks:{
+      twitter: "https://twitter.com/luxurylimoland",
       facebook:"https://facebook.com/luxurylimoland",
       instagram:"https://instagram.com/luxurylimoland",
     },

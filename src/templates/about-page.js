@@ -10,10 +10,10 @@ export const AboutPageTemplate = ({ title, content, contentComponent, pageHeadin
 <div>
 <PageHeading pageHeading={pageHeading}/>
     <section className="wrapper style3 special">
-            <div className="inner">
-              <h2 className="title is-size-3 has-text-weight-bold is-bold-light">{title}</h2>
-              <PageContent className="content" content={content} />
-      </div>
+      <div className="inner">
+        <h2 className="title is-size-3 has-text-weight-bold is-bold-light">{title}</h2>
+          <PageContent className="content" content={content} />
+        </div>
     </section>
 </div>
   );

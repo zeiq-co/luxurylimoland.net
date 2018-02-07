@@ -25,13 +25,13 @@ export default class IndexPage extends React.Component {
     const { edges: carItems } = data.allAirtable;
     const { Banner: banner } = data.site.siteMetadata.IndexPage[0];
     const { Separator: separator } = data.site.siteMetadata.IndexPage[0];
-    const { SoicalLinks: soicalLinks } = data.site.siteMetadata;
+    const { SocialLinks: socialLinks } = data.site.siteMetadata;
     console.log("separator", separator);
 
     return (
         <div id="main">
           <Banner banner={banner}/>
-          <Separator separator={separator} soicalLinks={soicalLinks}/>
+          <Separator separator={separator} socialLinks={socialLinks}/>
           <CarList carItems={carItems}/>
          <section id="three" className="wrapper style3 special">
          <div className="inner">
@@ -76,8 +76,8 @@ export const pageQuery = graphql`
     }
   site{
     siteMetadata{
-      SoicalLinks {
-        twiiter
+      SocialLinks {
+        twitter
         facebook
         instagram
       }
@@ -97,6 +97,7 @@ export const pageQuery = graphql`
     edges{
       node{
         name
+        description
         image{
           url
         }

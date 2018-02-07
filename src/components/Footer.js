@@ -1,17 +1,15 @@
 import React from 'react';
 import Link from 'gatsby-link';
 
-const Footer = ({posts}) => (
-<footer id="footer">
-<ul className="icons">
-  <li><Link to="/" className="icon fa-twitter"><span className="label">Twitter</span></Link></li>
-  <li><Link to="/" className="icon fa-facebook"><span className="label">Facebook</span></Link></li>
-  <li><Link to="/" className="icon fa-instagram"><span className="label">Instagram</span></Link></li>
-  <li><Link to="/" className="icon fa-dribbble"><span className="label">Dribbble</span></Link></li>
-  <li><Link to="/" className="icon fa-envelope-o"><span className="label">Email</span></Link></li>
-</ul>
+const Footer = () => (
+<footer id="footer" style={{background:"#34b2a5"}}>
+{/* <ul className="icons">
+  <li><a href="/" className="icon fa-twitter"><span className="label">Twitter</span></a></li>
+  <li><a href="/" className="icon fa-facebook"><span className="label">Facebook</span></a></li>
+  <li><a href="/" className="icon fa-instagram"><span className="label">Instagram</span></a></li>
+</ul> */}
 <ul className="copyright">
-  <li>© Untitled</li><li>Design: <Link to="http://html5up.net">HTML5 UP</Link></li>
+  <li><strong>© LuxuryLimoLand.net</strong> </li>
 </ul>
 </footer>
 

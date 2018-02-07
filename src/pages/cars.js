@@ -37,15 +37,15 @@ export const CarPageQuery = graphql`
       }
     }
 }
-site{
-    siteMetadata{
-      CarsPage{
-        TopContent{
-          title
-          description
+  site{
+      siteMetadata{
+        CarsPage{
+          TopContent{
+            title
+            description
+          }
         }
       }
     }
-  }
   }
 `;

@@ -8,7 +8,7 @@ const Banner = ({banner}) => (
 			<p>{banner.heading}<br/>
 			</p>
 			<ul className="actions">
-				<li><a href="#" className="button special">Book Now </a></li>
+				<li><a href="#spotlight" className="button special scrolly">Book Now </a></li>
 			</ul>
 		</div>
 		<a href="#one" className="more scrolly">Learn More</a>

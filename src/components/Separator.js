@@ -1,7 +1,7 @@
 import React from 'react';
 import Link from 'gatsby-link';
 
-const Separator = ({separator, soicalLinks}) => (
+const Separator = ({separator, socialLinks}) => (
 					<section id="one" className="wrapper style1 special">
 						<div className="inner">
 							<header className="major">
@@ -10,19 +10,19 @@ const Separator = ({separator, soicalLinks}) => (
 							</header>
 							<ul className="icons major">
 								<li>
-									<Link to={soicalLinks.twitter}>
+									<a href={socialLinks.twitter} target="_blank">
 									  <span className="icon fa-twitter major style1"/>
-									</Link>
+									</a>
 								</li>
 								<li>
-								<Link>
+								<a href={socialLinks.facebook} target="_blank">
 								<span className="icon fa-facebook major style2"/>
-								</Link>
+								</a>
 								</li>
 								<li>
-									<Link>
+									<a href={socialLinks.instagram} target="_blank">
 									<span className="icon fa-instagram major style3"/>
-									</Link>
+									</a>
 								</li>
 							</ul>
 						</div>
