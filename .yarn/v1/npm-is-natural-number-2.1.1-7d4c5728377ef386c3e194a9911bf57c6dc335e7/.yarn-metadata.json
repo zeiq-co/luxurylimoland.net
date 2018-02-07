@@ -1,0 +1,59 @@
+{
+  "manifest": {
+    "name": "is-natural-number",
+    "version": "2.1.1",
+    "description": "Check if a value is a natural number",
+    "repository": {
+      "type": "git",
+      "url": "https://github.com/shinnn/is-natural-number.js.git"
+    },
+    "author": {
+      "name": "Shinnosuke Watanabe",
+      "url": "https://github.com/shinnn"
+    },
+    "scripts": {
+      "pretest": "eslint --config @shinnn is-natural-number-cjs.js --ignore-path .gitignore .",
+      "test": "node --strong_mode --throw-deprecation --track-heap-objects test.js | tap-dot",
+      "coverage": "node --strong_mode node_modules/.bin/istanbul cover test.js"
+    },
+    "license": "MIT",
+    "jsnext:main": "index.jsnext.js",
+    "files": [
+      "index.js",
+      "index.jsnext.js"
+    ],
+    "keywords": [
+      "number",
+      "natural",
+      "check",
+      "int",
+      "integer",
+      "math",
+      "mathematics",
+      "range",
+      "browser",
+      "client-side"
+    ],
+    "devDependencies": {
+      "@shinnn/eslint-config": "^2.1.0",
+      "eslint": "^2.9.0",
+      "istanbul": "^0.4.3",
+      "require-uncached": "^1.0.2",
+      "tap-dot": "^1.0.5",
+      "tape": "^4.5.1"
+    },
+    "_registry": "npm",
+    "_loc": "/home/ali/Project/uforce/cairo/.yarn/v1/npm-is-natural-number-2.1.1-7d4c5728377ef386c3e194a9911bf57c6dc335e7/package.json",
+    "licenseText": "The MIT License (MIT)\n\nCopyright (c) 2014 - 2016 Shinnosuke Watanabe\n\nPermission is hereby granted, free of charge, to any person obtaining a copy of\nthis software and associated documentation files (the \"Software\"), to deal in\nthe Software without restriction, including without limitation the rights to\nuse, copy, modify, merge, publish, distribute, sublicense, and/or sell copies of\nthe Software, and to permit persons to whom the Software is furnished to do so,\nsubject to the following conditions:\n\nThe above copyright notice and this permission notice shall be included in all\ncopies or substantial portions of the Software.\n\nTHE SOFTWARE IS PROVIDED \"AS IS\", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR\nIMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY, FITNESS\nFOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR\nCOPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER\nIN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN\nCONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.\n"
+  },
+  "artifacts": [],
+  "remote": {
+    "resolved": "https://registry.yarnpkg.com/is-natural-number/-/is-natural-number-2.1.1.tgz#7d4c5728377ef386c3e194a9911bf57c6dc335e7",
+    "type": "tarball",
+    "reference": "https://registry.yarnpkg.com/is-natural-number/-/is-natural-number-2.1.1.tgz",
+    "hash": "7d4c5728377ef386c3e194a9911bf57c6dc335e7",
+    "registry": "npm"
+  },
+  "registry": "npm",
+  "hash": "7d4c5728377ef386c3e194a9911bf57c6dc335e7"
+}

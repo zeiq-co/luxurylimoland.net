@@ -1,0 +1,95 @@
+{
+  "manifest": {
+    "name": "unist-util-modify-children",
+    "version": "1.1.1",
+    "description": "Unist utility to modify direct children of a parent",
+    "license": "MIT",
+    "keywords": [
+      "unist",
+      "retext",
+      "nlcst",
+      "mdast",
+      "util",
+      "utility",
+      "modify",
+      "children"
+    ],
+    "repository": {
+      "type": "git",
+      "url": "https://github.com/syntax-tree/unist-util-modify-children"
+    },
+    "bugs": {
+      "url": "https://github.com/syntax-tree/unist-util-modify-children/issues"
+    },
+    "author": {
+      "name": "Titus Wormer",
+      "email": "tituswormer@gmail.com",
+      "url": "http://wooorm.com"
+    },
+    "contributors": [
+      {
+        "name": "Titus Wormer",
+        "email": "tituswormer@gmail.com",
+        "url": "http://wooorm.com"
+      }
+    ],
+    "files": [
+      "index.js"
+    ],
+    "dependencies": {
+      "array-iterate": "^1.0.0"
+    },
+    "devDependencies": {
+      "browserify": "^14.0.0",
+      "esmangle": "^1.0.0",
+      "nyc": "^11.0.0",
+      "remark-cli": "^3.0.0",
+      "remark-preset-wooorm": "^3.0.0",
+      "tape": "^4.6.2",
+      "xo": "^0.18.2"
+    },
+    "scripts": {
+      "build-md": "remark . -qfo",
+      "build-bundle": "browserify index.js --bare -s unistUtilModifyChildren > unist-util-modify-children.js",
+      "build-mangle": "esmangle < unist-util-modify-children.js > unist-util-modify-children.min.js",
+      "build": "npm run build-md && npm run build-bundle && npm run build-mangle",
+      "lint": "xo",
+      "test-api": "node test",
+      "test-coverage": "nyc --reporter lcov tape test.js",
+      "test": "npm run build && npm run lint && npm run test-coverage"
+    },
+    "xo": {
+      "space": true,
+      "esnext": false,
+      "ignore": [
+        "unist-util-modify-children.js"
+      ]
+    },
+    "nyc": {
+      "check-coverage": true,
+      "lines": 100,
+      "functions": 100,
+      "branches": 100
+    },
+    "remarkConfig": {
+      "plugins": [
+        "preset-wooorm"
+      ]
+    },
+    "_registry": "npm",
+    "_loc": "/home/ali/Project/uforce/cairo/.yarn/v1/npm-unist-util-modify-children-1.1.1-66d7e6a449e6f67220b976ab3cb8b5ebac39e51d/package.json",
+    "readmeFilename": "readme.md",
+    "readme": "# unist-util-modify-children [![Build Status][travis-badge]][travis] [![Coverage Status][codecov-badge]][codecov]\n\nModify direct children of a parent.\n\n## Installation\n\n[npm][]:\n\n```bash\nnpm install unist-util-modify-children\n```\n\n## Usage\n\n```javascript\nvar remark = require('remark');\nvar modifyChildren = require('unist-util-modify-children');\n\nvar doc = remark().use(plugin).process('This _and_ that');\n\nconsole.log(String(doc));\n\nfunction plugin() {\n  return transformer;\n  function transformer(tree) {\n    modifyChildren(modifier)(tree.children[0]);\n  }\n}\n\nfunction modifier(node, index, parent) {\n  if (node.type === 'emphasis') {\n    parent.children.splice(index, 1, {type: 'strong', children: node.children});\n    return index + 1;\n  }\n}\n```\n\nYields:\n\n```js\nThis **and** that\n```\n\n## API\n\n### `modify = modifyChildren(modifier)`\n\nWrap [`modifier`][modifier] to be invoked for each child in the node given to\n[`modify`][modify].\n\n#### `next? = modifier(child, index, parent)`\n\nInvoked if [`modify`][modify] is called on a parent node for each `child`\nin `parent`.\n\n###### Returns\n\n`number` (optional) — Next position to iterate.\n\n#### `function modify(parent)`\n\nInvoke the bound [`modifier`][modifier] for each child in `parent`\n([`Node`][node]).\n\n## License\n\n[MIT][license] © [Titus Wormer][author]\n\n<!-- Definitions -->\n\n[travis-badge]: https://img.shields.io/travis/syntax-tree/unist-util-modify-children.svg\n\n[travis]: https://travis-ci.org/syntax-tree/unist-util-modify-children\n\n[codecov-badge]: https://img.shields.io/codecov/c/github/syntax-tree/unist-util-modify-children.svg\n\n[codecov]: https://codecov.io/github/syntax-tree/unist-util-modify-children\n\n[npm]: https://docs.npmjs.com/cli/install\n\n[license]: LICENSE\n\n[author]: http://wooorm.com\n\n[node]: https://github.com/syntax-tree/unist#node\n\n[modifier]: #next--modifierchild-index-parent\n\n[modify]: #function-modifyparent\n",
+    "licenseText": "(The MIT License)\n\nCopyright (c) 2015 Titus Wormer <tituswormer@gmail.com>\n\nPermission is hereby granted, free of charge, to any person obtaining\na copy of this software and associated documentation files (the\n'Software'), to deal in the Software without restriction, including\nwithout limitation the rights to use, copy, modify, merge, publish,\ndistribute, sublicense, and/or sell copies of the Software, and to\npermit persons to whom the Software is furnished to do so, subject to\nthe following conditions:\n\nThe above copyright notice and this permission notice shall be\nincluded in all copies or substantial portions of the Software.\n\nTHE SOFTWARE IS PROVIDED 'AS IS', WITHOUT WARRANTY OF ANY KIND,\nEXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF\nMERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT.\nIN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY\nCLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT,\nTORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE\nSOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.\n"
+  },
+  "artifacts": [],
+  "remote": {
+    "resolved": "https://registry.yarnpkg.com/unist-util-modify-children/-/unist-util-modify-children-1.1.1.tgz#66d7e6a449e6f67220b976ab3cb8b5ebac39e51d",
+    "type": "tarball",
+    "reference": "https://registry.yarnpkg.com/unist-util-modify-children/-/unist-util-modify-children-1.1.1.tgz",
+    "hash": "66d7e6a449e6f67220b976ab3cb8b5ebac39e51d",
+    "registry": "npm"
+  },
+  "registry": "npm",
+  "hash": "66d7e6a449e6f67220b976ab3cb8b5ebac39e51d"
+}

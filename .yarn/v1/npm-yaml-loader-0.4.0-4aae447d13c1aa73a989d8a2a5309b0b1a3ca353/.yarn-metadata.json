@@ -1,0 +1,45 @@
+{
+  "manifest": {
+    "name": "yaml-loader",
+    "version": "0.4.0",
+    "description": "YAML loader for webpack (converts YAML to JSON)",
+    "main": "index.js",
+    "repository": {
+      "type": "git",
+      "url": "https://github.com/okonet/yaml-loader.git"
+    },
+    "keywords": [
+      "yaml",
+      "webpack",
+      "loader",
+      "json"
+    ],
+    "author": {
+      "name": "Andrey Okonetchnikov",
+      "email": "andrey@okonet.ru"
+    },
+    "license": "MIT",
+    "bugs": {
+      "url": "https://github.com/okonet/yaml-loader/issues"
+    },
+    "homepage": "https://github.com/okonet/yaml-loader",
+    "dependencies": {
+      "js-yaml": "^3.5.2"
+    },
+    "_registry": "npm",
+    "_loc": "/home/ali/Project/uforce/cairo/.yarn/v1/npm-yaml-loader-0.4.0-4aae447d13c1aa73a989d8a2a5309b0b1a3ca353/package.json",
+    "readmeFilename": "README.md",
+    "readme": "# yaml-loader for webpack\n\nYAML loader for [webpack](http://webpack.github.io/). Converts YAML to a valid JSON. If you want a JS Object, chain it with [json-loader](https://github.com/webpack/json-loader).\n\n## Installation\n\n`npm install yaml-loader`\n\n## Usage\n\n[Documentation: Using loaders](http://webpack.github.io/docs/using-loaders.html)\n\nSimplest case would be:\n\n``` javascript\nvar json = require(\"json!yaml!./file.yml\");\n// => returns file.yml as javascript object\n```\n\nThis loader is also useful for getting a valid JSON from YML. For example:\n\n```js\n// webpack.config.js\nmodule: {\n  loaders: [\n    {\n      test: /\\.yaml$/,\n      include: path.resolve('data'),\n      loader: 'yaml',\n    },\n  ],\n}\n```\n\nand then\n\n```js\n// applicatin.js\nconst actualFilename = require(`file?name=[name].json!./../data/${file}.yaml`);\nwindow.fetch(actualFilename).then(res => {\n  // ...\n});\n```\n\n## License\n\nMIT (http://www.opensource.org/licenses/mit-license.php)\n\n",
+    "licenseText": "The MIT License (MIT)\n\nCopyright (c) 2014 Andrey Okonetchnikov\n\nPermission is hereby granted, free of charge, to any person obtaining a copy\nof this software and associated documentation files (the \"Software\"), to deal\nin the Software without restriction, including without limitation the rights\nto use, copy, modify, merge, publish, distribute, sublicense, and/or sell\ncopies of the Software, and to permit persons to whom the Software is\nfurnished to do so, subject to the following conditions:\n\nThe above copyright notice and this permission notice shall be included in all\ncopies or substantial portions of the Software.\n\nTHE SOFTWARE IS PROVIDED \"AS IS\", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR\nIMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,\nFITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE\nAUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER\nLIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,\nOUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE\nSOFTWARE."
+  },
+  "artifacts": [],
+  "remote": {
+    "resolved": "https://registry.yarnpkg.com/yaml-loader/-/yaml-loader-0.4.0.tgz#4aae447d13c1aa73a989d8a2a5309b0b1a3ca353",
+    "type": "tarball",
+    "reference": "https://registry.yarnpkg.com/yaml-loader/-/yaml-loader-0.4.0.tgz",
+    "hash": "4aae447d13c1aa73a989d8a2a5309b0b1a3ca353",
+    "registry": "npm"
+  },
+  "registry": "npm",
+  "hash": "4aae447d13c1aa73a989d8a2a5309b0b1a3ca353"
+}

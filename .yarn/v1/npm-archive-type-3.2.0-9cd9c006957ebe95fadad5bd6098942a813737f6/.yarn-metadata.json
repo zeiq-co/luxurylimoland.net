@@ -1,0 +1,67 @@
+{
+  "manifest": {
+    "name": "archive-type",
+    "version": "3.2.0",
+    "description": "Detect the archive type of a Buffer/Uint8Array",
+    "license": "MIT",
+    "repository": {
+      "type": "git",
+      "url": "https://github.com/kevva/archive-type.git"
+    },
+    "author": {
+      "name": "Kevin Mårtensson",
+      "email": "kevinmartensson@gmail.com",
+      "url": "https://github.com/kevva"
+    },
+    "engines": {
+      "node": ">=0.10.0"
+    },
+    "scripts": {
+      "test": "node test/test.js"
+    },
+    "files": [
+      "index.js"
+    ],
+    "keywords": [
+      "7zip",
+      "archive",
+      "buffer",
+      "bz2",
+      "bzip2",
+      "check",
+      "detect",
+      "gz",
+      "gzip",
+      "mime",
+      "rar",
+      "zip",
+      "type"
+    ],
+    "dependencies": {
+      "file-type": "^3.1.0"
+    },
+    "devDependencies": {
+      "ava": "^0.0.4"
+    },
+    "xo": {
+      "rules": {
+        "no-negated-condition": 0
+      }
+    },
+    "_registry": "npm",
+    "_loc": "/home/ali/Project/uforce/cairo/.yarn/v1/npm-archive-type-3.2.0-9cd9c006957ebe95fadad5bd6098942a813737f6/package.json",
+    "readmeFilename": "readme.md",
+    "readme": "# archive-type [![Build Status](https://travis-ci.org/kevva/archive-type.svg?branch=master)](https://travis-ci.org/kevva/archive-type)\n\n> Detect the archive type of a Buffer/Uint8Array\n\n*See [archive-type-cli](https://github.com/kevva/archive-type-cli) for the command-line version.*\n\n\n## Install\n\n```\n$ npm install --save archive-type\n```\n\n\n## Usage\n\n```js\nvar readFileSync = require('fs').readFileSync;\nvar archiveType = require('archive-type');\n\narchiveType(readFileSync('foo.zip'));\n//=> {ext: 'zip', mime: 'application/zip'}\n```\n\n\n## API\n\n### archiveType(buf)\n\nReturns [`7z`](https://github.com/kevva/is-7zip), [`bz2`](https://github.com/kevva/is-bzip2), [`gz`](https://github.com/kevva/is-gzip), [`rar`](https://github.com/kevva/is-rar), [`tar`](https://github.com/kevva/is-tar), [`zip`](https://github.com/kevva/is-zip), [`xz`](https://github.com/kevva/is-xz) or `false`.\n\n#### buf\n\nType: `buffer` *(Node.js)*, `uint8array`\n\nIt only needs the first 261 bytes.\n\n\n## License\n\nMIT © [Kevin Mårtensson](https://github.com/kevva)\n",
+    "licenseText": "The MIT License (MIT)\n\nCopyright (c) Kevin Mårtensson <kevinmartensson@gmail.com>\n\nPermission is hereby granted, free of charge, to any person obtaining a copy\nof this software and associated documentation files (the \"Software\"), to deal\nin the Software without restriction, including without limitation the rights\nto use, copy, modify, merge, publish, distribute, sublicense, and/or sell\ncopies of the Software, and to permit persons to whom the Software is\nfurnished to do so, subject to the following conditions:\n\nThe above copyright notice and this permission notice shall be included in\nall copies or substantial portions of the Software.\n\nTHE SOFTWARE IS PROVIDED \"AS IS\", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR\nIMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,\nFITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE\nAUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER\nLIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,\nOUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN\nTHE SOFTWARE.\n"
+  },
+  "artifacts": [],
+  "remote": {
+    "resolved": "https://registry.yarnpkg.com/archive-type/-/archive-type-3.2.0.tgz#9cd9c006957ebe95fadad5bd6098942a813737f6",
+    "type": "tarball",
+    "reference": "https://registry.yarnpkg.com/archive-type/-/archive-type-3.2.0.tgz",
+    "hash": "9cd9c006957ebe95fadad5bd6098942a813737f6",
+    "registry": "npm"
+  },
+  "registry": "npm",
+  "hash": "9cd9c006957ebe95fadad5bd6098942a813737f6"
+}

@@ -1,0 +1,74 @@
+{
+  "manifest": {
+    "name": "unist-util-select",
+    "version": "1.5.0",
+    "description": "Select unist nodes using css-like selectors",
+    "author": {
+      "name": "Eugene Sharygin",
+      "email": "eush77@gmail.com"
+    },
+    "license": "MIT",
+    "scripts": {
+      "test": "tape test/*.js"
+    },
+    "files": [
+      "index.js",
+      "lib/"
+    ],
+    "homepage": "https://github.com/eush77/unist-util-select",
+    "repository": {
+      "type": "git",
+      "url": "https://github.com/eush77/unist-util-select.git"
+    },
+    "bugs": {
+      "url": "https://github.com/eush77/unist-util-select/issues"
+    },
+    "keywords": [
+      "child",
+      "descendant",
+      "sibling",
+      "type",
+      "attribute",
+      "expression",
+      "filter",
+      "find",
+      "match",
+      "ast",
+      "mdast",
+      "node",
+      "retext",
+      "select",
+      "selector",
+      "tree",
+      "unist",
+      "util",
+      "utility",
+      "visit",
+      "walk"
+    ],
+    "dependencies": {
+      "css-selector-parser": "^1.1.0",
+      "debug": "^2.2.0",
+      "nth-check": "^1.0.1"
+    },
+    "devDependencies": {
+      "tape": "^4.2.0",
+      "unist-builder": "^1.0.1"
+    },
+    "_registry": "npm",
+    "_loc": "/home/ali/Project/uforce/cairo/.yarn/v1/npm-unist-util-select-1.5.0-a93c2be8c0f653827803b81331adec2aa24cd933/package.json",
+    "readmeFilename": "README.md",
+    "readme": "[![npm](https://nodei.co/npm/unist-util-select.png)](https://npmjs.com/package/unist-util-select)\n\n# unist-util-select\n\n[![Build Status][travis-badge]][travis] [![Dependency Status][david-badge]][david]\n\nSelect [Unist] nodes with CSS-like selectors.\n\n[unist]: https://github.com/wooorm/unist\n\n[travis]: https://travis-ci.org/eush77/unist-util-select\n[travis-badge]: https://travis-ci.org/eush77/unist-util-select.svg?branch=master\n[david]: https://david-dm.org/eush77/unist-util-select\n[david-badge]: https://david-dm.org/eush77/unist-util-select.png\n\n## Example\n\n`example.md`:\n\n```\nGet all TODO items from this list:\n\n1. Step 1.\n2. TODO Step 2.\n3. Step 3.\n  1. TODO Step 3.1.\n  2. Step 3.2.\n  3. TODO Step 3.3.\n```\n\n[remark] takes this Markdown as an input and returns unist syntax tree. After that, we use `unist-util-select` to extract the required parts:\n\n```js\nvar select = require('unist-util-select');\n\nvar markdown = fs.readFileSync('example.md', 'utf8');\nvar ast = remark.parse(markdown);\n\nselect(ast, 'list text[value*=TODO]')\n//=> [ { type: 'text', value: 'TODO Step 2.' },\n//     { type: 'text', value: 'TODO Step 3.1.' },\n//     { type: 'text', value: 'TODO Step 3.3.' } ]\n```\n\nThat's it!\n\n[remark]: https://github.com/wooorm/remark\n\n## Features\n\nAll the relevant parts of [Selectors Level 3][spec]:\n\n[spec]: http://www.w3.org/TR/css3-selectors/\n\n- [x] Type selectors: `paragraph`\n- [x] Descendant selectors: `paragraph text`\n- [x] Child selectors: `paragraph > text`\n- [x] Sibling selectors: `paragraph ~ text`\n- [x] Adjacent sibling selectors: `paragraph + text`\n- [x] Group selectors: `paragraph, text`\n- [x] Universal selector: `*`\n- [x] Attribute selectors: `text[value*=\"substr\"]`\n  - [x] Existence: `[value]`\n  - [x] Equality: `[value=\"foo\"]`\n  - [x] Begins with: `[value^=\"prefix\"]`\n  - [x] Containment: `[value*=\"substr\"]`\n  - [x] Ends with: `[value$=\"suffix\"]`\n- [x] Structural pseudo-classes: `paragraph:first-of-type`\n  - [x] `:root`\n  - [x] `:nth-child(2n+1)`\n  - [x] `:nth-last-child(2n+1)`\n  - [x] `:nth-of-type(2n+1)`\n  - [x] `:nth-last-of-type(2n+1)`\n  - [x] `:first-child`\n  - [x] `:last-child`\n  - [x] `:first-of-type`\n  - [x] `:last-of-type`\n  - [x] `:only-child`\n  - [x] `:only-of-type`\n  - [x] `:empty`\n- [x] Negation pseudo-class: `*:not(paragraph)`\n\n## API\n\n### `select(ast, selector)`\n\n*Curried form: `select(ast)(selector)`*\n\nApplies `selector` to `ast`, returns array of matching nodes.\n\n### `select.one(ast, selector)`\n\n*Curried form: `select.one(ast)(selector)`*\n\nReturns a single node matching `selector`.\n\nThrows an error if node is not found or not unique.\n\n## Install\n\n```\nnpm install unist-util-select\n```\n\n## License\n\nMIT\n",
+    "licenseText": "The MIT License (MIT)\n\nCopyright (c) 2015, 2016 Eugene Sharygin\n\nPermission is hereby granted, free of charge, to any person obtaining a copy\nof this software and associated documentation files (the \"Software\"), to deal\nin the Software without restriction, including without limitation the rights\nto use, copy, modify, merge, publish, distribute, sublicense, and/or sell\ncopies of the Software, and to permit persons to whom the Software is\nfurnished to do so, subject to the following conditions:\n\nThe above copyright notice and this permission notice shall be included in all\ncopies or substantial portions of the Software.\n\nTHE SOFTWARE IS PROVIDED \"AS IS\", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR\nIMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,\nFITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE\nAUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER\nLIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,\nOUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE\nSOFTWARE.\n"
+  },
+  "artifacts": [],
+  "remote": {
+    "resolved": "https://registry.yarnpkg.com/unist-util-select/-/unist-util-select-1.5.0.tgz#a93c2be8c0f653827803b81331adec2aa24cd933",
+    "type": "tarball",
+    "reference": "https://registry.yarnpkg.com/unist-util-select/-/unist-util-select-1.5.0.tgz",
+    "hash": "a93c2be8c0f653827803b81331adec2aa24cd933",
+    "registry": "npm"
+  },
+  "registry": "npm",
+  "hash": "a93c2be8c0f653827803b81331adec2aa24cd933"
+}

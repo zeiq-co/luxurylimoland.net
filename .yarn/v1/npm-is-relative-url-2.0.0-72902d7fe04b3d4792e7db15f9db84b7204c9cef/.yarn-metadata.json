@@ -1,0 +1,56 @@
+{
+  "manifest": {
+    "name": "is-relative-url",
+    "version": "2.0.0",
+    "description": "Check if an URL is relative",
+    "license": "MIT",
+    "repository": {
+      "type": "git",
+      "url": "https://github.com/sindresorhus/is-relative-url.git"
+    },
+    "author": {
+      "name": "Sindre Sorhus",
+      "email": "sindresorhus@gmail.com",
+      "url": "http://sindresorhus.com"
+    },
+    "engines": {
+      "node": ">=0.10.0"
+    },
+    "scripts": {
+      "test": "xo && ava"
+    },
+    "files": [
+      "index.js"
+    ],
+    "keywords": [
+      "url",
+      "relative",
+      "absolute",
+      "uri",
+      "is",
+      "check"
+    ],
+    "dependencies": {
+      "is-absolute-url": "^2.0.0"
+    },
+    "devDependencies": {
+      "ava": "*",
+      "xo": "*"
+    },
+    "_registry": "npm",
+    "_loc": "/home/ali/Project/uforce/cairo/.yarn/v1/npm-is-relative-url-2.0.0-72902d7fe04b3d4792e7db15f9db84b7204c9cef/package.json",
+    "readmeFilename": "readme.md",
+    "readme": "# is-relative-url [![Build Status](https://travis-ci.org/sindresorhus/is-relative-url.svg?branch=master)](https://travis-ci.org/sindresorhus/is-relative-url)\n\n> Check if an URL is relative\n\n\n## Install\n\n```\n$ npm install --save is-relative-url\n```\n\n\n## Usage\n\n```js\nconst isRelativeUrl = require('is-relative-url');\n\nisRelativeUrl('foo/bar');\n//=> true\n\nisRelativeUrl('http://sindresorhus.com/foo/bar');\n//=> false\n\nisRelativeUrl('//sindresorhus.com');\n//=> true\n```\n\n\n## Related\n\nSee [is-absolute-url](https://github.com/sindresorhus/is-absolute-url) for the inverse.\n\n\n## License\n\nMIT © [Sindre Sorhus](http://sindresorhus.com)\n",
+    "licenseText": "The MIT License (MIT)\n\nCopyright (c) Sindre Sorhus <sindresorhus@gmail.com> (sindresorhus.com)\n\nPermission is hereby granted, free of charge, to any person obtaining a copy\nof this software and associated documentation files (the \"Software\"), to deal\nin the Software without restriction, including without limitation the rights\nto use, copy, modify, merge, publish, distribute, sublicense, and/or sell\ncopies of the Software, and to permit persons to whom the Software is\nfurnished to do so, subject to the following conditions:\n\nThe above copyright notice and this permission notice shall be included in\nall copies or substantial portions of the Software.\n\nTHE SOFTWARE IS PROVIDED \"AS IS\", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR\nIMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,\nFITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE\nAUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER\nLIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,\nOUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN\nTHE SOFTWARE.\n"
+  },
+  "artifacts": [],
+  "remote": {
+    "resolved": "https://registry.yarnpkg.com/is-relative-url/-/is-relative-url-2.0.0.tgz#72902d7fe04b3d4792e7db15f9db84b7204c9cef",
+    "type": "tarball",
+    "reference": "https://registry.yarnpkg.com/is-relative-url/-/is-relative-url-2.0.0.tgz",
+    "hash": "72902d7fe04b3d4792e7db15f9db84b7204c9cef",
+    "registry": "npm"
+  },
+  "registry": "npm",
+  "hash": "72902d7fe04b3d4792e7db15f9db84b7204c9cef"
+}

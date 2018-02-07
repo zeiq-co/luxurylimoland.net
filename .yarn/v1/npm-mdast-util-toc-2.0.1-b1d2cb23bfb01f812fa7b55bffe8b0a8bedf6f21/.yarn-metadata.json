@@ -1,0 +1,106 @@
+{
+  "manifest": {
+    "name": "mdast-util-toc",
+    "version": "2.0.1",
+    "description": "Generate a Table of Contents (TOC) from a given Markdown file",
+    "main": "index.js",
+    "files": [
+      "lib",
+      "index.js"
+    ],
+    "scripts": {
+      "build-md": "remark . --quiet --frail",
+      "build-bundle": "browserify index.js --no-builtins -s mdastUtilTOC > mdast-util-toc.js",
+      "build-mangle": "esmangle mdast-util-toc.js > mdast-util-toc.min.js",
+      "build": "npm run build-md && npm run build-bundle && npm run build-mangle",
+      "lint": "xo index.js test",
+      "test-api": "node test/index.js",
+      "test-coverage": "istanbul cover test/index.js",
+      "test": "npm run build && npm run lint && npm run test-coverage"
+    },
+    "keywords": [
+      "mdast",
+      "util",
+      "toc"
+    ],
+    "author": {
+      "name": "Titus Wormer",
+      "email": "tituswormer@gmail.com",
+      "url": "http://wooorm.com"
+    },
+    "contributors": [
+      {
+        "name": "Titus Wormer",
+        "email": "tituswormer@gmail.com",
+        "url": "http://wooorm.com"
+      },
+      {
+        "name": "Jonathan Haines",
+        "email": "jonno.haines@gmail.com",
+        "url": "http://barrythepenguin.github.io"
+      }
+    ],
+    "repository": {
+      "type": "git",
+      "url": "https://github.com/barrythepenguin/mdast-util-toc.git"
+    },
+    "bugs": {
+      "url": "https://github.com/barrythepenguin/mdast-util-toc/issues"
+    },
+    "license": "MIT",
+    "dependencies": {
+      "github-slugger": "^1.1.1",
+      "mdast-util-to-string": "^1.0.2",
+      "unist-util-visit": "^1.1.0"
+    },
+    "devDependencies": {
+      "browserify": "^13.0.1",
+      "esmangle": "^1.0.1",
+      "istanbul": "^0.4.4",
+      "remark": "^6.2.0",
+      "remark-cli": "^2.1.0",
+      "remark-comment-config": "^4.0.1",
+      "remark-github": "^6.0.0",
+      "remark-lint": "^5.4.0",
+      "remark-parse": "^2.2.0",
+      "remark-stringify": "^2.3.0",
+      "remark-usage": "^4.0.0",
+      "remark-validate-links": "^5.0.0",
+      "tape": "^4.6.0",
+      "xo": "^0.16.0"
+    },
+    "xo": {
+      "space": 4,
+      "rules": {
+        "valid-jsdoc": [
+          "error"
+        ],
+        "require-jsdoc": [
+          "error",
+          {
+            "require": {
+              "FunctionDeclaration": true,
+              "MethodDefinition": true,
+              "ClassDeclaration": true
+            }
+          }
+        ]
+      }
+    },
+    "_registry": "npm",
+    "_loc": "/home/ali/Project/uforce/cairo/.yarn/v1/npm-mdast-util-toc-2.0.1-b1d2cb23bfb01f812fa7b55bffe8b0a8bedf6f21/package.json",
+    "readmeFilename": "README.md",
+    "readme": "# mdast-util-toc [![Build Status][build-badge]][build-status] [![Coverage Status][coverage-badge]][coverage-status]\n\nGenerate a Table of Contents from a [**mdast**][mdast] tree.\n\n## Installation\n\n[npm][]:\n\n```bash\nnpm install mdast-util-toc\n```\n\n**mdast-util-toc** is also available as an AMD, CommonJS, and globals\nmodule, [uncompressed and compressed][releases].\n\n## Usage\n\nDependencies:\n\n```javascript\nvar remark = require('remark');\nvar toc = require('mdast-util-toc');\n```\n\nParse:\n\n```javascript\nvar node = remark().parse([\n    '# Alpha',\n    '',\n    '## Bravo',\n    '',\n    '### Charlie',\n    '',\n    '## Delta',\n    ''\n].join('\\n'));\n```\n\nTOC:\n\n```javascript\nvar result = toc(node);\n```\n\nYields:\n\n```js\n{ index: null,\n  endIndex: null,\n  map: \n   { type: 'list',\n     ordered: false,\n     children: [ { type: 'listItem', loose: true, children: [Object] } ] } }\n```\n\n## API\n\n### `toc(node[, options])`\n\nGenerate a Table of Contents from a Markdown document.\n\n*   If specified, looks for the first heading containing the `heading`\n    option (case insensitive, supports alt/title attributes for links\n    and images too), and returns a table of contents for all following\n    headings.\n\n*   If no `heading` is specified, creates a table of contents for all\n    headings in `node`.\n\nLinks to headings are based on GitHub’s style.  Only top-level headings\n(those not in blockquotes or lists), are used.  The given node is not\nmodified.\n\n#### `options`\n\n*   `heading` (`string?`)\n    — Heading to look for, wrapped in `new RegExp('^(' + value + ')$', 'i');`\n\n*   `maxDepth` (`number?`, default: `6`)\n    — Maximum heading depth to include in the table of contents,\n    This is inclusive, thus, when set to `3`, level three headings,\n    are included (those with three hashes, `###`);\n\n*   `tight` (`boolean?`, default: `false`)\n    — Whether to compile list-items tightly.\n\n#### Returns\n\nAn object with the following properties:\n\n*   `index` (`number?`)\n    — Position of the `heading` in `node`.  `-1` if no heading\n    was found, `null` if no heading was given;\n\n*   `endIndex` (`number?`)\n    — Position of the last node after `heading` before the TOC starts.\n    `-1` if no heading was found, `null` if no heading was given,\n    same as `index` if there are no nodes between `heading` and the\n    first heading in the TOC;\n\n*   `map` (`Node?`)\n    — List node representing the generated table of contents.\n    `null` if no table of contents could be created, either because\n    no `heading` didn’t exist, or no following headings were found.\n\n## License\n\n[MIT][license] © [Jonathan Haines][author]\n\n<!-- Definitions -->\n\n[build-badge]: https://img.shields.io/travis/BarryThePenguin/mdast-util-toc.svg\n\n[build-status]: https://travis-ci.org/BarryThePenguin/mdast-util-toc\n\n[coverage-badge]: https://img.shields.io/codecov/c/github/BarryThePenguin/mdast-util-toc.svg\n\n[coverage-status]: https://codecov.io/github/BarryThePenguin/mdast-util-toc\n\n[releases]: https://github.com/BarryThePenguin/mdast-util-toc/releases\n\n[license]: LICENSE\n\n[author]: http://barrythepenguin.github.io\n\n[npm]: https://docs.npmjs.com/cli/install\n\n[mdast]: https://github.com/wooorm/mdast\n",
+    "licenseText": "(The MIT License)\n\nCopyright (c) 2016 Jonathan Haines <jonno.haines@gmail.com>\n\nCopyright (c) 2015 Titus Wormer <tituswormer@gmail.com>\n\nPermission is hereby granted, free of charge, to any person obtaining\na copy of this software and associated documentation files (the\n'Software'), to deal in the Software without restriction, including\nwithout limitation the rights to use, copy, modify, merge, publish,\ndistribute, sublicense, and/or sell copies of the Software, and to\npermit persons to whom the Software is furnished to do so, subject to\nthe following conditions:\n\nThe above copyright notice and this permission notice shall be\nincluded in all copies or substantial portions of the Software.\n\nTHE SOFTWARE IS PROVIDED 'AS IS', WITHOUT WARRANTY OF ANY KIND,\nEXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF\nMERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT.\nIN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY\nCLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT,\nTORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE\nSOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.\n"
+  },
+  "artifacts": [],
+  "remote": {
+    "resolved": "https://registry.yarnpkg.com/mdast-util-toc/-/mdast-util-toc-2.0.1.tgz#b1d2cb23bfb01f812fa7b55bffe8b0a8bedf6f21",
+    "type": "tarball",
+    "reference": "https://registry.yarnpkg.com/mdast-util-toc/-/mdast-util-toc-2.0.1.tgz",
+    "hash": "b1d2cb23bfb01f812fa7b55bffe8b0a8bedf6f21",
+    "registry": "npm"
+  },
+  "registry": "npm",
+  "hash": "b1d2cb23bfb01f812fa7b55bffe8b0a8bedf6f21"
+}

@@ -1,0 +1,97 @@
+{
+  "manifest": {
+    "name": "graphql-relay",
+    "version": "0.5.4",
+    "description": "A library to help construct a graphql-js server supporting react-relay.",
+    "contributors": [
+      {
+        "name": "Daniel Schafer",
+        "email": "dschafer@fb.com"
+      }
+    ],
+    "license": "MIT",
+    "homepage": "https://github.com/graphql/graphql-relay-js",
+    "bugs": {
+      "url": "https://github.com/graphql/graphql-relay-js/issues"
+    },
+    "repository": {
+      "type": "git",
+      "url": "http://github.com/graphql/graphql-relay-js.git"
+    },
+    "main": "lib/index.js",
+    "files": [
+      "lib",
+      "README.md",
+      "LICENSE"
+    ],
+    "options": {
+      "mocha": "src/**/__tests__/**/*.js"
+    },
+    "scripts": {
+      "prepublish": "./resources/prepublish.sh",
+      "test": "npm run lint && npm run check && npm run testonly",
+      "testonly": "babel-node ./node_modules/.bin/_mocha $npm_package_options_mocha",
+      "lint": "eslint src",
+      "check": "flow check",
+      "build": "rm -rf lib/* && babel src --ignore __tests__ --out-dir lib && npm run build:flow",
+      "build:flow": "find ./src -name '*.js' -not -path '*/__tests__*' | while read filepath; do cp $filepath `echo $filepath | sed 's/\\/src\\//\\/lib\\//g'`.flow; done",
+      "watch": "babel-node scripts/watch.js",
+      "cover": "babel-node node_modules/.bin/isparta cover --root src --report html node_modules/.bin/_mocha -- $npm_package_options_mocha",
+      "cover:lcov": "babel-node node_modules/.bin/isparta cover --root src --report lcovonly node_modules/.bin/_mocha -- $npm_package_options_mocha"
+    },
+    "peerDependencies": {
+      "graphql": "^0.5.0 || ^0.6.0 || ^0.7.0 || ^0.8.0-b || ^0.9.0 || ^0.10.0 || ^0.11.0"
+    },
+    "devDependencies": {
+      "babel-cli": "^6.22.2",
+      "babel-core": "^6.22.1",
+      "babel-eslint": "^7.1.1",
+      "babel-plugin-check-es2015-constants": "^6.22.0",
+      "babel-plugin-syntax-async-functions": "6.13.0",
+      "babel-plugin-transform-class-properties": "^6.22.0",
+      "babel-plugin-transform-es2015-arrow-functions": "^6.22.0",
+      "babel-plugin-transform-es2015-block-scoped-functions": "^6.22.0",
+      "babel-plugin-transform-es2015-block-scoping": "^6.22.0",
+      "babel-plugin-transform-es2015-classes": "^6.22.0",
+      "babel-plugin-transform-es2015-computed-properties": "^6.22.0",
+      "babel-plugin-transform-es2015-destructuring": "^6.22.0",
+      "babel-plugin-transform-es2015-duplicate-keys": "^6.22.0",
+      "babel-plugin-transform-es2015-function-name": "^6.22.0",
+      "babel-plugin-transform-es2015-literals": "^6.22.0",
+      "babel-plugin-transform-es2015-modules-commonjs": "^6.22.0",
+      "babel-plugin-transform-es2015-object-super": "^6.22.0",
+      "babel-plugin-transform-es2015-parameters": "^6.22.0",
+      "babel-plugin-transform-es2015-shorthand-properties": "^6.22.0",
+      "babel-plugin-transform-es2015-spread": "^6.22.0",
+      "babel-plugin-transform-es2015-template-literals": "^6.22.0",
+      "babel-plugin-transform-flow-strip-types": "^6.22.0",
+      "babel-plugin-transform-object-rest-spread": "^6.22.0",
+      "babel-plugin-transform-regenerator": "^6.22.0",
+      "chai": "3.5.0",
+      "coveralls": "2.11.15",
+      "eslint": "^3.14.1",
+      "eslint-plugin-babel": "^4.0.1",
+      "eslint-plugin-flowtype": "^2.30.0",
+      "flow-bin": "^0.60.1",
+      "graphql": "^0.11.7",
+      "isparta": "4.0.0",
+      "mocha": "^3.2.0",
+      "sane": "^1.5.0"
+    },
+    "_registry": "npm",
+    "_loc": "/home/ali/Project/uforce/cairo/.yarn/v1/npm-graphql-relay-0.5.4-58050cfe16118595f82ab3aabfc974546ce755a8/package.json",
+    "readmeFilename": "README.md",
+    "readme": "# Relay Library for GraphQL.js\n\nThis is a library to allow the easy creation of Relay-compliant servers using the [GraphQL.js](https://github.com/graphql/graphql-js) reference implementation of a GraphQL server.\n\n[![Build Status](https://travis-ci.org/graphql/graphql-relay-js.svg?branch=master)](https://travis-ci.org/graphql/graphql-relay-js)\n[![Coverage Status](https://coveralls.io/repos/graphql/graphql-relay-js/badge.svg?branch=master&service=github)](https://coveralls.io/github/graphql/graphql-relay-js?branch=master)\n\n## Getting Started\n\nA basic understanding of GraphQL and of the GraphQL.js implementation is needed to provide context for this library.\n\nAn overview of GraphQL in general is available in the [README](https://github.com/facebook/graphql/blob/master/README.md) for the [Specification for GraphQL](https://github.com/facebook/graphql).\n\nThis library is designed to work with the [GraphQL.js](https://github.com/graphql/graphql-js) reference implementation of a GraphQL server.\n\nAn overview of the functionality that a Relay-compliant GraphQL server should provide is in the [GraphQL Relay Specification](https://facebook.github.io/relay/docs/graphql-relay-specification.html) on the [Relay website](https://facebook.github.io/relay/). That overview describes a simple set of examples that exist as [tests](src/__tests__) in this repository. A good way to get started with this repository is to walk through that documentation and the corresponding tests in this library together.\n\n## Using Relay Library for GraphQL.js\n\nInstall Relay Library for GraphQL.js\n\n```sh\nnpm install graphql graphql-relay\n```\n\nWhen building a schema for [GraphQL.js](https://github.com/graphql/graphql-js), the provided library functions can be used to simplify the creation of Relay patterns.\n\n### Connections\n\nHelper functions are provided for both building the GraphQL types for connections and for implementing the `resolve` method for fields returning those types.\n\n- `connectionArgs` returns the arguments that fields should provide when they return a connection type that supports bidirectional pagination.\n- `forwardConnectionArgs` returns the arguments that fields should provide when they return a connection type that only supports forward pagination.\n- `backwardConnectionArgs` returns the arguments that fields should provide when they return a connection type that only supports backward pagination.\n- `connectionDefinitions` returns a `connectionType` and its associated `edgeType`, given a node type.\n- `connectionFromArray` is a helper method that takes an array and the arguments from `connectionArgs`, does pagination and filtering, and returns an object in the shape expected by a `connectionType`'s `resolve` function.\n- `connectionFromPromisedArray` is similar to `connectionFromArray`, but it takes a promise that resolves to an array, and returns a promise that resolves to the expected shape by `connectionType`.\n- `cursorForObjectInConnection` is a helper method that takes an array and a member object, and returns a cursor for use in the mutation payload.\n- `offsetToCursor` takes the index of a member object in an array and returns an opaque cursor for use in the mutation payload.\n- `cursorToOffset` takes an opaque cursor (created with `offsetToCursor`) and returns the corresponding array index.\n\nAn example usage of these methods from the [test schema](src/__tests__/starWarsSchema.js):\n\n```js\nvar {connectionType: ShipConnection} =\n  connectionDefinitions({nodeType: shipType});\nvar factionType = new GraphQLObjectType({\n  name: 'Faction',\n  fields: () => ({\n    ships: {\n      type: ShipConnection,\n      args: connectionArgs,\n      resolve: (faction, args) => connectionFromArray(\n        faction.ships.map((id) => data.Ship[id]),\n        args\n      ),\n    }\n  }),\n});\n```\n\nThis shows adding a `ships` field to the `Faction` object that is a connection. It uses `connectionDefinitions({nodeType: shipType})` to create the connection type, adds `connectionArgs` as arguments on this function, and then implements the resolve function by passing the array of ships and the arguments to `connectionFromArray`.\n\n### Object Identification\n\nHelper functions are provided for both building the GraphQL types for nodes and for implementing global IDs around local IDs.\n\n - `nodeDefinitions` returns the `Node` interface that objects can implement, and returns the `node` root field to include on the query type. To implement this, it takes a function to resolve an ID to an object, and to determine the type of a given object.\n - `toGlobalId` takes a type name and an ID specific to that type name, and returns a \"global ID\" that is unique among all types.\n - `fromGlobalId` takes the \"global ID\" created by `toGlobalID`, and returns the type name and ID used to create it.\n - `globalIdField` creates the configuration for an `id` field on a node.\n - `pluralIdentifyingRootField` creates a field that accepts a list of non-ID identifiers (like a username) and maps them to their corresponding objects.\n\nAn example usage of these methods from the [test schema](src/__tests__/starWarsSchema.js):\n\n```js\nvar {nodeInterface, nodeField} = nodeDefinitions(\n  (globalId) => {\n    var {type, id} = fromGlobalId(globalId);\n    return data[type][id];\n  },\n  (obj) => {\n    return obj.ships ? factionType : shipType;\n  }\n);\n\nvar factionType = new GraphQLObjectType({\n  name: 'Faction',\n  fields: () => ({\n    id: globalIdField(),\n  }),\n  interfaces: [nodeInterface]\n});\n\nvar queryType = new GraphQLObjectType({\n  name: 'Query',\n  fields: () => ({\n    node: nodeField\n  })\n});\n```\n\nThis uses `nodeDefinitions` to construct the `Node` interface and the `node` field; it uses `fromGlobalId` to resolve the IDs passed in the implementation of the function mapping ID to object. It then uses the `globalIdField` method to create the `id` field on `Faction`, which also ensures implements the `nodeInterface`. Finally, it adds the `node` field to the query type, using the `nodeField` returned by `nodeDefinitions`.\n\n### Mutations\n\nA helper function is provided for building mutations with single inputs and client mutation IDs.\n\n - `mutationWithClientMutationId` takes a name, input fields, output fields, and a mutation method to map from the input fields to the output fields, performing the mutation along the way. It then creates and returns a field configuration that can be used as a top-level field on the mutation type.\n\nAn example usage of these methods from the [test schema](src/__tests__/starWarsSchema.js):\n\n```js\nvar shipMutation = mutationWithClientMutationId({\n  name: 'IntroduceShip',\n  inputFields: {\n    shipName: {\n      type: new GraphQLNonNull(GraphQLString)\n    },\n    factionId: {\n      type: new GraphQLNonNull(GraphQLID)\n    }\n  },\n  outputFields: {\n    ship: {\n      type: shipType,\n      resolve: (payload) => data['Ship'][payload.shipId]\n    },\n    faction: {\n      type: factionType,\n      resolve: (payload) => data['Faction'][payload.factionId]\n    }\n  },\n  mutateAndGetPayload: ({shipName, factionId}) => {\n    var newShip = {\n      id: getNewShipId(),\n      name: shipName\n    };\n    data.Ship[newShip.id] = newShip;\n    data.Faction[factionId].ships.push(newShip.id);\n    return {\n      shipId: newShip.id,\n      factionId: factionId,\n    };\n  }\n});\n\nvar mutationType = new GraphQLObjectType({\n  name: 'Mutation',\n  fields: () => ({\n    introduceShip: shipMutation\n  })\n});\n```\n\nThis code creates a mutation named `IntroduceShip`, which takes a faction ID and a ship name as input. It outputs the `Faction` and the `Ship` in question. `mutateAndGetPayload` then gets an object with a property for each input field, performs the mutation by constructing the new ship, then returns an object that will be resolved by the output fields.\n\nOur mutation type then creates the `introduceShip` field using the return value of `mutationWithClientMutationId`.\n\n## Contributing\n\nAfter cloning this repo, ensure dependencies are installed by running:\n\n```sh\nnpm install\n```\n\nThis library is written in ES6 and uses [Babel](http://babeljs.io/) for ES5 transpilation and [Flow](http://flowtype.org/) for type safety. Widely consumable JavaScript can be produced by running:\n\n```sh\nnpm run build\n```\n\nOnce `npm run build` has run, you may `import` or `require()` directly from node.\n\nAfter developing, the full test suite can be evaluated by running:\n\n```sh\nnpm test\n```\n\nWhile actively developing, we recommend running\n\n```sh\nnpm run watch\n```\n\nin a terminal. This will watch the file system run lint, tests, and type checking automatically whenever you save a js file.\n\nTo lint the JS files and run type interface checks run `npm run lint`.\n\n## License\n\ngraphql-relay-js is [MIT licensed](./LICENSE).\n",
+    "licenseText": "MIT License\n\nCopyright (c) 2015-present, Facebook, Inc.\n\nPermission is hereby granted, free of charge, to any person obtaining a copy\nof this software and associated documentation files (the \"Software\"), to deal\nin the Software without restriction, including without limitation the rights\nto use, copy, modify, merge, publish, distribute, sublicense, and/or sell\ncopies of the Software, and to permit persons to whom the Software is\nfurnished to do so, subject to the following conditions:\n\nThe above copyright notice and this permission notice shall be included in all\ncopies or substantial portions of the Software.\n\nTHE SOFTWARE IS PROVIDED \"AS IS\", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR\nIMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,\nFITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE\nAUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER\nLIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,\nOUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE\nSOFTWARE.\n"
+  },
+  "artifacts": [],
+  "remote": {
+    "resolved": "https://registry.yarnpkg.com/graphql-relay/-/graphql-relay-0.5.4.tgz#58050cfe16118595f82ab3aabfc974546ce755a8",
+    "type": "tarball",
+    "reference": "https://registry.yarnpkg.com/graphql-relay/-/graphql-relay-0.5.4.tgz",
+    "hash": "58050cfe16118595f82ab3aabfc974546ce755a8",
+    "registry": "npm"
+  },
+  "registry": "npm",
+  "hash": "58050cfe16118595f82ab3aabfc974546ce755a8"
+}

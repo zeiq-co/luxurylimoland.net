@@ -1,0 +1,68 @@
+{
+  "manifest": {
+    "name": "github-slugger",
+    "description": "Generate a slug just like GitHub does for markdown headings.",
+    "version": "1.2.0",
+    "author": {
+      "name": "Dan Flettre",
+      "email": "fletd01@yahoo.com"
+    },
+    "contributors": [
+      {
+        "name": "Dan Flettre",
+        "email": "fletd01@yahoo.com"
+      },
+      {
+        "name": "Titus Wormer",
+        "email": "tituswormer@gmail.com",
+        "url": "http://wooorm.com"
+      }
+    ],
+    "bugs": {
+      "url": "https://github.com/Flet/github-slugger/issues"
+    },
+    "dependencies": {
+      "emoji-regex": ">=6.0.0 <=6.1.1"
+    },
+    "devDependencies": {
+      "standard": "*",
+      "tap-spec": "^4.0.2",
+      "tape": "^4.0.0"
+    },
+    "homepage": "https://github.com/Flet/github-slugger",
+    "keywords": [
+      "anchor",
+      "github",
+      "hash",
+      "heading",
+      "markdown",
+      "slug",
+      "slugger",
+      "url"
+    ],
+    "license": "ISC",
+    "main": "index.js",
+    "repository": {
+      "type": "git",
+      "url": "https://github.com/Flet/github-slugger.git"
+    },
+    "scripts": {
+      "test": "standard && tape test/*.js | tap-spec"
+    },
+    "_registry": "npm",
+    "_loc": "/home/ali/Project/uforce/cairo/.yarn/v1/npm-github-slugger-1.2.0-8ada3286fd046d8951c3c952a8d7854cfd90fd9a/package.json",
+    "readmeFilename": "README.md",
+    "readme": "# github-slugger\n\n[![npm][npm-image]][npm-url]\n[![travis][travis-image]][travis-url]\n\n[npm-image]: https://img.shields.io/npm/v/github-slugger.svg?style=flat-square\n[npm-url]: https://www.npmjs.com/package/github-slugger\n[travis-image]: https://img.shields.io/travis/Flet/github-slugger.svg?style=flat-square\n[travis-url]: https://travis-ci.org/Flet/github-slugger\n\nGenerate a slug just like GitHub does for markdown headings. It also ensures slugs are unique in the same way GitHub does it. The overall goal of this package is to emulate the way GitHub handles generating markdown heading anchors as close as possible.\n\n## Install\n\n```\nnpm install github-slugger\n```\n\n## Usage\n\n```js\nvar GithubSlugger = require('github-slugger')\nvar slugger = new GithubSlugger()\n\nslugger.slug('foo')\n// returns 'foo'\n\nslugger.slug('foo')\n// returns 'foo-1'\n\nslugger.slug('bar')\n// returns 'bar'\n\nslugger.slug('foo')\n// returns 'foo-2'\n\nslugger.reset()\n\nslugger.slug('foo')\n// returns 'foo'\n\n```\nCheck `test/index.js` for more examples.\n\n## Contributing\n\nContributions welcome! Please read the [contributing guidelines](CONTRIBUTING.md) first.\n\n## License\n\n[ISC](LICENSE)\n",
+    "licenseText": "Copyright (c) 2015, Dan Flettre <fletd01@yahoo.com>\n\nPermission to use, copy, modify, and/or distribute this software for any purpose with or without fee is hereby granted, provided that the above copyright notice and this permission notice appear in all copies.\n\nTHE SOFTWARE IS PROVIDED \"AS IS\" AND THE AUTHOR DISCLAIMS ALL WARRANTIES WITH REGARD TO THIS SOFTWARE INCLUDING ALL IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS. IN NO EVENT SHALL THE AUTHOR BE LIABLE FOR ANY SPECIAL, DIRECT, INDIRECT, OR CONSEQUENTIAL DAMAGES OR ANY DAMAGES WHATSOEVER RESULTING FROM LOSS OF USE, DATA OR PROFITS, WHETHER IN AN ACTION OF CONTRACT, NEGLIGENCE OR OTHER TORTIOUS ACTION, ARISING OUT OF OR IN CONNECTION WITH THE USE OR PERFORMANCE OF THIS SOFTWARE.\n"
+  },
+  "artifacts": [],
+  "remote": {
+    "resolved": "https://registry.yarnpkg.com/github-slugger/-/github-slugger-1.2.0.tgz#8ada3286fd046d8951c3c952a8d7854cfd90fd9a",
+    "type": "tarball",
+    "reference": "https://registry.yarnpkg.com/github-slugger/-/github-slugger-1.2.0.tgz",
+    "hash": "8ada3286fd046d8951c3c952a8d7854cfd90fd9a",
+    "registry": "npm"
+  },
+  "registry": "npm",
+  "hash": "8ada3286fd046d8951c3c952a8d7854cfd90fd9a"
+}

@@ -1,0 +1,107 @@
+{
+  "manifest": {
+    "name": "react-frame-component",
+    "version": "2.0.2",
+    "description": "React component to wrap your application or component in an iFrame for encapsulation purposes",
+    "main": "lib/index.js",
+    "scripts": {
+      "clean": "rimraf lib",
+      "test": "npm-run-all --parallel lint karma:once --sequential build",
+      "serve": "webpack-dev-server --host 0.0.0.0 --hot --inline --history-api-fallback",
+      "start": "npm-run-all --parallel karma:dev serve",
+      "karma:once": "karma start --single-run",
+      "karma:dev": "karma start --browsers Chrome",
+      "babel": "babel src -d lib",
+      "build": "npm-run-all clean babel",
+      "lint": "eslint '*.js' '{src,test}/**/*.js*'",
+      "prepublish": "npm run build",
+      "predeploy": "webpack",
+      "deploy": "gh-pages -d dist",
+      "publish": "npm run deploy"
+    },
+    "repository": {
+      "type": "git",
+      "url": "git://github.com/ryanseddon/react-frame-component.git"
+    },
+    "keywords": [
+      "React",
+      "component",
+      "iFrame",
+      "browser"
+    ],
+    "author": {
+      "name": "Ryan Seddon"
+    },
+    "contributors": [
+      {
+        "name": "Chris Trevino",
+        "email": "darthtrevino@gmail.com"
+      }
+    ],
+    "license": "MIT",
+    "bugs": {
+      "url": "https://github.com/ryanseddon/react-frame-component/issues"
+    },
+    "homepage": "https://github.com/ryanseddon/react-frame-component",
+    "devDependencies": {
+      "babel-cli": "^6.18.0",
+      "babel-core": "^6.21.0",
+      "babel-eslint": "^7.1.1",
+      "babel-loader": "^6.3.2",
+      "babel-plugin-transform-class-properties": "^6.19.0",
+      "babel-preset-latest": "^6.16.0",
+      "babel-preset-react": "^6.16.0",
+      "babel-preset-stage-2": "^6.18.0",
+      "babel-register": "^6.18.0",
+      "chai": "^3.5.0",
+      "eslint": "^3.13.1",
+      "eslint-config-airbnb": "^14.0.0",
+      "eslint-plugin-import": "^2.2.0",
+      "eslint-plugin-jsx-a11y": "^3.0.2",
+      "eslint-plugin-react": "^6.9.0",
+      "gh-pages": "^1.1.0",
+      "html-webpack-plugin": "^2.28.0",
+      "karma": "^1.4.0",
+      "karma-chrome-launcher": "^2.0.0",
+      "karma-mocha": "^1.3.0",
+      "karma-osx-reporter": "^0.2.1",
+      "karma-phantomjs-launcher": "^1.0.2",
+      "karma-phantomjs2-launcher": "^0.5.0",
+      "karma-sourcemap-loader": "^0.3.7",
+      "karma-webpack": "^2.0.2",
+      "mocha": "^3.2.0",
+      "mocha-junit-reporter": "^1.13.0",
+      "mocha-multi": "^0.10.0",
+      "mocha-osx-reporter": "^0.1.2",
+      "npm-run-all": "^4.0.1",
+      "prop-types": "^15.5.9",
+      "react": "^16.0.0",
+      "react-dom": "^16.0.0",
+      "rimraf": "^2.5.4",
+      "sinon": "2.0.0-pre",
+      "wallaby-webpack": "^0.0.30",
+      "webpack": "1.x",
+      "webpack-dev-server": "^1.16.3"
+    },
+    "dependencies": {},
+    "peerDependencies": {
+      "prop-types": "^15.5.9",
+      "react": "^16.0.0",
+      "react-dom": "^16.0.0"
+    },
+    "_registry": "npm",
+    "_loc": "/home/ali/Project/uforce/cairo/.yarn/v1/npm-react-frame-component-2.0.2-e602a980e1d78f91f471531225b61cfdbf68e614/package.json",
+    "readmeFilename": "README.md",
+    "readme": "# React &lt;Frame /> component\n\n[![NPM version][npm-image]][npm-url] [![Build Status][travis-image]][travis-url] [![Dependency Status][depstat-image]][depstat-url]\n\nThis component allows you to encapsulate your entire React application or per component in an iFrame.\n\n```bash\nnpm install --save react-frame-component\n```\n\n## How to use:\n\n```js\nimport Frame from 'react-frame-component';\n```\n\nGo check out the [demo][demo-url].\n\n```html\nconst Header = ({ children }) => (\n  <Frame>\n    <h1>{children}</h1>\n  </Frame>\n);\n\nReactDOM.render(<Header>Hello</Header>, document.body);\n```\n\nOr you can wrap it at the `render` call.\n\n```html\nReactDOM.render(\n  <Frame>\n    <Header>Hello</Header>\n  </Frame>,\n  document.body\n);\n```\n\n##### Props:\n\n###### head\n`head:  PropTypes.node`\n\nThe `head` prop is a dom node that gets inserted before the children of the frame. Note that this is injected into the body of frame (see the blog post for why). This has the benefit of being able to update and works for stylesheets.\n\n###### initialContent\n`initialContent:  PropTypes.string`\n\nDefaults to `'<!DOCTYPE html><html><head></head><body><div></div></body></html>'`\n\nThe `initialContent` props is the initial html injected into frame. It is only injected once, but allows you to insert any html into the frame (e.g. a head tag, script tags, etc). Note that it does *not* update if you change the prop. Also at least one div is required in the body of the html, which we use to render the react dom into.\n\n###### mountTarget\n`mountTarget:  PropTypes.string`\n\nThe `mountTarget` props is a css selector (#target/.target) that specifies where in the `initialContent` of the iframe, children will be mounted.\n\n```html\n<Frame\n  initialContent='<!DOCTYPE html><html><head></head><body><h1>i wont be changed</h1><div id=\"mountHere\"></div></body></html>'\n  mountTarget='#mountHere'\n  >\n</Frame>\n```\n\n###### contentDidMount and contentDidUpdate\n`contentDidMount:  PropTypes.func`\n`contentDidUpdate:  PropTypes.func`\n\n`contentDidMount` and `contentDidUpdate` are conceptually equivalent to\n`componentDidMount` and `componentDidUpdate`, respecitvely. The reason these are\nneeded is because internally we call `ReactDOM.render` which starts a new set of\nlifecycle calls. This set of lifecycle calls are sometimes triggered after the\nlifecycle of the parent component, so these callbacks provide a hook to know\nwhen the frame contents are mounted and updated.\n\n###### Accessing the iframe's window and document\nThe iframe's `window` and `document` may be accessed via the React context values `window` and `document` respectively.\n\n```js\nconst MyComponent = (props, context) => {\n  const {\n    document: iframeDocument,\n    window: iframeWindow\n  } = context;\n\n  return (<...rendered jsx.../>);\n};\n\nMyComponent.contextTypes = {\n  window: PropTypes.any,\n  document: PropTypes.any\n};\n```\n\n## More info\n\nI wrote a [blog post][blog-url] about building this component.\n\n## License\n\nCopyright 2014, Ryan Seddon.\nThis content is released under the MIT license http://ryanseddon.mit-license.org\n\n[npm-url]: https://npmjs.org/package/react-frame-component\n[npm-image]: https://badge.fury.io/js/react-frame-component.png\n\n[travis-url]: http://travis-ci.org/ryanseddon/react-frame-component\n[travis-image]: https://secure.travis-ci.org/ryanseddon/react-frame-component.png?branch=master\n\n[depstat-url]: https://david-dm.org/ryanseddon/react-frame-component\n[depstat-image]: https://david-dm.org/ryanseddon/react-frame-component.png\n\n[demo-url]: http://ryanseddon.github.io/react-frame-component/\n[blog-url]: http://developer.zendesk.com/blog/2014/05/13/rendering-to-iframes-in-react/\n"
+  },
+  "artifacts": [],
+  "remote": {
+    "resolved": "https://registry.yarnpkg.com/react-frame-component/-/react-frame-component-2.0.2.tgz#e602a980e1d78f91f471531225b61cfdbf68e614",
+    "type": "tarball",
+    "reference": "https://registry.yarnpkg.com/react-frame-component/-/react-frame-component-2.0.2.tgz",
+    "hash": "e602a980e1d78f91f471531225b61cfdbf68e614",
+    "registry": "npm"
+  },
+  "registry": "npm",
+  "hash": "e602a980e1d78f91f471531225b61cfdbf68e614"
+}

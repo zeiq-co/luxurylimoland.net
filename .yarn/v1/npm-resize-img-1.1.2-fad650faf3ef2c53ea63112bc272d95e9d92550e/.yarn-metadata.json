@@ -1,0 +1,66 @@
+{
+  "manifest": {
+    "name": "resize-img",
+    "version": "1.1.2",
+    "description": "Resize images in memory",
+    "license": "MIT",
+    "repository": {
+      "type": "git",
+      "url": "https://github.com/kevva/resize-img.git"
+    },
+    "author": {
+      "name": "Kevin Martensson",
+      "email": "kevinmartensson@gmail.com",
+      "url": "github.com/kevva"
+    },
+    "engines": {
+      "node": ">=4"
+    },
+    "scripts": {
+      "test": "xo && ava"
+    },
+    "files": [
+      "index.js"
+    ],
+    "keywords": [
+      "bmp",
+      "fast",
+      "image",
+      "jpeg",
+      "jpg",
+      "memory",
+      "png",
+      "resize"
+    ],
+    "dependencies": {
+      "bmp-js": "0.0.1",
+      "file-type": "^3.8.0",
+      "get-stream": "^2.0.0",
+      "jimp": "^0.2.21",
+      "jpeg-js": "^0.1.1",
+      "parse-png": "^1.1.1"
+    },
+    "devDependencies": {
+      "ava": "*",
+      "image-size": "^0.5.0",
+      "pify": "^2.3.0",
+      "xo": "*"
+    },
+    "_registry": "npm",
+    "_loc": "/home/ali/Project/uforce/cairo/.yarn/v1/npm-resize-img-1.1.2-fad650faf3ef2c53ea63112bc272d95e9d92550e/package.json",
+    "readmeFilename": "readme.md",
+    "readme": "# resize-img [![Build Status](https://travis-ci.org/kevva/resize-img.svg?branch=master)](https://travis-ci.org/kevva/resize-img)\n\n> Resize images in memory\n\n\n## Install\n\n```\n$ npm install --save resize-img\n```\n\n\n## Usage\n\n```js\nconst fs = require('fs');\nconst resizeImg = require('resize-img');\n\nresizeImg(fs.readFileSync('unicorn.png'), {width: 128, height: 128}).then(buf => {\n\tfs.writeFileSync('unicorn-128x128.png', buf);\n});\n```\n\n\n## API\n\n### resizeImg(input, options)\n\n#### input\n\nType: `buffer`\n\nAn image buffer. Supported formats are `bmp`, `jpg` and `png`.\n\n#### options\n\n##### width\n\nType: `number`\n\nDesired width of the target image.\n\n##### height\n\nType: `number`\n\nDesired height of the target image.\n\n\n## Related\n\n* [resize-img-cli](https://github.com/kevva/resize-img-cli) - CLI for this module.\n\n\n## License\n\nMIT © [Kevin Martensson](http://github.com/kevva)\n",
+    "licenseText": "The MIT License (MIT)\n\nCopyright (c) Kevin Martensson <kevinmartensson@gmail.com> (github.com/kevva)\n\nPermission is hereby granted, free of charge, to any person obtaining a copy\nof this software and associated documentation files (the \"Software\"), to deal\nin the Software without restriction, including without limitation the rights\nto use, copy, modify, merge, publish, distribute, sublicense, and/or sell\ncopies of the Software, and to permit persons to whom the Software is\nfurnished to do so, subject to the following conditions:\n\nThe above copyright notice and this permission notice shall be included in\nall copies or substantial portions of the Software.\n\nTHE SOFTWARE IS PROVIDED \"AS IS\", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR\nIMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,\nFITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE\nAUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER\nLIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,\nOUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN\nTHE SOFTWARE.\n"
+  },
+  "artifacts": [],
+  "remote": {
+    "resolved": "https://registry.yarnpkg.com/resize-img/-/resize-img-1.1.2.tgz#fad650faf3ef2c53ea63112bc272d95e9d92550e",
+    "type": "tarball",
+    "reference": "https://registry.yarnpkg.com/resize-img/-/resize-img-1.1.2.tgz",
+    "hash": "fad650faf3ef2c53ea63112bc272d95e9d92550e",
+    "registry": "npm",
+    "packageName": "resize-img"
+  },
+  "registry": "npm",
+  "hash": "fad650faf3ef2c53ea63112bc272d95e9d92550e"
+}

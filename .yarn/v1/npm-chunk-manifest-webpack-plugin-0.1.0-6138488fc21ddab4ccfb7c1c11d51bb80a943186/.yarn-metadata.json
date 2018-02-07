@@ -1,0 +1,53 @@
+{
+  "manifest": {
+    "name": "chunk-manifest-webpack-plugin",
+    "version": "0.1.0",
+    "description": "Allows exporting a manifest that maps chunk ids to their output files, instead of keeping the mapping inside the webpack bootstrap.",
+    "main": "lib/ChunkManifestPlugin.js",
+    "scripts": {
+      "test": "echo \"Error: no test specified\" && exit 1"
+    },
+    "author": {
+      "name": "Jason Anderson",
+      "email": "diurnalist@gmail.com",
+      "url": "http://diurnal.st"
+    },
+    "license": "MIT",
+    "dependencies": {
+      "webpack-core": "^0.4.8"
+    },
+    "peerDependencies": {
+      "webpack": "^1.4.0-beta6"
+    },
+    "repository": {
+      "type": "git",
+      "url": "git+https://github.com/diurnalist/chunk-manifest-webpack-plugin.git"
+    },
+    "bugs": {
+      "url": "https://github.com/diurnalist/chunk-manifest-webpack-plugin/issues"
+    },
+    "homepage": "https://github.com/diurnalist/chunk-manifest-webpack-plugin#readme",
+    "devDependencies": {},
+    "keywords": [
+      "webpack",
+      "chunk",
+      "manifest",
+      "plugin"
+    ],
+    "_registry": "npm",
+    "_loc": "/home/ali/Project/uforce/cairo/.yarn/v1/npm-chunk-manifest-webpack-plugin-0.1.0-6138488fc21ddab4ccfb7c1c11d51bb80a943186/package.json",
+    "readmeFilename": "README.md",
+    "readme": "# chunk-manifest-webpack-plugin\n\nAllows exporting a JSON file that maps chunk ids to their resulting asset files. Webpack can then read this mapping, assuming it is provided somehow on the client, instead of storing a mapping (with chunk asset hashes) in the bootstrap script, which allows to actually leverage long-term caching.\n\n## Usage\n\nInstall via npm:\n\n```shell\nnpm install chunk-manifest-webpack-plugin\n```\n\nAnd then require and provide to webpack:\n\n```javascript\n// in webpack.config.js or similar\nvar ChunkManifestPlugin = require('chunk-manifest-webpack-plugin');\n\nmodule.exports = {\n  // your config values here\n  plugins: [\n    new ChunkManifestPlugin({\n      filename: \"manifest.json\",\n      manifestVariable: \"webpackManifest\"\n    })\n  ]\n};\n```\n\n### Options\n\n#### `filename`\n\nWhere the manifest will be exported to on bundle compilation. This will be relative to the main webpack output directory. Default = `\"manifest.json\"`\n\n#### `manifestVariable`\n\nWhat JS variable on the client webpack should refer to when requiring chunks. Default = `\"webpackManifest\"`\n",
+    "licenseText": "Copyright (c) 2014 Jason Anderson\n\nPermission is hereby granted, free of charge, to any person obtaining a copy\nof this software and associated documentation files (the \"Software\"), to deal\nin the Software without restriction, including without limitation the rights\nto use, copy, modify, merge, publish, distribute, sublicense, and/or sell\ncopies of the Software, and to permit persons to whom the Software is\nfurnished to do so, subject to the following conditions:\n\nThe above copyright notice and this permission notice shall be included in\nall copies or substantial portions of the Software.\n\nTHE SOFTWARE IS PROVIDED \"AS IS\", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR\nIMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,\nFITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE\nAUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER\nLIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,\nOUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN\nTHE SOFTWARE.\n"
+  },
+  "artifacts": [],
+  "remote": {
+    "resolved": "https://registry.yarnpkg.com/chunk-manifest-webpack-plugin/-/chunk-manifest-webpack-plugin-0.1.0.tgz#6138488fc21ddab4ccfb7c1c11d51bb80a943186",
+    "type": "tarball",
+    "reference": "https://registry.yarnpkg.com/chunk-manifest-webpack-plugin/-/chunk-manifest-webpack-plugin-0.1.0.tgz",
+    "hash": "6138488fc21ddab4ccfb7c1c11d51bb80a943186",
+    "registry": "npm"
+  },
+  "registry": "npm",
+  "hash": "6138488fc21ddab4ccfb7c1c11d51bb80a943186"
+}

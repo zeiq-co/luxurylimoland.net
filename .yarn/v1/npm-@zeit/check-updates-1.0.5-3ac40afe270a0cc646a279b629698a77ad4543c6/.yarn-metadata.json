@@ -1,0 +1,40 @@
+{
+  "manifest": {
+    "name": "@zeit/check-updates",
+    "version": "1.0.5",
+    "description": "Consistent update notifications for packages",
+    "main": "index.js",
+    "repository": {
+      "type": "git",
+      "url": "https://github.com/zeit/check-updates.git"
+    },
+    "keywords": [
+      "update",
+      "notifier"
+    ],
+    "author": {
+      "name": "leo"
+    },
+    "license": "MIT",
+    "dependencies": {
+      "chalk": "^2.3.0",
+      "ms": "^2.1.1",
+      "update-notifier": "^2.3.0"
+    },
+    "_registry": "npm",
+    "_loc": "/home/ali/Project/uforce/cairo/.yarn/v1/npm-@zeit/check-updates-1.0.5-3ac40afe270a0cc646a279b629698a77ad4543c6/package.json",
+    "readmeFilename": "readme.md",
+    "readme": "# check-updates\n\nThis package makes it very easy to implement update notifications into ZEIT packages.\n\n## Usage\n\nFirstly, install the package:\n\n```bash\nnpm install @zeit/check-updates\n```\n\nNext, initialize it:\n\n```js\nconst pkg = require('./package')\nconst updateNotifier = require('@zeit/check-updates')\n\nupdateNotifier(pkg, 'Project Name')\n```\n\nYou can even pass a millisecond interval for the cache (a day by default):\n\n```js\nupdateNotifier(pkg, 'Project Name', 80000)\n```\n\n## Contributing\n\n1. [Fork](https://help.github.com/articles/fork-a-repo/) this repository to your own GitHub account and then [clone](https://help.github.com/articles/cloning-a-repository/) it to your local device\n2. Link the package to the global module directory: `npm link`\n3. Within the module you want to test your local development instance of the package, just link it: `npm link @zeit/check-updates`. Instead of the default one from npm, node will now use your clone.\n\n## Author\n\nLeo Lamprecht ([@notquiteleo](https://twitter.com/notquiteleo)) - [ZEIT](https://zeit.co)\n",
+    "licenseText": "MIT License\n\nCopyright (c) 2018 ZEIT, Inc.\n\nPermission is hereby granted, free of charge, to any person obtaining a copy\nof this software and associated documentation files (the \"Software\"), to deal\nin the Software without restriction, including without limitation the rights\nto use, copy, modify, merge, publish, distribute, sublicense, and/or sell\ncopies of the Software, and to permit persons to whom the Software is\nfurnished to do so, subject to the following conditions:\n\nThe above copyright notice and this permission notice shall be included in all\ncopies or substantial portions of the Software.\n\nTHE SOFTWARE IS PROVIDED \"AS IS\", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR\nIMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,\nFITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE\nAUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER\nLIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,\nOUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE\nSOFTWARE.\n"
+  },
+  "artifacts": [],
+  "remote": {
+    "resolved": "https://registry.yarnpkg.com/@zeit/check-updates/-/check-updates-1.0.5.tgz#3ac40afe270a0cc646a279b629698a77ad4543c6",
+    "type": "tarball",
+    "reference": "https://registry.yarnpkg.com/@zeit/check-updates/-/check-updates-1.0.5.tgz",
+    "hash": "3ac40afe270a0cc646a279b629698a77ad4543c6",
+    "registry": "npm"
+  },
+  "registry": "npm",
+  "hash": "3ac40afe270a0cc646a279b629698a77ad4543c6"
+}

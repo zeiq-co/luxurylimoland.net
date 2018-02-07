@@ -1,0 +1,88 @@
+{
+  "manifest": {
+    "name": "unist-util-position",
+    "version": "3.0.0",
+    "description": "Utility to get the position of unist nodes",
+    "license": "MIT",
+    "keywords": [
+      "unist",
+      "node",
+      "position",
+      "util",
+      "utility"
+    ],
+    "repository": {
+      "type": "git",
+      "url": "https://github.com/wooorm/unist-util-position"
+    },
+    "bugs": {
+      "url": "https://github.com/wooorm/unist-util-position/issues"
+    },
+    "author": {
+      "name": "Titus Wormer",
+      "email": "tituswormer@gmail.com",
+      "url": "http://wooorm.com"
+    },
+    "contributors": [
+      {
+        "name": "Titus Wormer",
+        "email": "tituswormer@gmail.com",
+        "url": "http://wooorm.com"
+      }
+    ],
+    "files": [
+      "index.js"
+    ],
+    "dependencies": {},
+    "devDependencies": {
+      "browserify": "^13.0.0",
+      "esmangle": "^1.0.0",
+      "nyc": "^9.0.1",
+      "remark": "^6.2.0",
+      "remark-cli": "^2.0.0",
+      "remark-preset-wooorm": "^1.0.0",
+      "tape": "^4.4.0",
+      "xo": "^0.17.1"
+    },
+    "scripts": {
+      "build-md": "remark . --quiet --frail --output",
+      "build-bundle": "browserify index.js --no-builtins -s unistUtilPosition > unist-util-position.js",
+      "build-mangle": "esmangle unist-util-position.js > unist-util-position.min.js",
+      "build": "npm run build-md && npm run build-bundle && npm run build-mangle",
+      "lint": "xo",
+      "test-api": "node test.js",
+      "test-coverage": "nyc --reporter lcov tape test.js",
+      "test": "npm run build && npm run lint && npm run test-coverage"
+    },
+    "nyc": {
+      "check-coverage": true,
+      "lines": 100,
+      "functions": 100,
+      "branches": 100
+    },
+    "xo": {
+      "space": true,
+      "ignores": [
+        "unist-util-position.js"
+      ]
+    },
+    "remarkConfig": {
+      "presets": "wooorm"
+    },
+    "_registry": "npm",
+    "_loc": "/home/ali/Project/uforce/cairo/.yarn/v1/npm-unist-util-position-3.0.0-e6e1e03eeeb81c5e1afe553e8d4adfbd7c0d8f82/package.json",
+    "readmeFilename": "readme.md",
+    "readme": "# unist-util-position [![Build Status][build-badge]][build-status] [![Coverage Status][coverage-badge]][coverage-status]\n\n[**unist**][unist] utility to get the position of nodes.\n\n## Installation\n\n[npm][]:\n\n```bash\nnpm install unist-util-position\n```\n\n## Usage\n\n```js\nvar remark = require('remark');\nvar position = require('unist-util-position');\n\nvar tree = remark().parse([\n  '# foo',\n  '',\n  '* bar',\n  ''\n].join('\\n'));\n\nposition.start(tree); //=> {line: 1, column: 1}\nposition.end(tree); //=> {line: 4, column: 1}\n\nposition.start(); //=> {line: null, column: null}\nposition.end(); //=> {line: null, column: null}\n```\n\n## API\n\n### `position.start([node])`\n\n### `position.end([node])`\n\nGet the start or end position, respectively, of `node`.\n\n###### Parameters\n\n*   `node` ([`Node?`][node]) — Node to check.\n\n###### Returns\n\n[`Position`][position] — Filled with `line` (nullable `uint32 >= 1`),\n`column` (nullable `uint32 >= 1`), `offset` (nullable `uint32 >= 0`).\n\n## License\n\n[MIT][license] © [Titus Wormer][author]\n\n<!-- Definitions -->\n\n[build-badge]: https://img.shields.io/travis/wooorm/unist-util-position.svg\n\n[build-status]: https://travis-ci.org/wooorm/unist-util-position\n\n[coverage-badge]: https://img.shields.io/codecov/c/github/wooorm/unist-util-position.svg\n\n[coverage-status]: https://codecov.io/github/wooorm/unist-util-position\n\n[license]: LICENSE\n\n[author]: http://wooorm.com\n\n[npm]: https://docs.npmjs.com/cli/install\n\n[unist]: https://github.com/wooorm/unist\n\n[node]: https://github.com/wooorm/unist#node\n\n[position]: https://github.com/wooorm/unist#position\n",
+    "licenseText": "(The MIT License)\n\nCopyright (c) 2015 Titus Wormer <tituswormer@gmail.com>\n\nPermission is hereby granted, free of charge, to any person obtaining\na copy of this software and associated documentation files (the\n'Software'), to deal in the Software without restriction, including\nwithout limitation the rights to use, copy, modify, merge, publish,\ndistribute, sublicense, and/or sell copies of the Software, and to\npermit persons to whom the Software is furnished to do so, subject to\nthe following conditions:\n\nThe above copyright notice and this permission notice shall be\nincluded in all copies or substantial portions of the Software.\n\nTHE SOFTWARE IS PROVIDED 'AS IS', WITHOUT WARRANTY OF ANY KIND,\nEXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF\nMERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT.\nIN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY\nCLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT,\nTORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE\nSOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.\n"
+  },
+  "artifacts": [],
+  "remote": {
+    "resolved": "https://registry.yarnpkg.com/unist-util-position/-/unist-util-position-3.0.0.tgz#e6e1e03eeeb81c5e1afe553e8d4adfbd7c0d8f82",
+    "type": "tarball",
+    "reference": "https://registry.yarnpkg.com/unist-util-position/-/unist-util-position-3.0.0.tgz",
+    "hash": "e6e1e03eeeb81c5e1afe553e8d4adfbd7c0d8f82",
+    "registry": "npm"
+  },
+  "registry": "npm",
+  "hash": "e6e1e03eeeb81c5e1afe553e8d4adfbd7c0d8f82"
+}

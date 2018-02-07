@@ -1,0 +1,45 @@
+{
+  "manifest": {
+    "name": "get-document",
+    "version": "1.0.0",
+    "description": "Returns the `document` object from a DOM object",
+    "scripts": {
+      "test": "make test"
+    },
+    "keywords": [
+      "dom",
+      "document",
+      "node",
+      "range",
+      "element",
+      "browser"
+    ],
+    "main": "index.js",
+    "component": {
+      "scripts": {
+        "get-document/index.js": "index.js"
+      }
+    },
+    "repository": {
+      "type": "git",
+      "url": "https://github.com/webmodules/get-document.git"
+    },
+    "devDependencies": {
+      "zuul": "~1.16.5"
+    },
+    "_registry": "npm",
+    "_loc": "/home/ali/Project/uforce/cairo/.yarn/v1/npm-get-document-1.0.0-4821bce66f1c24cb0331602be6cb6b12c4f01c4b/package.json",
+    "readmeFilename": "README.md",
+    "readme": "get-document\n============\n### Returns the `document` object from a DOM object\n\n[![Sauce Test Status](https://saucelabs.com/browser-matrix/get-document.svg)](https://saucelabs.com/u/get-document)\n\n[![Build Status](https://travis-ci.org/webmodules/get-document.svg?branch=master)](https://travis-ci.org/webmodules/get-document)\n\n\nInstallation\n------------\n\n``` bash\n$ npm install get-document\n```\n"
+  },
+  "artifacts": [],
+  "remote": {
+    "resolved": "https://registry.yarnpkg.com/get-document/-/get-document-1.0.0.tgz#4821bce66f1c24cb0331602be6cb6b12c4f01c4b",
+    "type": "tarball",
+    "reference": "https://registry.yarnpkg.com/get-document/-/get-document-1.0.0.tgz",
+    "hash": "4821bce66f1c24cb0331602be6cb6b12c4f01c4b",
+    "registry": "npm"
+  },
+  "registry": "npm",
+  "hash": "4821bce66f1c24cb0331602be6cb6b12c4f01c4b"
+}

@@ -1,0 +1,125 @@
+{
+  "manifest": {
+    "name": "react-topbar-progress-indicator",
+    "version": "2.0.0",
+    "description": "topbar progress indicator React component",
+    "keywords": [
+      "react",
+      "topbar",
+      "progress",
+      "progressbar",
+      "loading",
+      "loader",
+      "indicator"
+    ],
+    "author": {
+      "name": "Maxime Thirouin"
+    },
+    "license": "MIT",
+    "repository": {
+      "type": "git",
+      "url": "https://github.com/MoOx/react-topbar-progress-indicator.git"
+    },
+    "main": "lib/index.js",
+    "files": [
+      "lib",
+      "src",
+      "!**/__tests__"
+    ],
+    "dependencies": {
+      "topbar": "^0.1.3"
+    },
+    "devDependencies": {
+      "ava": "^0.13.0",
+      "babel-cli": "^6.4.0",
+      "babel-core": "^6.4.0",
+      "babel-eslint": "^6.0.0",
+      "babel-plugin-flow-react-proptypes": "^2.2.1",
+      "babel-preset-env": "^1.6.0",
+      "babel-preset-react": "^6.4.0",
+      "babel-preset-stage-2": "^6.4.0",
+      "coveralls": "^2.11.9",
+      "eslint": "^2.0.0",
+      "eslint-config-i-am-meticulous": "^4.1.0",
+      "eslint-loader": "^1.3.0",
+      "eslint-plugin-ava": "^1.3.1",
+      "eslint-plugin-flow-vars": "^0.2.1",
+      "eslint-plugin-react": "^4.0.0",
+      "flow-bin": "^0.54.0",
+      "npmpub": "^3.0.0",
+      "nyc": "^6.1.1",
+      "react": "^16.0.0",
+      "react-dom": "^16.0.0",
+      "react-test-renderer": "^16.0.0"
+    },
+    "scripts": {
+      "transpile": "babel --ignore __tests__ --copy-files src --out-dir lib",
+      "prepublish": "rimraf lib && npm -s run transpile",
+      "lint:js:eslint": "eslint --ignore-path .gitignore --fix .",
+      "lint:js:flow": "flow src",
+      "lint:js": "npm -s run lint:js:eslint && npm -s run lint:js:flow",
+      "lint": "npm -s run lint:js",
+      "tests": "ava",
+      "pretest": "npm -s run lint",
+      "test": "npm -s run tests",
+      "test-with-coverage": "nyc npm run test",
+      "coverage": "nyc report --reporter=text-lcov | coveralls",
+      "release": "npmpub"
+    },
+    "babel": {
+      "presets": [
+        "babel-preset-env",
+        "babel-preset-stage-2",
+        "babel-preset-react"
+      ],
+      "env": {
+        "development": {
+          "plugins": [
+            "babel-plugin-flow-react-proptypes"
+          ]
+        }
+      }
+    },
+    "eslintConfig": {
+      "parser": "babel-eslint",
+      "extends": [
+        "eslint-config-i-am-meticulous/react-flow",
+        "eslint-config-i-am-meticulous/ava"
+      ]
+    },
+    "ava": {
+      "files": [
+        "src/**/__tests__/*.js"
+      ],
+      "failFast": true,
+      "verbose": true,
+      "require": [
+        "babel-register"
+      ],
+      "babel": "inherit"
+    },
+    "nyc": {
+      "exclude": [
+        "**/__tests__/**"
+      ],
+      "include": [
+        "src/**"
+      ]
+    },
+    "_registry": "npm",
+    "_loc": "/home/ali/Project/uforce/cairo/.yarn/v1/npm-react-topbar-progress-indicator-2.0.0-cfb4b4bd85a32f90dae74338dd008d3a082355d3/package.json",
+    "readmeFilename": "README.md",
+    "readme": "# react-topbar-progress-indicator\n\n[![Unix Build status](https://img.shields.io/travis/MoOx/react-topbar-progress-indicator/master.svg?branch=master&label=unix%20build)](https://travis-ci.org/MoOx/react-topbar-progress-indicator)\n[![Code Coverage](https://img.shields.io/coveralls/MoOx/react-topbar-progress-indicator/master.svg)](https://coveralls.io/github/MoOx/react-topbar-progress-indicator)\n[![Version](https://img.shields.io/npm/v/react-topbar-progress-indicator.svg)](https://github.com/MoOx/react-topbar-progress-indicator/blob/master/CHANGELOG.md)\n\n> topbar progress indicator React component\n\nWill simply `show()` and `hide()` [topbar](https://github.com/buunguyen/topbar)\nwhen the component is respectively mounted and unmounted.\n\n**Since topbar is a singleton, using `<TopBarProgress />` multiples times will\ntake this in consideration. This means that `hide()` will only be called when\nall `<TopBarProgress />` have been unmounted.**\n\nFor example, if you render 2 `<TopBarProgress />` and unmount one (eg: you are doing 2\nasync things and only once is done), `hide()` won't be called.\nYou will need to have both instances unmounted.\n\n## Installation\n\n```console\n$ npm install react-topbar-progress-indicator\n```\n\n## Usage\n\n```js\nimport TopBarProgress from \"react-topbar-progress-indicator\"\n\nTopBarProgress.config({\n  barColors: {\n    \"0\": \"#fff\",\n    \"1.0\": \"#fff\",\n  },\n  shadowBlur: 5,\n})\n\nclass ReactClass extends Component {\n\n  // ...\n\n  render() {\n    return {\n      {\n        this.state.loading &&\n        <TopBarProgress />\n      }\n    }\n  }\n}\n```\n\n### Config\n\nSince ``topbar`` is a singleton, you should configure via ``Topbar.config()``.\n\n#### ``barThickness`` (Integer, px)\n\nThe progress bar thickness in ``px`` (default: 3).\n\n#### ``barColors`` (Object { progress: color })\n\nObject of gradient color stops used to draw the progress bar.\n\nExample:\n\n```js\n  barColors: {\n    \"0\": \"#f00\",\n    \"0.5\": \"#0f0\",\n    \"1.0\": \"#00f\",\n  },\n```\n\n#### ``shadowBlur``\n\nInteger of the shadow blur in ``px`` (default: ``10``).\n\n#### ``shadowColor``\n\nString that represent the shadow color (hexa, default: ``#000``).\n\n---\n\n## CONTRIBUTING\n\n* ⇄ Pull requests and ★ Stars are always welcome.\n* For bugs and feature requests, please create an issue.\n* Pull requests must be accompanied by passing automated tests (`$ npm test`).\n\n## [CHANGELOG](CHANGELOG.md)\n\n## [LICENSE](LICENSE)\n",
+    "licenseText": "The MIT License (MIT)\n\nCopyright (c) 2016 \"MoOx\" Maxime Thirouin\n\nPermission is hereby granted, free of charge, to any person obtaining a copy of\nthis software and associated documentation files (the \"Software\"), to deal in\nthe Software without restriction, including without limitation the rights to\nuse, copy, modify, merge, publish, distribute, sublicense, and/or sell copies of\nthe Software, and to permit persons to whom the Software is furnished to do so,\nsubject to the following conditions:\n\nThe above copyright notice and this permission notice shall be included in all\ncopies or substantial portions of the Software.\n\nTHE SOFTWARE IS PROVIDED \"AS IS\", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR\nIMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY, FITNESS\nFOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR\nCOPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER\nIN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN\nCONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.\n"
+  },
+  "artifacts": [],
+  "remote": {
+    "resolved": "https://registry.yarnpkg.com/react-topbar-progress-indicator/-/react-topbar-progress-indicator-2.0.0.tgz#cfb4b4bd85a32f90dae74338dd008d3a082355d3",
+    "type": "tarball",
+    "reference": "https://registry.yarnpkg.com/react-topbar-progress-indicator/-/react-topbar-progress-indicator-2.0.0.tgz",
+    "hash": "cfb4b4bd85a32f90dae74338dd008d3a082355d3",
+    "registry": "npm"
+  },
+  "registry": "npm",
+  "hash": "cfb4b4bd85a32f90dae74338dd008d3a082355d3"
+}

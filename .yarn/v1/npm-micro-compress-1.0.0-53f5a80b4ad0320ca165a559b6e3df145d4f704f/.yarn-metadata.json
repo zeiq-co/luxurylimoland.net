@@ -1,0 +1,59 @@
+{
+  "manifest": {
+    "name": "micro-compress",
+    "version": "1.0.0",
+    "description": "Compression for HTTP microservices built with Micro",
+    "main": "src/index.js",
+    "scripts": {
+      "test": "xo"
+    },
+    "repository": {
+      "type": "git",
+      "url": "git+https://github.com/joakimbeng/micro-compress.git"
+    },
+    "keywords": [
+      "micro",
+      "compression",
+      "gzip",
+      "microservice",
+      "http",
+      "compress"
+    ],
+    "author": {
+      "name": "Joakim Carlstein",
+      "email": "joakim@beng.se",
+      "url": "http://joakim.beng.se"
+    },
+    "license": "MIT",
+    "bugs": {
+      "url": "https://github.com/joakimbeng/micro-compress/issues"
+    },
+    "homepage": "https://github.com/joakimbeng/micro-compress#readme",
+    "xo": {
+      "envs": [
+        "node"
+      ]
+    },
+    "devDependencies": {
+      "xo": "^0.16.0",
+      "standard-version": "^2.4.0"
+    },
+    "dependencies": {
+      "compression": "^1.6.2"
+    },
+    "_registry": "npm",
+    "_loc": "/home/ali/Project/uforce/cairo/.yarn/v1/npm-micro-compress-1.0.0-53f5a80b4ad0320ca165a559b6e3df145d4f704f/package.json",
+    "readmeFilename": "README.md",
+    "readme": "# micro-compress\n\n[![Build status][travis-image]][travis-url] [![NPM version][npm-image]][npm-url] [![XO code style][codestyle-image]][codestyle-url]\n\n> Compression for HTTP microservices built with [Micro](https://github.com/zeit/micro)\n\n## Installation\n\nInstall `micro-compress` using [npm](https://www.npmjs.com/):\n\n```bash\nnpm install --save micro-compress\n```\n\n## Usage\n\n### Module usage\n\nJust wrap your [Micro](https://github.com/zeit/micro) HTTP microservice with this module:\n\n```javascript\nconst {send, json} = require('micro');\nconst compress = require('micro-compress');\n\nmodule.exports = compress(async (req, res) => {\n\tconst body = await json(req);\n\tsend(res, 200, body);\n});\n```\n\nOptions for the [`compression`](https://github.com/expressjs/compression) module are passed as the first parameter:\n\n```javascript\nconst {Z_BEST_COMPRESSION} = require('zlib');\nconst {send, json} = require('micro');\nconst compress = require('micro-compress');\n\nmodule.exports = compress({level: Z_BEST_COMPRESSION}, async (req, res) => {\n const body = await json(req);\n send(res, 200, body);\n});\n```\n\n## API\n\n### `compress(opts, fn)`\n\n| Name | Type | Description |\n|------|------|-------------|\n| opts | `object` | Optional. Options passed to [`compression`](https://github.com/expressjs/compression) |\n| fn | `function` | The request handler to wrap |\n\nFor available options see [`compression`'s options](https://github.com/expressjs/compression#options).\n\n## License\n\nMIT © [Joakim Carlstein](http://joakim.beng.se)\n\n[npm-url]: https://npmjs.org/package/micro-compress\n[npm-image]: https://badge.fury.io/js/micro-compress.svg\n[travis-url]: https://travis-ci.org/joakimbeng/micro-compress\n[travis-image]: https://travis-ci.org/joakimbeng/micro-compress.svg?branch=master\n[codestyle-url]: https://github.com/sindresorhus/xo\n[codestyle-image]: https://img.shields.io/badge/code%20style-XO-5ed9c7.svg?style=flat\n"
+  },
+  "artifacts": [],
+  "remote": {
+    "resolved": "https://registry.yarnpkg.com/micro-compress/-/micro-compress-1.0.0.tgz#53f5a80b4ad0320ca165a559b6e3df145d4f704f",
+    "type": "tarball",
+    "reference": "https://registry.yarnpkg.com/micro-compress/-/micro-compress-1.0.0.tgz",
+    "hash": "53f5a80b4ad0320ca165a559b6e3df145d4f704f",
+    "registry": "npm"
+  },
+  "registry": "npm",
+  "hash": "53f5a80b4ad0320ca165a559b6e3df145d4f704f"
+}

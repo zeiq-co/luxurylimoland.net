@@ -1,0 +1,73 @@
+{
+  "manifest": {
+    "name": "react-load-script",
+    "version": "0.0.6",
+    "description": "react-load-script enables you to easily create components which depend on third party JS scripts",
+    "main": "lib/index.js",
+    "author": {
+      "name": "Blueberry"
+    },
+    "repository": {
+      "type": "git",
+      "url": "https://github.com/blueberryapps/react-load-script.git"
+    },
+    "scripts": {
+      "build": "npm run build:lib",
+      "build:lib": "babel src --out-dir lib",
+      "clean": "rimraf lib",
+      "lint": "eslint ./src/*",
+      "test": "jest",
+      "prepublish": "yarn lint && yarn test && yarn build"
+    },
+    "keywords": [
+      "react",
+      "script"
+    ],
+    "jest": {
+      "rootDir": "src"
+    },
+    "license": "MIT",
+    "devDependencies": {
+      "babel-cli": "6.24.1",
+      "babel-core": "6.24.1",
+      "babel-eslint": "7.2.3",
+      "babel-plugin-add-module-exports": "0.1.2",
+      "babel-plugin-transform-runtime": "6.6.0",
+      "babel-preset-es2015": "6.6.0",
+      "babel-preset-react": "6.5.0",
+      "babel-preset-stage-1": "6.24.1",
+      "enzyme": "2.8.2",
+      "eslint": "3.19.0",
+      "eslint-config-airbnb": "14.1.0",
+      "eslint-plugin-import": "2.2.0",
+      "eslint-plugin-jsx-a11y": "4.0.0",
+      "eslint-plugin-react": "6.10.3",
+      "jest": "19.0.2",
+      "prop-types": "15.5.8",
+      "react": "15.5.4",
+      "react-addons-test-utils": "15.5.1",
+      "react-dom": "15.5.4",
+      "rimraf": "2.4.3"
+    },
+    "dependencies": {},
+    "peerDependencies": {
+      "prop-types": ">=15",
+      "react": ">=0.14.9"
+    },
+    "_registry": "npm",
+    "_loc": "/home/ali/Project/uforce/cairo/.yarn/v1/npm-react-load-script-0.0.6-db6851236aaa25bb622677a2eb51dad4f8d2c258/package.json",
+    "readmeFilename": "README.md",
+    "readme": "# react-load-script [![CircleCI](https://circleci.com/gh/blueberryapps/react-load-script.svg?style=svg)](https://circleci.com/gh/blueberryapps/react-load-script) [![Dependency Status](https://dependencyci.com/github/blueberryapps/react-load-script/badge)](https://dependencyci.com/github/blueberryapps/react-load-script)\nThis package simplifies loading of 3rd party scripts in your React applications.\n\n## Motivation\nThere are situations when you need to use a 3rd party JS library in your React application (jQuery, D3.js for rendering charts, etc.) but you don't need it everywhere and/or you want to use it only in a response to users actions. In cases like this, preloading the whole library when application starts is an unnecessary and expensive operation which could possibly slow down your application.\n\nUsing the `Script` component this package provides you with, you can easily load any 3rd party scripts your applications needs directly in a relevant component and show a placeholder while the script is loading (e.g. a loading animation). As soon as the script is fully loaded, a callback function you'll have passed to `Script` is called (see example below).\n\n## Supported React versions\nThis package requires React 0.14.9 and higher.\n\n## API\nThe package exports a single component with the following props:\n\n### `onCreate`\nCalled as soon as the script tag is created.\n\n### `onError` (required)\nCalled in case of an error with the script.\n\n### `onLoad` (required)\nCalled when the requested script is fully loaded.\n\n### `url` (required)\nURL pointing to the script you want to load.\n\n### `attributes`\nAn object used to define custom attributes to be set on the script element. For example, `attributes={{ id: 'someId', 'data-custom: 'value' }}` will result in `<script id=\"someId\" data-custom=\"value\" />`\n\n## Example\nYou can use the following code to load jQuery in your app:\n\n```jsx\nimport Script from 'react-load-script'\n\n...\n\nrender() {\n  return (\n    <Script\n      url=\"https://ajax.googleapis.com/ajax/libs/jquery/1.8.3/jquery.min.js\"\n      onCreate={this.handleScriptCreate.bind(this)}\n      onError={this.handleScriptError.bind(this)}\n      onLoad={this.handleScriptLoad.bind(this)}\n    />\n  )\n}\n\n...\n\nhandleScriptCreate() {\n  this.setState({ scriptLoaded: false })\n}\n\nhandleScriptError() {\n  this.setState({ scriptError: true })\n}\n\nhandleScriptLoad() {\n  this.setState({ scriptLoaded: true })\n}\n\n```\n\n## License\nMIT 2016\n\n## Made with love by\n[![](https://camo.githubusercontent.com/d88ee6842f3ff2be96d11488aa0d878793aa67cd/68747470733a2f2f7777772e676f6f676c652e636f6d2f612f626c75656265727279617070732e636f6d2f696d616765732f6c6f676f2e676966)](https://www.blueberry.io)\n",
+    "licenseText": "The MIT License (MIT)\n\nCopyright (c) 2016 Blueberry Apps s.r.o.\n\nPermission is hereby granted, free of charge, to any person obtaining a copy\nof this software and associated documentation files (the \"Software\"), to deal\nin the Software without restriction, including without limitation the rights\nto use, copy, modify, merge, publish, distribute, sublicense, and/or sell\ncopies of the Software, and to permit persons to whom the Software is\nfurnished to do so, subject to the following conditions:\n\nThe above copyright notice and this permission notice shall be included in all\ncopies or substantial portions of the Software.\n\nTHE SOFTWARE IS PROVIDED \"AS IS\", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR\nIMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,\nFITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE\nAUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER\nLIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,\nOUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE\nSOFTWARE.\n"
+  },
+  "artifacts": [],
+  "remote": {
+    "resolved": "https://registry.yarnpkg.com/react-load-script/-/react-load-script-0.0.6.tgz#db6851236aaa25bb622677a2eb51dad4f8d2c258",
+    "type": "tarball",
+    "reference": "https://registry.yarnpkg.com/react-load-script/-/react-load-script-0.0.6.tgz",
+    "hash": "db6851236aaa25bb622677a2eb51dad4f8d2c258",
+    "registry": "npm"
+  },
+  "registry": "npm",
+  "hash": "db6851236aaa25bb622677a2eb51dad4f8d2c258"
+}

@@ -1,0 +1,42 @@
+{
+  "manifest": {
+    "name": "null-loader",
+    "version": "0.1.1",
+    "description": "A loader that returns an empty module.",
+    "main": "index.js",
+    "scripts": {
+      "test": "echo \"Error: no test specified\" && exit 1"
+    },
+    "repository": {
+      "type": "git",
+      "url": "https://github.com/webpack/null-loader.git"
+    },
+    "keywords": [
+      "webpack",
+      "loader",
+      "empty"
+    ],
+    "author": {
+      "name": "Tobias Koppers @sokra"
+    },
+    "license": "MIT",
+    "bugs": {
+      "url": "https://github.com/webpack/null-loader/issues"
+    },
+    "homepage": "https://github.com/webpack/null-loader",
+    "_registry": "npm",
+    "_loc": "/home/ali/Project/uforce/cairo/.yarn/v1/npm-null-loader-0.1.1-17be9abfcd3ff0e1512f6fc4afcb1f5039378fae/package.json",
+    "readmeFilename": "README.md",
+    "readme": "# null-loader\n\nA loader that returns an empty module.\n"
+  },
+  "artifacts": [],
+  "remote": {
+    "resolved": "https://registry.yarnpkg.com/null-loader/-/null-loader-0.1.1.tgz#17be9abfcd3ff0e1512f6fc4afcb1f5039378fae",
+    "type": "tarball",
+    "reference": "https://registry.yarnpkg.com/null-loader/-/null-loader-0.1.1.tgz",
+    "hash": "17be9abfcd3ff0e1512f6fc4afcb1f5039378fae",
+    "registry": "npm"
+  },
+  "registry": "npm",
+  "hash": "17be9abfcd3ff0e1512f6fc4afcb1f5039378fae"
+}

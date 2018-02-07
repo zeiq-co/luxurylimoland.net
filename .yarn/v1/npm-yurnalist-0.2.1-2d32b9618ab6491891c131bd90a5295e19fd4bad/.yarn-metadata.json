@@ -1,0 +1,104 @@
+{
+  "manifest": {
+    "name": "yurnalist",
+    "version": "0.2.1",
+    "description": "Elegant console output, borrowed from Yarn",
+    "main": "dist/index.js",
+    "repository": {
+      "type": "git",
+      "url": "https://github.com/0x80/yurnalist"
+    },
+    "author": {
+      "name": "Thijs Koerselman"
+    },
+    "license": "BSD-2-Clause",
+    "preferGlobal": true,
+    "installationMethod": "unknown",
+    "dependencies": {
+      "chalk": "^1.1.1",
+      "death": "^1.0.0",
+      "debug": "^2.2.0",
+      "detect-indent": "^5.0.0",
+      "inquirer": "^3.0.1",
+      "invariant": "^2.2.0",
+      "is-builtin-module": "^1.0.0",
+      "is-ci": "^1.0.10",
+      "leven": "^2.0.0",
+      "loud-rejection": "^1.2.0",
+      "node-emoji": "^1.0.4",
+      "object-path": "^0.11.2",
+      "read": "^1.0.7",
+      "rimraf": "^2.5.0",
+      "semver": "^5.1.0",
+      "strip-bom": "^3.0.0"
+    },
+    "devDependencies": {
+      "babel-cli": "^6.24.1",
+      "babel-core": "^6.17.0",
+      "babel-eslint": "^6.1.2",
+      "babel-jest": "^19.0.0",
+      "babel-plugin-array-includes": "^2.0.3",
+      "babel-plugin-transform-es2015-typeof-symbol": "^6.8.0",
+      "babel-plugin-transform-inline-imports-commonjs": "^1.0.0",
+      "babel-plugin-transform-runtime": "^6.4.3",
+      "babel-preset-es2015-node4": "^2.1.0",
+      "babel-preset-node5": "^10.2.0",
+      "babel-preset-stage-0": "^6.0.0",
+      "babylon": "^6.5.0",
+      "eslint": "3.19.0",
+      "eslint-config-fb-strict": "20.0.1",
+      "eslint-plugin-babel": "3.3.0",
+      "eslint-plugin-flowtype": "2.32.1",
+      "eslint-plugin-react": "6.7.1",
+      "eslint-plugin-yarn-internal": "file:.yarn/v1/npm-yurnalist-0.2.1-2d32b9618ab6491891c131bd90a5295e19fd4bad/scripts/eslint-rules",
+      "flow-bin": "0.48",
+      "jest": "^20.0.4",
+      "mock-stdin": "^0.3.0",
+      "prettier": "1.3.1",
+      "temp": "^0.8.3"
+    },
+    "engines": {
+      "node": ">=4.0.0"
+    },
+    "scripts": {
+      "test": "yarn lint && yarn test-only",
+      "test-only": "node --max_old_space_size=4096 ./node_modules/.bin/jest --coverage --verbose",
+      "lint": "yarn run lint-prettier && eslint . && flow check",
+      "lint-prettier": "node scripts/prettier.js lint",
+      "prettier": "node scripts/prettier.js write",
+      "build": "babel src --out-dir dist",
+      "watch": "babel src --out-dir dist --watch",
+      "clean": "rimraf dist",
+      "prepublish": "npm run clean && npm run build"
+    },
+    "jest": {
+      "collectCoverageFrom": [
+        "src/**/*.js"
+      ],
+      "testEnvironment": "node",
+      "modulePathIgnorePatterns": [
+        "__tests__/fixtures/"
+      ],
+      "testPathIgnorePatterns": [
+        "__tests__/(fixtures|__mocks__)/",
+        "updates/",
+        "/_(temp|mock|install|init|helpers).js$"
+      ]
+    },
+    "_registry": "npm",
+    "_loc": "/home/ali/Project/uforce/cairo/.yarn/v1/npm-yurnalist-0.2.1-2d32b9618ab6491891c131bd90a5295e19fd4bad/package.json",
+    "readmeFilename": "README.md",
+    "readme": "# Yurnalist\nAn elegant console reporter, borrowed from [Yarn](https://yarnpkg.com).\n\n<!-- toc -->\n\n- [Introduction](#introduction)\n  * [Features](#features)\n- [Install](#install)\n- [How to use](#how-to-use)\n- [Requirements](#requirements)\n- [Examples](#examples)\n- [API](#api)\n  * [table](#table)\n  * [step](#step)\n  * [inspect](#inspect)\n  * [list](#list)\n  * [header](#header)\n  * [footer](#footer)\n  * [log](#log)\n  * [success](#success)\n  * [error](#error)\n  * [info](#info)\n  * [command](#command)\n  * [warn](#warn)\n  * [question](#question)\n  * [tree](#tree)\n  * [activitySet](#activityset)\n  * [activity](#activity)\n  * [select](#select)\n  * [progress](#progress)\n  * [close](#close)\n  * [createReporter](#createreporter)\n- [Configuration](#configuration)\n  * [Options](#options)\n- [Language](#language)\n- [Emojis](#emojis)\n- [To Do](#to-do)\n- [Credits](#credits)\n\n<!-- tocstop -->\n\n## Introduction\nPretty console output makes developers happy. Yarn is doing a really nice job. Yurnalist takes the console reporter from Yarn and makes it available for use in other Node.js applications.\n\nYurnalist can be used to report many different things besides simple messages.\n\n### Features\n\n* log, info, warn, succes, error & command messages\n* progress bars\n* activity spinners\n* process steps\n* object inspection\n* lists\n* emojis\n* trees\n* tables\n* user question\n* user select\n* program header & footer\n\n## Install\n```shell\n$ yarn add yurnalist\n```\nOr if your prefer NPM\n```shell\n$ npm install yurnalist\n```\n\n## How to use\n\n```javascript\nimport report from 'yurnalist'\n\n/* A function to fake some async task */\nfunction doSomeWork(ms) {\n  return new Promise((resolve) => setTimeout(resolve, ms));\n}\n\nasync function fetchSomething() {\n  report.info('Wait while I fetch something for you');\n  report.warn('It might take a little while though');\n\n  const spinner = report.activity();\n  spinner.tick('I am on it');\n\n  try {\n    await doSomeWork(1000);\n    spinner.tick('Still busy');\n    await doSomeWork(1000);\n    spinner.tick('Almost there');\n    await doSomeWork(1000);\n    report.success('Done!');\n  } catch (err) {\n    report.error(err);\n  }\n\n  spinner.end();\n}\n\nfetchSomething();\n\n```\n\n## Requirements\nNode >= 4\n\n## Examples\nExamples showing different API functions are found in [/examples](/examples). You can run them directly with node >= 7.6 (because of async/await syntax). For older versions you could use the `--harmony` flag, or otherwise Babel.\n\nTo run the activity example:\n\n```shell\n$ node examples/activity.js\n```\n\n\n## API\nComing soon...\n\n### table\n### step\n### inspect\n### list\n### header\n### footer\n### log\n### success\n### error\n### info\n### command\n### warn\n### question\n### tree\n### activitySet\n### activity\n### select\n### progress\n### close\n### createReporter\n\n\n## Configuration\nA normal import gives you a reporter instance configured with defaults for easy use. If you want something else you can call `createReporter(options)` to give you an instance with different options.\n\n### Options\n\nThese are the options of the reporter as defined by Flow:\n\n```javascript\ntype ReporterOptions = {\n  verbose?: boolean,\n  stdout?: Stdout,\n  stderr?: Stdout,\n  stdin?: Stdin,\n  emoji?: boolean,\n  noProgress?: boolean,\n  silent?: boolean,\n  peekMemoryCounter?: boolean,\n};\n```\n\nThe defaults used are:\n\n```javascript\nconst defaults = {\n  verbose: false,\n  stdout: process.stdout,\n  stderr: process.stderr,\n  stdin: process.stdinn,\n  emoji: true,\n  noProgress: false,\n  silent: false,\n  peekMemoryCounter: false,\n}\n```\n\nThe peekMemoryCounter is disabled by default. If you enable it, you'll have to call `reporter.close()` to stop its running timer. Otherwise your program will not exit. The memory counter can be used to display in the footer data.\n\n## Language\nYarn uses a language file for certain messages. For example if you try to skip a required question, or when you pick an invalid item from a select. This language file is not yet exposed in the Yurnalist API. The only supported language is English, as it is in Yarn at the moment.\n\nI plan to make this configurable so that you can define your own messages in your own language .\n\n## Emojis\nYou can use Emojis in your output. Yurnalist should disable them if they are not allowed in the application environment.\n\nCheck:\n\n- [node-emoji](https://github.com/omnidan/node-emoji)\n- [Emoji cheat sheet](https://www.webpagefx.com/tools/emoji-cheat-sheet/)\n\n## To Do\nBefore the 1.0 release there is still some work to be done. You can find an overview in the [1.0 milestone](https://github.com/0x80/yurnalist/milestone/1).\n\nIf you'd like to help out it is highly appreciated!\n\n## Credits\nOf course ❤️ and credits to all the contributers of [Yarn](https://yarnpkg.com). The ease with which I was able to extract this module from their codebase is proving some awesome engineering skills.\n\n",
+    "licenseText": "BSD 2-Clause License\n\nFor Yarn software\n\nCopyright (c) 2016-present, Yarn Contributors. All rights reserved.\n\nRedistribution and use in source and binary forms, with or without modification,\nare permitted provided that the following conditions are met:\n\n * Redistributions of source code must retain the above copyright notice, this\n   list of conditions and the following disclaimer.\n\n * Redistributions in binary form must reproduce the above copyright notice,\n   this list of conditions and the following disclaimer in the documentation\n   and/or other materials provided with the distribution.\n\nTHIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS \"AS IS\" AND\nANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE IMPLIED\nWARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE ARE\nDISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT HOLDER OR CONTRIBUTORS BE LIABLE FOR\nANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR CONSEQUENTIAL DAMAGES\n(INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR SERVICES;\nLOSS OF USE, DATA, OR PROFITS; OR BUSINESS INTERRUPTION) HOWEVER CAUSED AND ON\nANY THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT\n(INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS\nSOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.\n"
+  },
+  "artifacts": [],
+  "remote": {
+    "resolved": "https://registry.yarnpkg.com/yurnalist/-/yurnalist-0.2.1.tgz#2d32b9618ab6491891c131bd90a5295e19fd4bad",
+    "type": "tarball",
+    "reference": "https://registry.yarnpkg.com/yurnalist/-/yurnalist-0.2.1.tgz",
+    "hash": "2d32b9618ab6491891c131bd90a5295e19fd4bad",
+    "registry": "npm"
+  },
+  "registry": "npm",
+  "hash": "2d32b9618ab6491891c131bd90a5295e19fd4bad"
+}

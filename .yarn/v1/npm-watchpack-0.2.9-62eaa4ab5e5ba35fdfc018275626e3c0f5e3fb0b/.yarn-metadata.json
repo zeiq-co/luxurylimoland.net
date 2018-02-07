@@ -1,0 +1,55 @@
+{
+  "manifest": {
+    "name": "watchpack",
+    "version": "0.2.9",
+    "description": "Wrapper library for directory and file watching.",
+    "main": "./lib/watchpack.js",
+    "scripts": {
+      "pretest": "npm run lint",
+      "test": "mocha",
+      "travis": "npm run cover -- --report lcovonly",
+      "lint": "eslint lib",
+      "precover": "npm run lint",
+      "cover": "istanbul cover node_modules/mocha/bin/_mocha"
+    },
+    "repository": {
+      "type": "git",
+      "url": "https://github.com/webpack/watchpack.git"
+    },
+    "author": {
+      "name": "Tobias Koppers @sokra"
+    },
+    "license": "MIT",
+    "bugs": {
+      "url": "https://github.com/webpack/watchpack/issues"
+    },
+    "homepage": "https://github.com/webpack/watchpack",
+    "devDependencies": {
+      "coveralls": "^2.11.2",
+      "eslint": "^0.20.0",
+      "istanbul": "^0.3.13",
+      "mocha": "^2.1.0",
+      "rimraf": "^2.2.8",
+      "should": "^6.0.1"
+    },
+    "dependencies": {
+      "async": "^0.9.0",
+      "chokidar": "^1.0.0",
+      "graceful-fs": "^4.1.2"
+    },
+    "_registry": "npm",
+    "_loc": "/home/ali/Project/uforce/cairo/.yarn/v1/npm-watchpack-0.2.9-62eaa4ab5e5ba35fdfc018275626e3c0f5e3fb0b/package.json",
+    "readmeFilename": "README.md",
+    "readme": "# watchpack\n\nWrapper library for directory and file watching.\n\n[![Build Status](https://travis-ci.org/webpack/watchpack.svg?branch=master)](https://travis-ci.org/webpack/watchpack) [![Build status](https://ci.appveyor.com/api/projects/status/e5u2qvmugtv0r647/branch/master?svg=true)](https://ci.appveyor.com/project/sokra/watchpack/branch/master) [![Test coverage][coveralls-image]][coveralls-url]\n\n## Concept\n\nwatchpack high level API don't map directly to watchers. Instead a three level architecture ensures that for each directory only a single watcher exists.\n\n* The high level API requests `DirectoryWatchers` from a `WatcherManager`, which ensures that only a single `DirectoryWatcher` per directory is created.\n* A user-faced `Watcher` can be obtained from a `DirectoryWatcher` and provides a filtered view on the `DirectoryWatcher`.\n* Reference-counting is used on the `DirectoryWatcher` and `Watcher` to decide when to close them.\n* The real watchers (currently chokidar) are created by the `DirectoryWatcher`.\n* Files are never watched directly. This should keep the watcher count low.\n* Watching can be started in the past. This way watching can start after file reading.\n* Symlinks are not followed, instead the symlink is watched.\n\n## API\n\n``` javascript\nvar Watchpack = require(\"watchpack\");\n\nvar wp = new Watchpack({\n\t// options:\n\taggregateTimeout: 1000\n\t// fire \"aggregated\" event when after a change for 1000ms no additonal change occured\n\t// aggregated defaults to undefined, which doesn't fire an \"aggregated\" event\n\n\tpoll: true\n\t// poll: true - use polling with the default interval\n\t// poll: 10000 - use polling with an interval of 10s\n\t// poll defaults to undefined, which prefer native watching methods\n\t// Note: enable polling when watching on a network path\n});\n\n// Watchpack.prototype.watch(string[] files, string[] directories, [number startTime])\nwp.watch(listOfFiles, listOfDirectories, Date.now() - 10000);\n// starts watching these files and directories\n// calling this again will override the files and directories\n\nwp.on(\"change\", function(filePath, mtime) {\n\t// filePath: the changed file\n\t// mtime: last modified time for the changed file\n});\n\nwp.on(\"aggregated\", function(changes) {\n\t// changes: an array of all changed files\n});\n\n// Watchpack.prototype.pause()\nwp.pause();\n// stops emitting events, but keeps watchers open\n// next \"watch\" call can reuse the watchers\n\n// Watchpack.prototype.close()\nwp.close();\n// stops emitting events and closes all watchers\n\n// Watchpack.prototype.getTimes()\nvar fileTimes = wp.getTimes();\n// returns an object with all know change times for files\n// this include timestamps from files not directly watched\n// key: absolute path, value: timestamp as number\n```\n\n[coveralls-url]: https://coveralls.io/r/webpack/watchpack/\n[coveralls-image]: https://img.shields.io/coveralls/webpack/watchpack.svg\n"
+  },
+  "artifacts": [],
+  "remote": {
+    "resolved": "https://registry.yarnpkg.com/watchpack/-/watchpack-0.2.9.tgz#62eaa4ab5e5ba35fdfc018275626e3c0f5e3fb0b",
+    "type": "tarball",
+    "reference": "https://registry.yarnpkg.com/watchpack/-/watchpack-0.2.9.tgz",
+    "hash": "62eaa4ab5e5ba35fdfc018275626e3c0f5e3fb0b",
+    "registry": "npm"
+  },
+  "registry": "npm",
+  "hash": "62eaa4ab5e5ba35fdfc018275626e3c0f5e3fb0b"
+}

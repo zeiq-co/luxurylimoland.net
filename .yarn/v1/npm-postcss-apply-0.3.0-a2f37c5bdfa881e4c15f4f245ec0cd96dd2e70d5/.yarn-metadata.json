@@ -1,0 +1,73 @@
+{
+  "manifest": {
+    "name": "postcss-apply",
+    "version": "0.3.0",
+    "description": "PostCSS plugin enabling custom properties sets references",
+    "keywords": [
+      "css",
+      "apply",
+      "postcss",
+      "postcss-plugin"
+    ],
+    "author": {
+      "name": "Pascal Duez",
+      "url": "https://github.com/pascalduez"
+    },
+    "homepage": "https://github.com/pascalduez/postcss-apply",
+    "bugs": {
+      "url": "https://github.com/pascalduez/postcss-apply/issues"
+    },
+    "repository": {
+      "type": "git",
+      "url": "git://github.com/pascalduez/postcss-apply.git"
+    },
+    "license": "Unlicense",
+    "files": [
+      "dist",
+      "CHANGELOG.md",
+      "index.js",
+      "README.md",
+      "UNLICENSE"
+    ],
+    "scripts": {
+      "test": "ava",
+      "coverage": "nyc npm test"
+    },
+    "ava": {
+      "files": "test/**/*.test.js"
+    },
+    "dependencies": {
+      "balanced-match": "^0.4.1",
+      "postcss": "^5.0.21"
+    },
+    "devDependencies": {
+      "ava": "^0.15.2",
+      "babel-cli": "^6.10.1",
+      "babel-eslint": "^6.1.0",
+      "babel-preset-es2015": "^6.9.0",
+      "babel-preset-stage-0": "^6.1.18",
+      "chai": "^3.5.0",
+      "coveralls": "^2.11.9",
+      "eslint": "^2.13.0",
+      "eslint-config-standard": "^5.3.1",
+      "eslint-plugin-promise": "^1.3.2",
+      "eslint-plugin-standard": "^1.3.2",
+      "nyc": "^6.6.1",
+      "opn-cli": "^3.0.1",
+      "postcss-custom-properties": "^5.0.1"
+    },
+    "_registry": "npm",
+    "_loc": "/home/ali/Project/uforce/cairo/.yarn/v1/npm-postcss-apply-0.3.0-a2f37c5bdfa881e4c15f4f245ec0cd96dd2e70d5/package.json",
+    "licenseText": "This is free and unencumbered software released into the public domain.\n\nAnyone is free to copy, modify, publish, use, compile, sell, or\ndistribute this software, either in source code form or as a compiled\nbinary, for any purpose, commercial or non-commercial, and by any\nmeans.\n\nIn jurisdictions that recognize copyright laws, the author or authors\nof this software dedicate any and all copyright interest in the\nsoftware to the public domain. We make this dedication for the benefit\nof the public at large and to the detriment of our heirs and\nsuccessors. We intend this dedication to be an overt act of\nrelinquishment in perpetuity of all present and future rights to this\nsoftware under copyright law.\n\nTHE SOFTWARE IS PROVIDED \"AS IS\", WITHOUT WARRANTY OF ANY KIND,\nEXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF\nMERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT.\nIN NO EVENT SHALL THE AUTHORS BE LIABLE FOR ANY CLAIM, DAMAGES OR\nOTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE,\nARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR\nOTHER DEALINGS IN THE SOFTWARE.\n\nFor more information, please refer to <http://unlicense.org/>\n"
+  },
+  "artifacts": [],
+  "remote": {
+    "resolved": "https://registry.yarnpkg.com/postcss-apply/-/postcss-apply-0.3.0.tgz#a2f37c5bdfa881e4c15f4f245ec0cd96dd2e70d5",
+    "type": "tarball",
+    "reference": "https://registry.yarnpkg.com/postcss-apply/-/postcss-apply-0.3.0.tgz",
+    "hash": "a2f37c5bdfa881e4c15f4f245ec0cd96dd2e70d5",
+    "registry": "npm"
+  },
+  "registry": "npm",
+  "hash": "a2f37c5bdfa881e4c15f4f245ec0cd96dd2e70d5"
+}

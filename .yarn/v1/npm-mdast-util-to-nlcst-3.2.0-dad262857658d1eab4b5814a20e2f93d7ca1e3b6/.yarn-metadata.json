@@ -1,0 +1,108 @@
+{
+  "manifest": {
+    "name": "mdast-util-to-nlcst",
+    "version": "3.2.0",
+    "description": "Transform MDAST to NLCST",
+    "license": "MIT",
+    "keywords": [
+      "mdast",
+      "remark",
+      "nlcst",
+      "retext",
+      "markdown",
+      "natural",
+      "language"
+    ],
+    "repository": {
+      "type": "git",
+      "url": "https://github.com/syntax-tree/mdast-util-to-nlcst.git"
+    },
+    "bugs": {
+      "url": "https://github.com/syntax-tree/mdast-util-to-nlcst/issues"
+    },
+    "author": {
+      "name": "Titus Wormer",
+      "email": "tituswormer@gmail.com",
+      "url": "http://wooorm.com"
+    },
+    "contributors": [
+      {
+        "name": "Titus Wormer",
+        "email": "tituswormer@gmail.com",
+        "url": "http://wooorm.com"
+      }
+    ],
+    "files": [
+      "index.js"
+    ],
+    "dependencies": {
+      "nlcst-to-string": "^2.0.0",
+      "repeat-string": "^1.5.2",
+      "unist-util-position": "^3.0.0",
+      "vfile-location": "^2.0.0"
+    },
+    "devDependencies": {
+      "browserify": "^14.0.0",
+      "esmangle": "^1.0.1",
+      "is-hidden": "^1.0.1",
+      "negate": "^1.0.0",
+      "nyc": "^11.0.0",
+      "parse-dutch": "^4.0.0",
+      "parse-english": "^4.0.0",
+      "parse-latin": "^4.0.0",
+      "remark": "^8.0.0",
+      "remark-cli": "^4.0.0",
+      "remark-frontmatter": "^1.0.0",
+      "remark-preset-wooorm": "^3.0.0",
+      "tape": "^4.0.0",
+      "vfile": "^2.0.0",
+      "xo": "^0.18.0"
+    },
+    "scripts": {
+      "build-md": "remark *.md -qfo",
+      "build-bundle": "browserify index.js --bare -s mdastUtilToNLCST > mdast-util-to-nlcst.js",
+      "build-mangle": "esmangle mdast-util-to-nlcst.js > mdast-util-to-nlcst.min.js",
+      "build": "npm run build-md && npm run build-bundle && npm run build-mangle",
+      "lint": "xo",
+      "test-api": "node test",
+      "test-coverage": "nyc --reporter lcov tape test/index.js",
+      "test": "npm run build && npm run lint && npm run test-coverage"
+    },
+    "nyc": {
+      "check-coverage": true,
+      "lines": 100,
+      "functions": 100,
+      "branches": 100
+    },
+    "xo": {
+      "space": true,
+      "esnext": false,
+      "rules": {
+        "max-params": "off"
+      },
+      "ignores": [
+        "mdast-util-to-nlcst.js"
+      ]
+    },
+    "remarkConfig": {
+      "plugins": [
+        "preset-wooorm"
+      ]
+    },
+    "_registry": "npm",
+    "_loc": "/home/ali/Project/uforce/cairo/.yarn/v1/npm-mdast-util-to-nlcst-3.2.0-dad262857658d1eab4b5814a20e2f93d7ca1e3b6/package.json",
+    "readmeFilename": "readme.md",
+    "readme": "# mdast-util-to-nlcst [![Build Status][travis-badge]][travis] [![Coverage Status][codecov-badge]][codecov]\n\nTransform [MDAST][] to [NLCST][].\n\n> **Note** You probably want to use [`remark-retext`][remark-retext].\n\n## Installation\n\n[npm][]:\n\n```bash\nnpm install mdast-util-to-nlcst\n```\n\n## Usage\n\n```javascript\nvar toNLCST = require('mdast-util-to-nlcst');\nvar inspect = require('unist-util-inspect');\nvar English = require('parse-english');\nvar remark = require('remark');\nvar vfile = require('vfile');\n\nvar file = vfile('Some *foo*sball.');\nvar tree = remark().parse(file);\n\nvar nlcst = toNLCST(tree, file, English);\n\nconsole.log(inspect(nlcst));\n```\n\nYields:\n\n```txt\nRootNode[1] (1:1-1:17, 0-16)\n└─ ParagraphNode[1] (1:1-1:17, 0-16)\n   └─ SentenceNode[4] (1:1-1:17, 0-16)\n      ├─ WordNode[1] (1:1-1:5, 0-4)\n      │  └─ TextNode: \"Some\" (1:1-1:5, 0-4)\n      ├─ WhiteSpaceNode: \" \" (1:5-1:6, 4-5)\n      ├─ WordNode[2] (1:7-1:16, 6-15)\n      │  ├─ TextNode: \"foo\" (1:7-1:10, 6-9)\n      │  └─ TextNode: \"sball\" (1:11-1:16, 10-15)\n      └─ PunctuationNode: \".\" (1:16-1:17, 15-16)\n```\n\n## API\n\n### `toNLCST(node, file, Parser[, options])`\n\nTransform an [MDAST][] syntax tree and corresponding [virtual file][vfile]\ninto an [NLCST][] tree.\n\n##### Parameters\n\n###### `node`\n\nSyntax tree, with positional information ([`MDASTNode`][mdast]).\n\n###### `file`\n\nVirtual file ([`VFile`][vfile]).\n\n###### `parser`\n\nConstructor of an NLCST parser (`Function`).  For example,\n[`parse-english`][english], [`parse-dutch`][dutch], or\n[`parse-latin`][latin].\n\n###### `options.ignore`\n\nList of node [types][type] to ignore (`Array.<string>`).\n\n`'table'`, `'tableRow'`, and `'tableCell'` are always ignored.\n\n###### `options.source`\n\nList of node [types][type] to mark as [source][] (`Array.<string>`).\n\n`'inlineCode'` is always ignored.\n\n##### Returns\n\n[`NLCSTNode`][nlcst].\n\n## Related\n\n*   [`remark-retext`][remark-retext]\n    — **retext** support for **remark**\n*   [`hast-util-to-nlcst`](https://github.com/syntax-tree/hast-util-to-nlcst)\n    — Transform HAST to NLCST\n*   [`hast-util-to-mdast`](https://github.com/syntax-tree/hast-util-to-mdast)\n    — Transform HAST to MDAST\n*   [`mdast-util-to-hast`](https://github.com/syntax-tree/mdast-util-to-hast)\n    — Transform MDAST to HAST\n\n## License\n\n[MIT][license] © [Titus Wormer][author]\n\n<!-- Definitions -->\n\n[travis-badge]: https://img.shields.io/travis/syntax-tree/mdast-util-to-nlcst.svg\n\n[travis]: https://travis-ci.org/syntax-tree/mdast-util-to-nlcst\n\n[codecov-badge]: https://img.shields.io/codecov/c/github/syntax-tree/mdast-util-to-nlcst.svg\n\n[codecov]: https://codecov.io/github/syntax-tree/mdast-util-to-nlcst\n\n[npm]: https://docs.npmjs.com/cli/install\n\n[license]: LICENSE\n\n[author]: http://wooorm.com\n\n[mdast]: https://github.com/syntax-tree/mdast\n\n[nlcst]: https://github.com/syntax-tree/nlcst\n\n[remark-retext]: https://github.com/wooorm/remark-retext\n\n[vfile]: https://github.com/vfile/vfile\n\n[english]: https://github.com/wooorm/parse-english\n\n[latin]: https://github.com/wooorm/parse-latin\n\n[dutch]: https://github.com/wooorm/parse-dutch\n\n[type]: https://github.com/syntax-tree/mdast#ast\n\n[source]: https://github.com/syntax-tree/nlcst#source\n",
+    "licenseText": "(The MIT License)\n\nCopyright (c) 2015 Titus Wormer <tituswormer@gmail.com>\n\nPermission is hereby granted, free of charge, to any person obtaining\na copy of this software and associated documentation files (the\n'Software'), to deal in the Software without restriction, including\nwithout limitation the rights to use, copy, modify, merge, publish,\ndistribute, sublicense, and/or sell copies of the Software, and to\npermit persons to whom the Software is furnished to do so, subject to\nthe following conditions:\n\nThe above copyright notice and this permission notice shall be\nincluded in all copies or substantial portions of the Software.\n\nTHE SOFTWARE IS PROVIDED 'AS IS', WITHOUT WARRANTY OF ANY KIND,\nEXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF\nMERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT.\nIN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY\nCLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT,\nTORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE\nSOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.\n"
+  },
+  "artifacts": [],
+  "remote": {
+    "resolved": "https://registry.yarnpkg.com/mdast-util-to-nlcst/-/mdast-util-to-nlcst-3.2.0.tgz#dad262857658d1eab4b5814a20e2f93d7ca1e3b6",
+    "type": "tarball",
+    "reference": "https://registry.yarnpkg.com/mdast-util-to-nlcst/-/mdast-util-to-nlcst-3.2.0.tgz",
+    "hash": "dad262857658d1eab4b5814a20e2f93d7ca1e3b6",
+    "registry": "npm"
+  },
+  "registry": "npm",
+  "hash": "dad262857658d1eab4b5814a20e2f93d7ca1e3b6"
+}

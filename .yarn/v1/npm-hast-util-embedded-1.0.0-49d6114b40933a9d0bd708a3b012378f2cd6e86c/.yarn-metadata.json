@@ -1,0 +1,83 @@
+{
+  "manifest": {
+    "name": "hast-util-embedded",
+    "version": "1.0.0",
+    "description": "Check if a node is a embedded element",
+    "license": "MIT",
+    "keywords": [
+      "hast",
+      "html",
+      "category",
+      "embedded",
+      "util",
+      "utility"
+    ],
+    "dependencies": {
+      "hast-util-is-element": "^1.0.0"
+    },
+    "files": [
+      "index.js"
+    ],
+    "repository": {
+      "type": "git",
+      "url": "https://github.com/wooorm/hast-util-embedded.git"
+    },
+    "bugs": {
+      "url": "https://github.com/wooorm/hast-util-embedded/issues"
+    },
+    "author": {
+      "name": "Titus Wormer",
+      "email": "tituswormer@gmail.com",
+      "url": "http://wooorm.com"
+    },
+    "contributors": [
+      {
+        "name": "Titus Wormer",
+        "email": "tituswormer@gmail.com",
+        "url": "http://wooorm.com"
+      }
+    ],
+    "devDependencies": {
+      "browserify": "^13.0.0",
+      "eslint": "^2.0.0",
+      "esmangle": "^1.0.1",
+      "istanbul": "^0.4.0",
+      "jscs": "^3.0.0",
+      "jscs-jsdoc": "^2.0.0",
+      "remark": "^4.0.0",
+      "remark-comment-config": "^3.0.0",
+      "remark-github": "^4.0.1",
+      "remark-lint": "^3.0.0",
+      "remark-usage": "^3.0.0",
+      "remark-validate-links": "^3.0.0",
+      "tape": "^4.4.0"
+    },
+    "scripts": {
+      "build-md": "remark . --quiet --frail",
+      "build-bundle": "browserify index.js --bare -s hastUtilEmbedded > hast-util-embedded.js",
+      "build-mangle": "esmangle hast-util-embedded.js > hast-util-embedded.min.js",
+      "build": "npm run build-md && npm run build-bundle && npm run build-mangle",
+      "lint-api": "eslint .",
+      "lint-style": "jscs --reporter inline .",
+      "lint": "npm run lint-api && npm run lint-style",
+      "test-api": "node test.js",
+      "test-coverage": "istanbul cover test.js",
+      "test": "npm run build && npm run lint && npm run test-coverage"
+    },
+    "_registry": "npm",
+    "_loc": "/home/ali/Project/uforce/cairo/.yarn/v1/npm-hast-util-embedded-1.0.0-49d6114b40933a9d0bd708a3b012378f2cd6e86c/package.json",
+    "readmeFilename": "readme.md",
+    "readme": "# hast-util-embedded [![Build Status][build-badge]][build-page] [![Coverage Status][coverage-badge]][coverage-page]\n\nCheck if a [node][] is a [**embedded**][spec] [element][].\n\n## Installation\n\n[npm][]:\n\n```bash\nnpm install hast-util-embedded\n```\n\n**hast-util-embedded** is also available as an AMD, CommonJS, and\nglobals module, [uncompressed and compressed][releases].\n\n## Usage\n\nDependencies:\n\n```javascript\nvar embedded = require('hast-util-embedded');\n```\n\nGiven a non-embedded value:\n\n```javascript\nvar result = embedded({\n    'type': 'element',\n    'tagName': 'a',\n    'properties': {\n        'href': '#alpha',\n        'title': 'Bravo'\n    },\n    'children': [{\n        'type': 'text',\n        'value': 'Charlie'\n    }]\n});\n```\n\nYields:\n\n```js\nfalse\n```\n\nGiven a embedded element:\n\n```javascript\nresult = embedded({\n    'type': 'element',\n    'tagName': 'audio',\n    'properties': {\n        'src': 'delta.ogg'\n    },\n    'children': []\n});\n```\n\nYields:\n\n```js\ntrue\n```\n\n## API\n\n### `embedded(node)`\n\nCheck if the given value is an [**embedded**][spec] [element][].\n\n**Parameters**: `node` (`*`) — Value to check.\n\n**Returns**: `boolean`, whether `node` passes the test.\n\n## License\n\n[MIT][license] © [Titus Wormer][author]\n\n<!-- Definition -->\n\n[build-badge]: https://img.shields.io/travis/wooorm/hast-util-embedded.svg\n\n[build-page]: https://travis-ci.org/wooorm/hast-util-embedded\n\n[coverage-badge]: https://img.shields.io/codecov/c/github/wooorm/hast-util-embedded.svg\n\n[coverage-page]: https://codecov.io/github/wooorm/hast-util-embedded?branch=master\n\n[npm]: https://docs.npmjs.com/cli/install\n\n[releases]: https://github.com/wooorm/hast-util-embedded/releases\n\n[license]: LICENSE\n\n[author]: http://wooorm.com\n\n[node]: https://github.com/wooorm/hast#node\n\n[element]: https://github.com/wooorm/hast#element\n\n[spec]: https://html.spec.whatwg.org/#embedded-content-2\n",
+    "licenseText": "(The MIT License)\n\nCopyright (c) 2016 Titus Wormer <tituswormer@gmail.com>\n\nPermission is hereby granted, free of charge, to any person obtaining\na copy of this software and associated documentation files (the\n'Software'), to deal in the Software without restriction, including\nwithout limitation the rights to use, copy, modify, merge, publish,\ndistribute, sublicense, and/or sell copies of the Software, and to\npermit persons to whom the Software is furnished to do so, subject to\nthe following conditions:\n\nThe above copyright notice and this permission notice shall be\nincluded in all copies or substantial portions of the Software.\n\nTHE SOFTWARE IS PROVIDED 'AS IS', WITHOUT WARRANTY OF ANY KIND,\nEXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF\nMERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT.\nIN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY\nCLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT,\nTORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE\nSOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.\n"
+  },
+  "artifacts": [],
+  "remote": {
+    "resolved": "https://registry.yarnpkg.com/hast-util-embedded/-/hast-util-embedded-1.0.0.tgz#49d6114b40933a9d0bd708a3b012378f2cd6e86c",
+    "type": "tarball",
+    "reference": "https://registry.yarnpkg.com/hast-util-embedded/-/hast-util-embedded-1.0.0.tgz",
+    "hash": "49d6114b40933a9d0bd708a3b012378f2cd6e86c",
+    "registry": "npm"
+  },
+  "registry": "npm",
+  "hash": "49d6114b40933a9d0bd708a3b012378f2cd6e86c"
+}

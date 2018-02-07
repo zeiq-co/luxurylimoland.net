@@ -1,0 +1,104 @@
+{
+  "manifest": {
+    "name": "parse-entities",
+    "version": "1.1.1",
+    "description": "Parse HTML character references: fast, spec-compliant, positional information",
+    "license": "MIT",
+    "keywords": [
+      "parse",
+      "html",
+      "character",
+      "reference",
+      "entity",
+      "entities"
+    ],
+    "repository": {
+      "type": "git",
+      "url": "https://github.com/wooorm/parse-entities.git"
+    },
+    "bugs": {
+      "url": "https://github.com/wooorm/parse-entities/issues"
+    },
+    "author": {
+      "name": "Titus Wormer",
+      "email": "tituswormer@gmail.com",
+      "url": "http://wooorm.com"
+    },
+    "contributors": [
+      {
+        "name": "Titus Wormer",
+        "email": "tituswormer@gmail.com",
+        "url": "http://wooorm.com"
+      }
+    ],
+    "files": [
+      "index.js"
+    ],
+    "dependencies": {
+      "character-entities": "^1.0.0",
+      "character-entities-legacy": "^1.0.0",
+      "character-reference-invalid": "^1.0.0",
+      "is-alphanumerical": "^1.0.0",
+      "is-decimal": "^1.0.0",
+      "is-hexadecimal": "^1.0.0"
+    },
+    "devDependencies": {
+      "browserify": "^14.0.0",
+      "esmangle": "^1.0.0",
+      "nyc": "^11.0.0",
+      "remark-cli": "^3.0.0",
+      "remark-preset-wooorm": "^3.0.0",
+      "tape": "^4.2.0",
+      "xo": "^0.18.0"
+    },
+    "scripts": {
+      "build-md": "remark . -qfo",
+      "build-bundle": "browserify index.js --bare -s parseEntities > parse-entities.js",
+      "build-mangle": "esmangle parse-entities.js > parse-entities.min.js",
+      "build": "npm run build-md && npm run build-bundle && npm run build-mangle",
+      "lint": "xo",
+      "test-api": "node test.js",
+      "test-coverage": "nyc --reporter lcov tape test.js",
+      "test": "npm run build && npm run lint && npm run test-coverage"
+    },
+    "nyc": {
+      "check-coverage": true,
+      "lines": 100,
+      "functions": 100,
+      "branches": 100
+    },
+    "xo": {
+      "space": true,
+      "esnext": false,
+      "rules": {
+        "guard-for-in": "off",
+        "no-negated-condition": "off",
+        "max-depth": "off",
+        "complexity": "off"
+      },
+      "ignores": [
+        "parse-entities.js"
+      ]
+    },
+    "remarkConfig": {
+      "plugins": [
+        "preset-wooorm"
+      ]
+    },
+    "_registry": "npm",
+    "_loc": "/home/ali/Project/uforce/cairo/.yarn/v1/npm-parse-entities-1.1.1-8112d88471319f27abae4d64964b122fe4e1b890/package.json",
+    "readmeFilename": "readme.md",
+    "readme": "# parse-entities [![Build Status][build-badge]][build-status] [![Coverage Status][coverage-badge]][coverage-status]\n\nParse HTML character references: fast, spec-compliant, positional\ninformation.\n\n## Installation\n\n[npm][]:\n\n```bash\nnpm install parse-entities\n```\n\n## Usage\n\n```js\nvar decode = require('parse-entities');\n\ndecode('alpha &amp bravo');\n//=> alpha & bravo\n\ndecode('charlie &copycat; delta');\n//=> charlie ©cat; delta\n\ndecode('echo &copy; foxtrot &#8800; golf &#x1D306; hotel');\n//=> echo © foxtrot ≠ golf 𝌆 hotel\n```\n\n## API\n\n## `parseEntities(value[, options])`\n\n###### `options`\n\n*   `additional` (`string`, optional, default: `''`)\n    — Additional character to accept when following an ampersand (without\n    error)\n*   `attribute` (`boolean`, optional, default: `false`)\n    — Whether to parse `value` as an attribute value\n*   `nonTerminated` (`boolean`, default: `true`)\n    — Whether to allow non-terminated entities, such as `&copycat` to\n    `©cat`.  This behaviour is spec-compliant but can lead to unexpected\n    results\n*   `warning` ([`Function`][warning], optional)\n    — Error handler\n*   `text` ([`Function`][text], optional)\n    — Text handler\n*   `reference` ([`Function`][reference],\n    optional) — Reference handler\n*   `warningContext` (`'*'`, optional)\n    — Context used when invoking `warning`\n*   `textContext` (`'*'`, optional)\n    — Context used when invoking `text`\n*   `referenceContext` (`'*'`, optional)\n    — Context used when invoking `reference`\n*   `position` (`Location` or `Position`, optional)\n    — Starting `position` of `value`, useful when dealing with values\n    nested in some sort of syntax tree.  The default is:\n\n    ```json\n    {\n      \"start\": {\n        \"line\": 1,\n        \"column\": 1,\n        \"offset\": 0\n      },\n      \"indent\": []\n    }\n    ```\n\n###### Returns\n\n`string` — Decoded `value`.\n\n### `function warning(reason, position, code)`\n\nError handler.\n\n###### Context\n\n`this` refers to `warningContext` when given to `parseEntities`.\n\n###### Parameters\n\n*   `reason` (`string`)\n    — Reason (human-readable) for triggering a parse error\n*   `position` (`Position`)\n    — Place at which the parse error occurred\n*   `code` (`number`)\n    — Identifier of reason for triggering a parse error\n\nThe following codes are used:\n\n| Code | Example            | Note                                          |\n| ---- | ------------------ | --------------------------------------------- |\n| `1`  | `foo &amp bar`     | Missing semicolon (named)                     |\n| `2`  | `foo &#123 bar`    | Missing semicolon (numeric)                   |\n| `3`  | `Foo &bar baz`     | Ampersand did not start a reference           |\n| `4`  | `Foo &#`           | Empty reference                               |\n| `5`  | `Foo &bar; baz`    | Unknown entity                                |\n| `6`  | `Foo &#128; baz`   | [Disallowed reference][invalid]               |\n| `7`  | `Foo &#xD800; baz` | Prohibited: outside permissible unicode range |\n\n###### `function text(value, location)`\n\nText handler.\n\n###### Context\n\n`this` refers to `textContext` when given to `parseEntities`.\n\n###### Parameters\n\n*   `value` (`string`) — String of content\n*   `location` (`Location`) — Location at which `value` starts and ends\n\n### `function reference(value, location, source)`\n\nCharacter reference handler.\n\n###### Context\n\n`this` refers to `referenceContext` when given to `parseEntities`.\n\n###### Parameters\n\n*   `value` (`string`) — Encoded character reference\n*   `location` (`Location`) — Location at which `value` starts and ends\n*   `source` (`Location`) — Source of character reference\n\n## License\n\n[MIT][license] © [Titus Wormer][author]\n\n<!-- Definitions -->\n\n[build-badge]: https://img.shields.io/travis/wooorm/parse-entities.svg\n\n[build-status]: https://travis-ci.org/wooorm/parse-entities\n\n[coverage-badge]: https://img.shields.io/codecov/c/github/wooorm/parse-entities.svg\n\n[coverage-status]: https://codecov.io/github/wooorm/parse-entities\n\n[npm]: https://docs.npmjs.com/cli/install\n\n[license]: LICENSE\n\n[author]: http://wooorm.com\n\n[warning]: #function-warningreason-position-code\n\n[text]: #function-textvalue-location\n\n[reference]: #function-referencevalue-location-source\n\n[invalid]: https://github.com/wooorm/character-reference-invalid\n",
+    "licenseText": "(The MIT License)\n\nCopyright (c) 2015 Titus Wormer <mailto:tituswormer@gmail.com>\n\nPermission is hereby granted, free of charge, to any person obtaining\na copy of this software and associated documentation files (the\n'Software'), to deal in the Software without restriction, including\nwithout limitation the rights to use, copy, modify, merge, publish,\ndistribute, sublicense, and/or sell copies of the Software, and to\npermit persons to whom the Software is furnished to do so, subject to\nthe following conditions:\n\nThe above copyright notice and this permission notice shall be\nincluded in all copies or substantial portions of the Software.\n\nTHE SOFTWARE IS PROVIDED 'AS IS', WITHOUT WARRANTY OF ANY KIND,\nEXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF\nMERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT.\nIN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY\nCLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT,\nTORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE\nSOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.\n"
+  },
+  "artifacts": [],
+  "remote": {
+    "resolved": "https://registry.yarnpkg.com/parse-entities/-/parse-entities-1.1.1.tgz#8112d88471319f27abae4d64964b122fe4e1b890",
+    "type": "tarball",
+    "reference": "https://registry.yarnpkg.com/parse-entities/-/parse-entities-1.1.1.tgz",
+    "hash": "8112d88471319f27abae4d64964b122fe4e1b890",
+    "registry": "npm"
+  },
+  "registry": "npm",
+  "hash": "8112d88471319f27abae4d64964b122fe4e1b890"
+}

@@ -1,0 +1,43 @@
+{
+  "manifest": {
+    "name": "sc-emitter",
+    "version": "1.1.0",
+    "description": "Emitter implementation (component-emitter) with support for Node.js error domains",
+    "main": "index.js",
+    "repository": {
+      "type": "git",
+      "url": "git://github.com/SocketCluster/sc-emitter.git"
+    },
+    "dependencies": {
+      "component-emitter": "1.2.0"
+    },
+    "keywords": [
+      "emitter",
+      "component-emitter",
+      "error",
+      "domain"
+    ],
+    "author": {
+      "name": "Jonathan Gros-Dubois"
+    },
+    "license": "MIT",
+    "bugs": {
+      "url": "https://github.com/SocketCluster/sc-emitter/issues"
+    },
+    "homepage": "https://github.com/SocketCluster/sc-emitter",
+    "_registry": "npm",
+    "_loc": "/home/ali/Project/uforce/cairo/.yarn/v1/npm-sc-emitter-1.1.0-ef119d4222f4c64f887b486964ef11116cdd0e75/package.json",
+    "readmeFilename": "README.md",
+    "readme": "# sc-emitter\nEmitter implementation (based on component-emitter) with support for Node.js error domains\n"
+  },
+  "artifacts": [],
+  "remote": {
+    "resolved": "https://registry.yarnpkg.com/sc-emitter/-/sc-emitter-1.1.0.tgz#ef119d4222f4c64f887b486964ef11116cdd0e75",
+    "type": "tarball",
+    "reference": "https://registry.yarnpkg.com/sc-emitter/-/sc-emitter-1.1.0.tgz",
+    "hash": "ef119d4222f4c64f887b486964ef11116cdd0e75",
+    "registry": "npm"
+  },
+  "registry": "npm",
+  "hash": "ef119d4222f4c64f887b486964ef11116cdd0e75"
+}

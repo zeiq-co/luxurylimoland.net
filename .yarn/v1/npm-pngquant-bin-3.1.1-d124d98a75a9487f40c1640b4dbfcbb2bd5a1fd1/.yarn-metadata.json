@@ -1,0 +1,79 @@
+{
+  "manifest": {
+    "name": "pngquant-bin",
+    "version": "3.1.1",
+    "description": "pngquant wrapper that makes it seamlessly available as a local dependency",
+    "license": "MIT",
+    "repository": {
+      "type": "git",
+      "url": "https://github.com/imagemin/pngquant-bin.git"
+    },
+    "author": {
+      "name": "Kevin Mårtensson",
+      "email": "kevinmartensson@gmail.com",
+      "url": "github.com/kevva"
+    },
+    "maintainers": [
+      {
+        "name": "Sindre Sorhus",
+        "email": "sindresorhus@gmail.com",
+        "url": "sindresorhus.com"
+      },
+      {
+        "name": "Shinnosuke Watanabe",
+        "url": "github.com/shinnn"
+      }
+    ],
+    "engines": {
+      "node": ">=0.10.0"
+    },
+    "bin": {
+      "pngquant": "cli.js"
+    },
+    "scripts": {
+      "postinstall": "node lib/install.js",
+      "test": "xo && mocha"
+    },
+    "files": [
+      "cli.js",
+      "index.js",
+      "lib"
+    ],
+    "keywords": [
+      "compress",
+      "image",
+      "img",
+      "minify",
+      "optimize",
+      "png"
+    ],
+    "dependencies": {
+      "bin-build": "^2.0.0",
+      "bin-wrapper": "^3.0.0",
+      "logalot": "^2.0.0"
+    },
+    "devDependencies": {
+      "bin-check": "^2.0.0",
+      "compare-size": "^1.0.0",
+      "mkdirp": "^0.5.0",
+      "mocha": "^2.2.4",
+      "rimraf": "^2.3.2",
+      "xo": "*"
+    },
+    "_registry": "npm",
+    "_loc": "/home/ali/Project/uforce/cairo/.yarn/v1/npm-pngquant-bin-3.1.1-d124d98a75a9487f40c1640b4dbfcbb2bd5a1fd1/package.json",
+    "readmeFilename": "readme.md",
+    "readme": "# pngquant-bin [![Build Status](https://travis-ci.org/imagemin/pngquant-bin.svg?branch=master)](https://travis-ci.org/imagemin/pngquant-bin)\n\n> pngquant is a command-line utility for converting 24/32-bit PNG images to paletted (8-bit) PNGs. The conversion reduces file sizes significantly (often as much as 70%) and preserves full alpha transparency.\n\n\n## Install\n\n```\n$ npm install --save pngquant-bin\n```\n\n\n## Usage\n\n```js\nconst execFile = require('child_process').execFile;\nconst pngquant = require('pngquant-bin');\n\nexecFile(pngquant, ['-o', 'output.png', 'input.png'], err => {\n\tconsole.log('Image minified!');\n});\n```\n\n\n## CLI\n\n```\n$ npm install --global pngquant-bin\n```\n\n```\n$ pngquant --help\n```\n\n\n## License\n\nMIT © [imagemin](https://github.com/imagemin)\n",
+    "licenseText": "Copyright (c) imagemin\n\nPermission is hereby granted, free of charge, to any person obtaining a copy of\nthis software and associated documentation files (the \"Software\"), to deal in\nthe Software without restriction, including without limitation the rights to\nuse, copy, modify, merge, publish, distribute, sublicense, and/or sell copies\nof the Software, and to permit persons to whom the Software is furnished to do\nso, subject to the following conditions:\n\nThe above copyright notice and this permission notice shall be included in all\ncopies or substantial portions of the Software.\n\nTHE SOFTWARE IS PROVIDED \"AS IS\", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR\nIMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,\nFITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE\nAUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER\nLIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,\nOUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE\nSOFTWARE.\n"
+  },
+  "artifacts": [],
+  "remote": {
+    "resolved": "https://registry.yarnpkg.com/pngquant-bin/-/pngquant-bin-3.1.1.tgz#d124d98a75a9487f40c1640b4dbfcbb2bd5a1fd1",
+    "type": "tarball",
+    "reference": "https://registry.yarnpkg.com/pngquant-bin/-/pngquant-bin-3.1.1.tgz",
+    "hash": "d124d98a75a9487f40c1640b4dbfcbb2bd5a1fd1",
+    "registry": "npm"
+  },
+  "registry": "npm",
+  "hash": "d124d98a75a9487f40c1640b4dbfcbb2bd5a1fd1"
+}

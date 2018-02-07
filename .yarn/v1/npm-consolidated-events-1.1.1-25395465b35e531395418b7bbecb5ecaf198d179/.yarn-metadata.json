@@ -1,0 +1,72 @@
+{
+  "manifest": {
+    "name": "consolidated-events",
+    "version": "1.1.1",
+    "description": "Manage multiple event handlers using few event listeners",
+    "main": "lib/index.js",
+    "scripts": {
+      "build": "npm run clean && npm run build:js",
+      "build:js": "babel src/ -d lib/",
+      "check-changelog": "expr $(git status --porcelain 2>/dev/null| grep \"^\\s*M.*CHANGELOG.md\" | wc -l) >/dev/null || (echo 'Please edit CHANGELOG.md' && exit 1)",
+      "check-only-changelog-changed": "(expr $(git status --porcelain 2>/dev/null| grep -v \"CHANGELOG.md\" | wc -l) >/dev/null && echo 'Only CHANGELOG.md may have uncommitted changes' && exit 1) || exit 0",
+      "clean": "rimraf lib",
+      "lint": "eslint .",
+      "postversion": "git commit package.json CHANGELOG.md -m \"Version $npm_package_version\" && npm run tag && git push && git push --tags && npm publish",
+      "prepublish": "in-publish && safe-publish-latest && npm run build || not-in-publish",
+      "pretest": "npm run --silent lint",
+      "tag": "git tag v$npm_package_version",
+      "test": "npm run --silent test:js",
+      "test:js": "jest",
+      "test:js:watch": "jest --watch",
+      "version:major": "npm --no-git-tag-version version major",
+      "version:minor": "npm --no-git-tag-version version minor",
+      "version:patch": "npm --no-git-tag-version version patch"
+    },
+    "repository": {
+      "type": "git",
+      "url": "git+https://github.com/lencioni/consolidated-events.git"
+    },
+    "keywords": [
+      "events",
+      "performance"
+    ],
+    "author": {
+      "name": "Joe Lencioni",
+      "email": "joe.lencioni@gmail.com"
+    },
+    "license": "MIT",
+    "bugs": {
+      "url": "https://github.com/lencioni/consolidated-events/issues"
+    },
+    "homepage": "https://github.com/lencioni/consolidated-events#readme",
+    "devDependencies": {
+      "babel-cli": "^6.22.2",
+      "babel-core": "^6.22.1",
+      "babel-jest": "^20.0.0",
+      "babel-preset-airbnb": "^2.2.3",
+      "eslint": "^3.15.0",
+      "eslint-config-airbnb-base": "^11.1.0",
+      "eslint-plugin-import": "^2.3.0",
+      "in-publish": "^2.0.0",
+      "jest": "^20.0.0",
+      "jest-wrap": "^1.0.0",
+      "rimraf": "^2.6.1",
+      "safe-publish-latest": "^1.1.1"
+    },
+    "_registry": "npm",
+    "_loc": "/home/ali/Project/uforce/cairo/.yarn/v1/npm-consolidated-events-1.1.1-25395465b35e531395418b7bbecb5ecaf198d179/package.json",
+    "readmeFilename": "README.md",
+    "readme": "# consolidated-events <sup>[![Version Badge][npm-version-svg]][package-url]</sup>\n\n[![Build Status][travis-svg]][travis-url]\n[![dependency status][deps-svg]][deps-url]\n[![dev dependency status][dev-deps-svg]][dev-deps-url]\n[![License][license-image]][license-url]\n[![Downloads][downloads-image]][downloads-url]\n\n[![npm badge][npm-badge-png]][package-url]\n\n\nManage multiple event handlers using few event listeners.\n\n## Example\n\n```js\nimport { addEventListener } from 'consolidated-events';\n\nconst removeEventListener = addEventListener(\n  window,\n  'scroll',\n  () => { console.log('scrolling') },\n  { passive: true }\n);\n\n...\n\nremoveEventListener();\n```\n\n[npm-version-svg]: http://versionbadg.es/lencioni/consolidated-events.svg\n[package-url]: https://npmjs.org/package/consolidated-events\n[travis-svg]: https://travis-ci.org/lencioni/consolidated-events.svg\n[travis-url]: https://travis-ci.org/lencioni/consolidated-events\n[deps-svg]: https://david-dm.org/lencioni/consolidated-events.svg\n[deps-url]: https://david-dm.org/lencioni/consolidated-events\n[dev-deps-svg]: https://david-dm.org/lencioni/consolidated-events/dev-status.svg\n[dev-deps-url]: https://david-dm.org/lencioni/consolidated-events#info=devDependencies\n[license-image]: http://img.shields.io/npm/l/consolidated-events.svg\n[license-url]: LICENSE\n[downloads-image]: http://img.shields.io/npm/dm/consolidated-events.svg\n[downloads-url]: http://npm-stat.com/charts.html?package=consolidated-events\n[npm-badge-png]: https://nodei.co/npm/consolidated-events.png?downloads=true&stars=true\n",
+    "licenseText": "MIT License\n\nCopyright (c) 2016 Joe Lencioni\n\nPermission is hereby granted, free of charge, to any person obtaining a copy\nof this software and associated documentation files (the \"Software\"), to deal\nin the Software without restriction, including without limitation the rights\nto use, copy, modify, merge, publish, distribute, sublicense, and/or sell\ncopies of the Software, and to permit persons to whom the Software is\nfurnished to do so, subject to the following conditions:\n\nThe above copyright notice and this permission notice shall be included in all\ncopies or substantial portions of the Software.\n\nTHE SOFTWARE IS PROVIDED \"AS IS\", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR\nIMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,\nFITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE\nAUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER\nLIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,\nOUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE\nSOFTWARE.\n"
+  },
+  "artifacts": [],
+  "remote": {
+    "resolved": "https://registry.yarnpkg.com/consolidated-events/-/consolidated-events-1.1.1.tgz#25395465b35e531395418b7bbecb5ecaf198d179",
+    "type": "tarball",
+    "reference": "https://registry.yarnpkg.com/consolidated-events/-/consolidated-events-1.1.1.tgz",
+    "hash": "25395465b35e531395418b7bbecb5ecaf198d179",
+    "registry": "npm"
+  },
+  "registry": "npm",
+  "hash": "25395465b35e531395418b7bbecb5ecaf198d179"
+}

@@ -1,0 +1,33 @@
+{
+  "manifest": {
+    "name": "basename",
+    "version": "0.1.2",
+    "description": "Get the bare name of a file, without its extension.",
+    "license": "MIT",
+    "contributors": [
+      {
+        "name": "Tomek Wiszniewski",
+        "email": "t.wiszniewski@gmail.com"
+      }
+    ],
+    "repository": {
+      "type": "git",
+      "url": "https://github.com/tomekwi/js-basename.git"
+    },
+    "_registry": "npm",
+    "_loc": "/home/ali/Project/uforce/cairo/.yarn/v1/npm-basename-0.1.2-d6039bef939863160c78048cced3c5e7f88cb261/package.json",
+    "readmeFilename": "Readme.md",
+    "readme": "basename\n========\n\n**Get the bare name of a file, without its extension.**\n\n\n\n\nInstallation\n------------\n\n\n```sh\n> npm install basename\n```\n\n\n\n\nUsage\n-----\n\n```js\nvar basename = require('basename');\n\nbasename('path/to/file.txt');\n// » \"file\"\n```\n\n\n\n\nLicense\n-------\n\n[MIT][] © [Tomek Wiszniewski][].\n\n\n\n\n<!-- Links -->\n[MIT]: ./License.md\n[Tomek Wiszniewski]: https://github.com/tomekwi\n",
+    "licenseText": "Copyright © 2014 Tomek Wiszniewski\n\nPermission is hereby granted, free of charge, to any person obtaining a copy of this software and associated documentation files (the \"Software\"), to deal in the Software without restriction, including without limitation the rights to use, copy, modify, merge, publish, distribute, sublicense, and/or sell copies of the Software, and to permit persons to whom the Software is furnished to do so, subject to the following conditions:\n\nThe above copyright notice and this permission notice shall be included in all copies or substantial portions of the Software.\n\nTHE SOFTWARE IS PROVIDED \"AS IS\", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.\n"
+  },
+  "artifacts": [],
+  "remote": {
+    "resolved": "https://registry.yarnpkg.com/basename/-/basename-0.1.2.tgz#d6039bef939863160c78048cced3c5e7f88cb261",
+    "type": "tarball",
+    "reference": "https://registry.yarnpkg.com/basename/-/basename-0.1.2.tgz",
+    "hash": "d6039bef939863160c78048cced3c5e7f88cb261",
+    "registry": "npm"
+  },
+  "registry": "npm",
+  "hash": "d6039bef939863160c78048cced3c5e7f88cb261"
+}

@@ -1,0 +1,50 @@
+{
+  "manifest": {
+    "name": "gatsby-react-router-scroll",
+    "description": "React Router scroll management forked from https://github.com/ytase/react-router-scroll for Gatsby",
+    "version": "1.0.8",
+    "author": {
+      "name": "Jimmy Jia"
+    },
+    "dependencies": {
+      "babel-runtime": "^6.26.0",
+      "scroll-behavior": "^0.9.1",
+      "warning": "^3.0.0"
+    },
+    "devDependencies": {
+      "babel-cli": "^6.26.0",
+      "babel-plugin-dev-expression": "^0.2.1",
+      "babel-preset-stage-1": "^6.24.1",
+      "cross-env": "^5.0.5"
+    },
+    "keywords": [
+      "gatsby"
+    ],
+    "license": "MIT",
+    "main": "index.js",
+    "peerDependencies": {
+      "react": "^0.14.0 || ^15.0.0 || ^16.0.0",
+      "react-dom": "^0.14.0 || ^15.0.0 || ^16.0.0",
+      "react-router-dom": "^4.0"
+    },
+    "scripts": {
+      "build": "babel src --out-dir . --ignore __tests__",
+      "prepublish": "cross-env NODE_ENV=production npm run build",
+      "watch": "babel -w src --out-dir . --ignore __tests__"
+    },
+    "_registry": "npm",
+    "_loc": "/home/ali/Project/uforce/cairo/.yarn/v1/npm-gatsby-react-router-scroll-1.0.8-6cc9d80c139e58ed5189dd35146ac37b46846cd5/package.json",
+    "readmeFilename": "README.md",
+    "readme": "# gatsby-react-router-scroll\n\nReact Router scroll management forked from\nhttps://github.com/ytase/react-router-scroll for Gatsby which itself was forked\nto upgrade to RR v4 from Jimmy Jia's original scroll managment library for React\nRouter 2/3.\n"
+  },
+  "artifacts": [],
+  "remote": {
+    "resolved": "https://registry.yarnpkg.com/gatsby-react-router-scroll/-/gatsby-react-router-scroll-1.0.8.tgz#6cc9d80c139e58ed5189dd35146ac37b46846cd5",
+    "type": "tarball",
+    "reference": "https://registry.yarnpkg.com/gatsby-react-router-scroll/-/gatsby-react-router-scroll-1.0.8.tgz",
+    "hash": "6cc9d80c139e58ed5189dd35146ac37b46846cd5",
+    "registry": "npm"
+  },
+  "registry": "npm",
+  "hash": "6cc9d80c139e58ed5189dd35146ac37b46846cd5"
+}

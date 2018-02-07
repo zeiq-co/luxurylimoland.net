@@ -1,0 +1,49 @@
+{
+  "manifest": {
+    "name": "sc-formatter",
+    "description": "Module for serializing and unserializing SocketCluster messages",
+    "version": "3.0.2",
+    "contributors": [
+      {
+        "name": "Jonathan Gros-Dubois",
+        "email": "grosjona@yahoo.com.au"
+      }
+    ],
+    "repository": {
+      "type": "git",
+      "url": "git://github.com/SocketCluster/sc-formatter.git"
+    },
+    "dependencies": {},
+    "devDependencies": {
+      "mocha": "3.0.2"
+    },
+    "scripts": {
+      "test": "mocha --reporter spec --timeout 3000 --slow 3000"
+    },
+    "keywords": [
+      "socketcluster",
+      "serialize",
+      "stringify",
+      "parser",
+      "parse",
+      "encode",
+      "decode",
+      "codec"
+    ],
+    "license": "MIT",
+    "readmeFilename": "README.md",
+    "_registry": "npm",
+    "_loc": "/home/ali/Project/uforce/cairo/.yarn/v1/npm-sc-formatter-3.0.2-9abdb14e71873ce7157714d3002477bbdb33c4e6/package.json",
+    "readme": "# sc-formatter\nModule for serializing and unserializing SocketCluster messages\n"
+  },
+  "artifacts": [],
+  "remote": {
+    "resolved": "https://registry.yarnpkg.com/sc-formatter/-/sc-formatter-3.0.2.tgz#9abdb14e71873ce7157714d3002477bbdb33c4e6",
+    "type": "tarball",
+    "reference": "https://registry.yarnpkg.com/sc-formatter/-/sc-formatter-3.0.2.tgz",
+    "hash": "9abdb14e71873ce7157714d3002477bbdb33c4e6",
+    "registry": "npm"
+  },
+  "registry": "npm",
+  "hash": "9abdb14e71873ce7157714d3002477bbdb33c4e6"
+}

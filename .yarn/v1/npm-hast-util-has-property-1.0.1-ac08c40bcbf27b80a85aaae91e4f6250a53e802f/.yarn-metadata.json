@@ -1,0 +1,89 @@
+{
+  "manifest": {
+    "name": "hast-util-has-property",
+    "version": "1.0.1",
+    "description": "Check if a node has a property",
+    "license": "MIT",
+    "keywords": [
+      "hast",
+      "html",
+      "element",
+      "property"
+    ],
+    "repository": {
+      "type": "git",
+      "url": "https://github.com/syntax-tree/hast-util-has-property.git"
+    },
+    "bugs": {
+      "url": "https://github.com/syntax-tree/hast-util-has-property/issues"
+    },
+    "author": {
+      "name": "Titus Wormer",
+      "email": "tituswormer@gmail.com",
+      "url": "http://wooorm.com"
+    },
+    "contributors": [
+      {
+        "name": "Titus Wormer",
+        "email": "tituswormer@gmail.com",
+        "url": "http://wooorm.com"
+      }
+    ],
+    "files": [
+      "index.js"
+    ],
+    "dependencies": {},
+    "devDependencies": {
+      "browserify": "^14.0.0",
+      "esmangle": "^1.0.1",
+      "nyc": "^11.0.0",
+      "remark-cli": "^4.0.0",
+      "remark-preset-wooorm": "^3.0.0",
+      "tape": "^4.4.0",
+      "xo": "^0.18.0"
+    },
+    "scripts": {
+      "build-md": "remark . --quiet --frail --output",
+      "build-bundle": "browserify index.js --bare -s hastUtilHasProperty > hast-util-has-property.js",
+      "build-mangle": "esmangle hast-util-has-property.js > hast-util-has-property.min.js",
+      "build": "npm run build-md && npm run build-bundle && npm run build-mangle",
+      "lint": "xo",
+      "test-api": "node test.js",
+      "test-coverage": "nyc --reporter lcov tape test.js",
+      "test": "npm run build && npm run lint && npm run test-coverage"
+    },
+    "xo": {
+      "space": true,
+      "esnext": false,
+      "ignores": [
+        "hast-util-has-property.js"
+      ]
+    },
+    "nyc": {
+      "check-coverage": true,
+      "lines": 100,
+      "functions": 100,
+      "branches": 100
+    },
+    "remarkConfig": {
+      "plugins": [
+        "preset-wooorm"
+      ]
+    },
+    "_registry": "npm",
+    "_loc": "/home/ali/Project/uforce/cairo/.yarn/v1/npm-hast-util-has-property-1.0.1-ac08c40bcbf27b80a85aaae91e4f6250a53e802f/package.json",
+    "readmeFilename": "readme.md",
+    "readme": "# hast-util-has-property [![Build Status][build-badge]][build-page] [![Coverage Status][coverage-badge]][coverage-page]\n\nCheck whether a [HAST node][hast] is an [element][] with a [property][].\n\n## Installation\n\n[npm][]:\n\n```bash\nnpm install hast-util-has-property\n```\n\n## Usage\n\n```javascript\nvar has = require('hast-util-has-property');\n\nhas({type: 'text', value: 'alpha'}, 'bravo'); //=> false\n\nhas({\n  type: 'element',\n  tagName: 'div',\n  properties: {id: 'bravo'},\n  children: []\n}, 'className'); //=> false\n\nhas({\n  type: 'element',\n  tagName: 'div',\n  properties: {id: 'charlie'},\n  children: []\n}, 'id'); // => true\n```\n\n## API\n\n### `hasProperty(node, name)`\n\nCheck if `node` has a set `name` property.\n\n###### Parameters\n\n*   `node` ([`Node`][node], optional) — Node to check.\n*   `name` ([`string`][property]) - Property name to check.\n\n###### Returns\n\n`boolean` — Whether `node` is an [`Element`][element] with a property\nby `name`.\n\n## Contribute\n\nSee [`contribute.md` in `syntax-tree/hast`][contribute] for ways to get\nstarted.\n\nThis organisation has a [Code of Conduct][coc].  By interacting with this\nrepository, organisation, or community you agree to abide by its terms.\n\n## License\n\n[MIT][license] © [Titus Wormer][author]\n\n<!-- Definition -->\n\n[build-badge]: https://img.shields.io/travis/syntax-tree/hast-util-has-property.svg\n\n[build-page]: https://travis-ci.org/syntax-tree/hast-util-has-property\n\n[coverage-badge]: https://img.shields.io/codecov/c/github/syntax-tree/hast-util-has-property.svg\n\n[coverage-page]: https://codecov.io/github/syntax-tree/hast-util-has-property?branch=master\n\n[npm]: https://docs.npmjs.com/cli/install\n\n[license]: LICENSE\n\n[author]: http://wooorm.com\n\n[hast]: https://github.com/syntax-tree/hast\n\n[node]: https://github.com/syntax-tree/unist#node\n\n[element]: https://github.com/syntax-tree/hast#element\n\n[property]: https://github.com/syntax-tree/hast#property-names\n\n[contribute]: https://github.com/syntax-tree/hast/blob/master/contributing.md\n\n[coc]: https://github.com/syntax-tree/hast/blob/master/code-of-conduct.md\n",
+    "licenseText": "(The MIT License)\n\nCopyright (c) 2016 Titus Wormer <tituswormer@gmail.com>\n\nPermission is hereby granted, free of charge, to any person obtaining\na copy of this software and associated documentation files (the\n'Software'), to deal in the Software without restriction, including\nwithout limitation the rights to use, copy, modify, merge, publish,\ndistribute, sublicense, and/or sell copies of the Software, and to\npermit persons to whom the Software is furnished to do so, subject to\nthe following conditions:\n\nThe above copyright notice and this permission notice shall be\nincluded in all copies or substantial portions of the Software.\n\nTHE SOFTWARE IS PROVIDED 'AS IS', WITHOUT WARRANTY OF ANY KIND,\nEXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF\nMERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT.\nIN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY\nCLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT,\nTORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE\nSOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.\n"
+  },
+  "artifacts": [],
+  "remote": {
+    "resolved": "https://registry.yarnpkg.com/hast-util-has-property/-/hast-util-has-property-1.0.1.tgz#ac08c40bcbf27b80a85aaae91e4f6250a53e802f",
+    "type": "tarball",
+    "reference": "https://registry.yarnpkg.com/hast-util-has-property/-/hast-util-has-property-1.0.1.tgz",
+    "hash": "ac08c40bcbf27b80a85aaae91e4f6250a53e802f",
+    "registry": "npm"
+  },
+  "registry": "npm",
+  "hash": "ac08c40bcbf27b80a85aaae91e4f6250a53e802f"
+}

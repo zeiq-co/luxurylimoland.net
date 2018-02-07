@@ -1,0 +1,107 @@
+{
+  "manifest": {
+    "name": "unist-util-visit",
+    "version": "1.3.0",
+    "description": "Recursively walk over unist nodes",
+    "license": "MIT",
+    "keywords": [
+      "unist",
+      "remark",
+      "markdown",
+      "retext",
+      "natural",
+      "language",
+      "node",
+      "visit",
+      "walk",
+      "util",
+      "utility"
+    ],
+    "repository": {
+      "type": "git",
+      "url": "https://github.com/syntax-tree/unist-util-visit.git"
+    },
+    "bugs": {
+      "url": "https://github.com/syntax-tree/unist-util-visit/issues"
+    },
+    "author": {
+      "name": "Titus Wormer",
+      "email": "tituswormer@gmail.com",
+      "url": "http://wooorm.com"
+    },
+    "contributors": [
+      {
+        "name": "Titus Wormer",
+        "email": "tituswormer@gmail.com",
+        "url": "http://wooorm.com"
+      },
+      {
+        "name": "Eugene Sharygin",
+        "email": "eush77@gmail.com"
+      },
+      {
+        "name": "Richard Gibson",
+        "email": "richard.gibson@gmail.com"
+      }
+    ],
+    "files": [
+      "index.js"
+    ],
+    "dependencies": {
+      "unist-util-is": "^2.1.1"
+    },
+    "devDependencies": {
+      "browserify": "^14.0.0",
+      "esmangle": "^1.0.0",
+      "nyc": "^11.0.0",
+      "remark": "^8.0.0",
+      "remark-cli": "^4.0.0",
+      "remark-preset-wooorm": "^3.0.0",
+      "tape": "^4.5.1",
+      "xo": "^0.18.2"
+    },
+    "scripts": {
+      "build-md": "remark . -qfo",
+      "build-bundle": "browserify index.js --no-builtins -s unistUtilVisit > unist-util-visit.js",
+      "build-mangle": "esmangle unist-util-visit.js > unist-util-visit.min.js",
+      "build": "npm run build-md && npm run build-bundle && npm run build-mangle",
+      "lint": "xo",
+      "test-api": "node test",
+      "test-coverage": "nyc --reporter lcov tape test.js",
+      "test": "npm run build && npm run lint && npm run test-coverage"
+    },
+    "nyc": {
+      "check-coverage": true,
+      "lines": 100,
+      "functions": 100,
+      "branches": 100
+    },
+    "xo": {
+      "space": true,
+      "esnext": false,
+      "ignores": [
+        "unist-util-visit.js"
+      ]
+    },
+    "remarkConfig": {
+      "plugins": [
+        "preset-wooorm"
+      ]
+    },
+    "_registry": "npm",
+    "_loc": "/home/ali/Project/uforce/cairo/.yarn/v1/npm-unist-util-visit-1.3.0-41ca7c82981fd1ce6c762aac397fc24e35711444/package.json",
+    "readmeFilename": "readme.md",
+    "readme": "# unist-util-visit [![Build Status][build-badge]][build-page] [![Coverage Status][coverage-badge]][coverage-page]\n\n[unist][] node visitor.  Useful when working with [**remark**][remark],\n[**retext**][retext], or [**rehype**][rehype].\n\n## Installation\n\n[npm][]:\n\n```bash\nnpm install unist-util-visit\n```\n\n## Usage\n\n```javascript\nvar remark = require('remark');\nvar visit = require('unist-util-visit');\n\nvar tree = remark().parse('Some _emphasis_, **importance**, and `code`.');\n\nvisit(tree, 'text', visitor);\n\nfunction visitor(node) {\n  console.log(node);\n}\n```\n\nYields:\n\n```js\n{type: 'text', value: 'Some '}\n{type: 'text', value: 'emphasis'}\n{type: 'text', value: ', '}\n{type: 'text', value: 'importance'}\n{type: 'text', value: ', and '}\n{type: 'text', value: '.'}\n```\n\n## API\n\n### `visit(tree[, test], visitor[, reverse])`\n\nVisit nodes ([**inclusive descendants**][descendant] of `tree`).  Optionally\nfiltering nodes.  Optionally in reverse.\n\n###### Parameters\n\n*   `tree` ([`Node`][node])\n    — Tree to traverse\n*   `test` ([`Test`][is], optional)\n    — [`is`][is]-compatible test (such as a node type)\n*   `visitor` ([Function][visitor])\n    — Function invoked when a node is found that passes `test`\n*   `reverse` (`boolean`, default: `false`)\n    — When falsey, checking starts at the first child and continues\n    through to later children.  When truthy, this is reversed.\n    This **does not** mean checking starts at the deepest node and\n    continues on to the highest node\n\n#### `next? = visitor(node, index, parent)`\n\nInvoked when a node (matching `test` if given) is found.\n\nYou can transform visited nodes.  You can transform `parent`, but if adding or\nremoving [**children**][child] before `index`, you should return a new `index`\n(`number`) from `visitor` to specify the next sibling to visit.  Replacing\n`node` itself still causes its descendants to be visited.  Adding or removing\nnodes after `index` is handled as expected without needing to return a new\n`index`.  Removing the `children` property on `parent` still results in them\nbeing traversed.\n\n###### Parameters\n\n*   `node` (`Node`) — Found node\n*   `index` (`number?`) — Position of `node` in `parent`\n*   `parent` (`Node?`) — Parent of `node`\n\n###### Returns\n\n*   `visit.EXIT` (`false`)\n    — Stop traversing immediately\n*   `visit.CONTINUE` (`true`)\n    — Continue traversing as normal (same behaviour as not returning anything)\n*   `visit.SKIP` (`'skip'`)\n    — Do not enter this node (traversing into its children), but do continue\n    with the next sibling\n*   `index` (`number`)\n    — Move to the sibling at position `index` next (after `node` itself is\n    traversed).  Useful if you’re mutating the tree (such as removing the node\n    you’re currently on, or any of its preceding siblings).  Results less than\n    `0` or greater than or equal to `children.length` stop iteration of the\n    parent\n\n## Related\n\n*   [`unist-util-visit-parents`](https://github.com/syntax-tree/unist-util-visit-parents)\n    — Like `visit`, but with a stack of parents\n*   [`unist-util-filter`](https://github.com/eush77/unist-util-filter)\n    — Create a new tree with all nodes that pass a test\n*   [`unist-util-map`](https://github.com/syntax-tree/unist-util-map)\n    — Create a new tree with all nodes mapped by a given function\n*   [`unist-util-remove`](https://github.com/eush77/unist-util-remove)\n    — Remove nodes from a tree that pass a test\n*   [`unist-util-select`](https://github.com/eush77/unist-util-select)\n    — Select nodes with CSS-like selectors\n\n## Contribute\n\nSee [`contribute.md` in `syntax-tree/unist`][contribute] for ways to get\nstarted.\n\nThis organisation has a [Code of Conduct][coc].  By interacting with this\nrepository, organisation, or community you agree to abide by its terms.\n\n## License\n\n[MIT][license] © [Titus Wormer][author]\n\n<!-- Definition -->\n\n[build-badge]: https://img.shields.io/travis/syntax-tree/unist-util-visit.svg\n\n[build-page]: https://travis-ci.org/syntax-tree/unist-util-visit\n\n[coverage-badge]: https://img.shields.io/codecov/c/github/syntax-tree/unist-util-visit.svg\n\n[coverage-page]: https://codecov.io/github/syntax-tree/unist-util-visit?branch=master\n\n[npm]: https://docs.npmjs.com/cli/install\n\n[license]: LICENSE\n\n[author]: http://wooorm.com\n\n[unist]: https://github.com/syntax-tree/unist\n\n[retext]: https://github.com/wooorm/retext\n\n[remark]: https://github.com/wooorm/remark\n\n[rehype]: https://github.com/wooorm/rehype\n\n[node]: https://github.com/syntax-tree/unist#node\n\n[descendant]: https://github.com/syntax-tree/unist#descendant\n\n[child]: https://github.com/syntax-tree/unist#child\n\n[is]: https://github.com/syntax-tree/unist-util-is#istest-node-index-parent-context\n\n[visitor]: #next--visitornode-index-parent\n\n[contribute]: https://github.com/syntax-tree/unist/blob/master/contributing.md\n\n[coc]: https://github.com/syntax-tree/unist/blob/master/code-of-conduct.md\n",
+    "licenseText": "(The MIT License)\n\nCopyright (c) 2015 Titus Wormer <tituswormer@gmail.com>\n\nPermission is hereby granted, free of charge, to any person obtaining\na copy of this software and associated documentation files (the\n'Software'), to deal in the Software without restriction, including\nwithout limitation the rights to use, copy, modify, merge, publish,\ndistribute, sublicense, and/or sell copies of the Software, and to\npermit persons to whom the Software is furnished to do so, subject to\nthe following conditions:\n\nThe above copyright notice and this permission notice shall be\nincluded in all copies or substantial portions of the Software.\n\nTHE SOFTWARE IS PROVIDED 'AS IS', WITHOUT WARRANTY OF ANY KIND,\nEXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF\nMERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT.\nIN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY\nCLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT,\nTORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE\nSOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.\n"
+  },
+  "artifacts": [],
+  "remote": {
+    "resolved": "https://registry.yarnpkg.com/unist-util-visit/-/unist-util-visit-1.3.0.tgz#41ca7c82981fd1ce6c762aac397fc24e35711444",
+    "type": "tarball",
+    "reference": "https://registry.yarnpkg.com/unist-util-visit/-/unist-util-visit-1.3.0.tgz",
+    "hash": "41ca7c82981fd1ce6c762aac397fc24e35711444",
+    "registry": "npm"
+  },
+  "registry": "npm",
+  "hash": "41ca7c82981fd1ce6c762aac397fc24e35711444"
+}

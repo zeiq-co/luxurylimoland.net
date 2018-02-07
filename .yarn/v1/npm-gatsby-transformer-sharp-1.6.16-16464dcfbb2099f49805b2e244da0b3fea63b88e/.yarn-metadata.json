@@ -1,0 +1,47 @@
+{
+  "manifest": {
+    "name": "gatsby-transformer-sharp",
+    "version": "1.6.16",
+    "description": "Gatsby transformer plugin for images using Sharp",
+    "scripts": {
+      "build": "babel src --out-dir . --ignore __tests__",
+      "watch": "babel -w src --out-dir . --ignore __tests__",
+      "prepublish": "cross-env NODE_ENV=production npm run build"
+    },
+    "keywords": [
+      "gatsby",
+      "gatsby-plugin",
+      "sharp",
+      "image"
+    ],
+    "author": {
+      "name": "Kyle Mathews",
+      "email": "mathews.kyle@gmail.com"
+    },
+    "license": "MIT",
+    "dependencies": {
+      "babel-runtime": "^6.26.0",
+      "bluebird": "^3.5.0",
+      "fs-extra": "^4.0.2",
+      "image-size": "^0.6.0"
+    },
+    "devDependencies": {
+      "babel-cli": "^6.26.0",
+      "cross-env": "^5.0.5"
+    },
+    "_registry": "npm",
+    "_loc": "/home/ali/Project/uforce/cairo/.yarn/v1/npm-gatsby-transformer-sharp-1.6.16-16464dcfbb2099f49805b2e244da0b3fea63b88e/package.json",
+    "readmeFilename": "README.md",
+    "readme": "# gatsby-transformer-sharp\n\nCreates `ImageSharp` nodes from image types that are supported by the\n[Sharp](https://github.com/lovell/sharp) image processing library and provides\nfields in their GraphQL types for processing your images in a variety of ways\nincluding resizing, cropping, and creating responsive images.\n\n[Live demo](https://image-processing.gatsbyjs.org/)\n([source](https://github.com/gatsbyjs/gatsby/tree/master/examples/image-processing))\n\n## Install\n\n`npm install --save gatsby-transformer-sharp`\n\n## How to use\n\n```javascript\n// In your gatsby-config.js\nplugins: [`gatsby-transformer-sharp`];\n```\n\n## Parsing algorithm\n\nIt recognizes files with the following extensions as images.\n\n* jpeg\n* jpg\n* png\n* webp\n* tif\n* tiff\n\nEach image file is parsed into a node of type `ImageSharp`.\n"
+  },
+  "artifacts": [],
+  "remote": {
+    "resolved": "https://registry.yarnpkg.com/gatsby-transformer-sharp/-/gatsby-transformer-sharp-1.6.16.tgz#16464dcfbb2099f49805b2e244da0b3fea63b88e",
+    "type": "tarball",
+    "reference": "https://registry.yarnpkg.com/gatsby-transformer-sharp/-/gatsby-transformer-sharp-1.6.16.tgz",
+    "hash": "16464dcfbb2099f49805b2e244da0b3fea63b88e",
+    "registry": "npm"
+  },
+  "registry": "npm",
+  "hash": "16464dcfbb2099f49805b2e244da0b3fea63b88e"
+}

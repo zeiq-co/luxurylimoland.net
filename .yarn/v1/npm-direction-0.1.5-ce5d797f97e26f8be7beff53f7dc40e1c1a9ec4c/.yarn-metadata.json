@@ -1,0 +1,65 @@
+{
+  "manifest": {
+    "name": "direction",
+    "version": "0.1.5",
+    "description": "Detect directionality: left-to-right, right-to-left, or neutral",
+    "license": "MIT",
+    "keywords": [
+      "writing",
+      "system",
+      "direction",
+      "directionality",
+      "rtl",
+      "ltr",
+      "cli",
+      "bin"
+    ],
+    "repository": {
+      "type": "git",
+      "url": "https://github.com/wooorm/direction.git"
+    },
+    "author": {
+      "name": "Titus Wormer",
+      "email": "tituswormer@gmail.com"
+    },
+    "bin": {
+      "direction": "cli.js"
+    },
+    "devDependencies": {
+      "eslint": "^0.10.0",
+      "istanbul": "^0.3.0",
+      "jscs": "^1.0.0",
+      "jscs-jsdoc": "^0.3.2",
+      "mocha": "^2.0.0"
+    },
+    "scripts": {
+      "test-lib": "_mocha --check-leaks test.js",
+      "test-cli": "bash ./test.sh",
+      "test-coveralls": "istanbul cover _mocha --report lcovonly -- --check-leaks test.js",
+      "test-travis": "npm run test-cli && npm run test-coveralls",
+      "test": "npm run test-lib && npm run test-cli",
+      "coverage": "istanbul cover _mocha -- -- test.js",
+      "lint-api": "eslint index.js",
+      "lint-cli": "eslint cli.js",
+      "lint-test": "eslint --env mocha test.js",
+      "lint-style": "jscs --reporter inline index.js cli.js test.js",
+      "lint": "npm run lint-api && npm run lint-cli && npm run lint-test && npm run lint-style",
+      "make": "npm run lint && npm run coverage"
+    },
+    "_registry": "npm",
+    "_loc": "/home/ali/Project/uforce/cairo/.yarn/v1/npm-direction-0.1.5-ce5d797f97e26f8be7beff53f7dc40e1c1a9ec4c/package.json",
+    "readmeFilename": "Readme.md",
+    "readme": "# direction [![Build Status](https://img.shields.io/travis/wooorm/direction.svg?style=flat)](https://travis-ci.org/wooorm/direction) [![Coverage Status](https://img.shields.io/coveralls/wooorm/direction.svg?style=flat)](https://coveralls.io/r/wooorm/direction?branch=master)\n\nDetect direction: left-to-right, right-to-left, or neutral.\n\n## Installation\n\nnpm:\n```bash\n$ npm install direction\n```\n\nComponent:\n```bash\n$ component install wooorm/direction\n```\n\nBower:\n```bash\n$ bower install direction\n```\n\n## Usage\n\n```js\nvar direction = require('direction');\n\ndirection(\"A\"); // \"ltr\"\ndirection(\"anglais\"); // \"ltr\"\ndirection(\"بسيطة\"); // \"rtl\"\ndirection(\"@\"); // \"neutral\"\n```\n\n## CLI\n\nInstall:\n```bash\n$ npm install direction --global\n```\n\nUsage:\n```\nUsage: direction [options] words...\n\nDetect directionality: left-to-right, right-to-left, or neutral\n\nOptions:\n\n  -h, --help           output usage information\n  -v, --version        output version number\n\nUsage:\n\n# output direction of given values\n$ direction @\n# neutral\n\n# output direction from stdin\n$ echo \"الانجليزية\" | direction\n# rtl\n```\n\n## License\n\nMIT © [Titus Wormer](http://wooorm.com)\n",
+    "licenseText": "(The MIT License)\n\nCopyright (c) 2014 Titus Wormer <tituswormer@gmail.com>\n\nPermission is hereby granted, free of charge, to any person obtaining\na copy of this software and associated documentation files (the\n'Software'), to deal in the Software without restriction, including\nwithout limitation the rights to use, copy, modify, merge, publish,\ndistribute, sublicense, and/or sell copies of the Software, and to\npermit persons to whom the Software is furnished to do so, subject to\nthe following conditions:\n\nThe above copyright notice and this permission notice shall be\nincluded in all copies or substantial portions of the Software.\n\nTHE SOFTWARE IS PROVIDED 'AS IS', WITHOUT WARRANTY OF ANY KIND,\nEXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF\nMERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT.\nIN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY\nCLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT,\nTORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE\nSOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.\n"
+  },
+  "artifacts": [],
+  "remote": {
+    "resolved": "https://registry.yarnpkg.com/direction/-/direction-0.1.5.tgz#ce5d797f97e26f8be7beff53f7dc40e1c1a9ec4c",
+    "type": "tarball",
+    "reference": "https://registry.yarnpkg.com/direction/-/direction-0.1.5.tgz",
+    "hash": "ce5d797f97e26f8be7beff53f7dc40e1c1a9ec4c",
+    "registry": "npm"
+  },
+  "registry": "npm",
+  "hash": "ce5d797f97e26f8be7beff53f7dc40e1c1a9ec4c"
+}

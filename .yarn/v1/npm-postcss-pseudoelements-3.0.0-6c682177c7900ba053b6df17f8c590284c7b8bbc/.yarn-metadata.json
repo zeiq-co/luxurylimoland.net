@@ -1,0 +1,52 @@
+{
+  "manifest": {
+    "name": "postcss-pseudoelements",
+    "version": "3.0.0",
+    "description": "PostCSS plugin to add single-colon CSS 2.1 syntax pseudo selectors (i.e. :before)",
+    "main": "index.js",
+    "scripts": {
+      "test": "mocha"
+    },
+    "repository": {
+      "type": "git",
+      "url": "git://github.com/axa-ch/postcss-pseudoelements"
+    },
+    "keywords": [
+      "postcss",
+      "postcss-plugin",
+      "pseudoelements",
+      "before",
+      "after"
+    ],
+    "author": {
+      "name": "Sven Tschui",
+      "email": "sven.tschui@axa.ch"
+    },
+    "license": "MIT",
+    "bugs": {
+      "url": "https://github.com/axa-ch/postcss-pseudoelements/issues"
+    },
+    "homepage": "https://github.com/axa-ch/postcss-pseudoelements",
+    "devDependencies": {
+      "mocha": "^2.0.1",
+      "should": "^5.0.0"
+    },
+    "dependencies": {
+      "postcss": "^5.0.4"
+    },
+    "_registry": "npm",
+    "_loc": "/home/ali/Project/uforce/cairo/.yarn/v1/npm-postcss-pseudoelements-3.0.0-6c682177c7900ba053b6df17f8c590284c7b8bbc/package.json",
+    "readmeFilename": "README.md",
+    "readme": "# postcss-pseudoelements\n\n## usage\n\n```javascript\nvar pe = require('postcss-pseudoelements');\nvar postcss = require('postcss');\n\nvar processor = postcss(pe(OPTIONS));\n\nconsole.log(processor.process('a:before {}').css) // outputs: a:before {}\nconsole.log(processor.process('a::before {}').css) // outputs: a:before {}\n```\n\n## options\n\n`selectors`: Array of pseudo-element selectors to rewrite with single and double colons. Note that these values will be used in a regexp without escaping. Defaults to `['before','after','first-letter','first-line']`\n"
+  },
+  "artifacts": [],
+  "remote": {
+    "resolved": "https://registry.yarnpkg.com/postcss-pseudoelements/-/postcss-pseudoelements-3.0.0.tgz#6c682177c7900ba053b6df17f8c590284c7b8bbc",
+    "type": "tarball",
+    "reference": "https://registry.yarnpkg.com/postcss-pseudoelements/-/postcss-pseudoelements-3.0.0.tgz",
+    "hash": "6c682177c7900ba053b6df17f8c590284c7b8bbc",
+    "registry": "npm"
+  },
+  "registry": "npm",
+  "hash": "6c682177c7900ba053b6df17f8c590284c7b8bbc"
+}

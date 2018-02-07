@@ -1,0 +1,92 @@
+{
+  "manifest": {
+    "name": "mdast-util-to-string",
+    "version": "1.0.4",
+    "description": "Utility to get the plain text content of a node",
+    "license": "MIT",
+    "keywords": [
+      "mdast",
+      "markdown",
+      "node",
+      "to",
+      "string",
+      "util",
+      "utility"
+    ],
+    "repository": {
+      "type": "git",
+      "url": "https://github.com/syntax-tree/mdast-util-to-string"
+    },
+    "bugs": {
+      "url": "https://github.com/syntax-tree/mdast-util-to-string/issues"
+    },
+    "author": {
+      "name": "Titus Wormer",
+      "email": "tituswormer@gmail.com",
+      "url": "http://wooorm.com"
+    },
+    "contributors": [
+      {
+        "name": "Titus Wormer",
+        "email": "tituswormer@gmail.com",
+        "url": "http://wooorm.com"
+      }
+    ],
+    "files": [
+      "index.js"
+    ],
+    "dependencies": {},
+    "devDependencies": {
+      "browserify": "^14.0.0",
+      "esmangle": "^1.0.0",
+      "nyc": "^11.0.0",
+      "remark-cli": "^3.0.0",
+      "remark-preset-wooorm": "^3.0.0",
+      "tape": "^4.4.0",
+      "xo": "^0.18.2"
+    },
+    "scripts": {
+      "build-md": "remark . --quiet --frail --output",
+      "build-bundle": "browserify index.js --no-builtins -s mdastUtilToString > mdast-util-to-string.js",
+      "build-mangle": "esmangle mdast-util-to-string.js > mdast-util-to-string.min.js",
+      "build": "npm run build-md && npm run build-bundle && npm run build-mangle",
+      "lint": "xo",
+      "test-api": "node test.js",
+      "test-coverage": "nyc --reporter lcov tape test.js",
+      "test": "npm run build && npm run lint && npm run test-coverage"
+    },
+    "xo": {
+      "space": true,
+      "esnext": false,
+      "ignore": [
+        "mdast-util-to-string.js"
+      ]
+    },
+    "nyc": {
+      "check-coverage": true,
+      "lines": 100,
+      "functions": 100,
+      "branches": 100
+    },
+    "remarkConfig": {
+      "plugins": [
+        "preset-wooorm"
+      ]
+    },
+    "_registry": "npm",
+    "_loc": "/home/ali/Project/uforce/cairo/.yarn/v1/npm-mdast-util-to-string-1.0.4-5c455c878c9355f0c1e7f3e8b719cf583691acfb/package.json",
+    "readmeFilename": "readme.md",
+    "readme": "# mdast-util-to-string [![Build Status][build-badge]][build-status] [![Coverage Status][coverage-badge]][coverage-status] [![Chat][chat-badge]][chat]\n\nGet the plain text content of an [MDAST][] node.\n\n## Installation\n\n[npm][]:\n\n```bash\nnpm install mdast-util-to-string\n```\n\n## Usage\n\n```js\nvar unified = require('unified');\nvar parse = require('remark-parse');\nvar toString = require('mdast-util-to-string');\n\nvar tree = unified()\n  .use(parse)\n  .parse('Some _emphasis_, **importance**, and `code`.');\n\nconsole.log(toString(tree)); //=> 'Some emphasis, importance, and code.'\n```\n\n## API\n\n### `toString(node)`\n\nGet the text content of a node.\n\nThe algorithm checks `value` of `node`, then `alt`, and finally `title`.\nIf no value is found, the algorithm checks the children of `node` and\njoins them (without spaces or newlines).\n\n> This is not a markdown to plain-text library.\n> Use [`strip-markdown`][strip-markdown] for that.\n\n## Related\n\n*   [`nlcst-to-string`](https://github.com/syntax-tree/nlcst-to-string)\n    — Get text content in NLCST\n*   [`hast-util-to-string`](https://github.com/wooorm/rehype-minify/tree/master/packages/hast-util-to-string)\n    — Get text content in HAST\n*   [`hast-util-from-string`](https://github.com/wooorm/rehype-minify/tree/master/packages/hast-util-from-string)\n    — Set text content in HAST\n\n## License\n\n[MIT][license] © [Titus Wormer][author]\n\n<!-- Definitions -->\n\n[build-badge]: https://img.shields.io/travis/syntax-tree/mdast-util-to-string.svg\n\n[build-status]: https://travis-ci.org/syntax-tree/mdast-util-to-string\n\n[coverage-badge]: https://img.shields.io/codecov/c/github/syntax-tree/mdast-util-to-string.svg\n\n[coverage-status]: https://codecov.io/github/syntax-tree/mdast-util-to-string\n\n[chat-badge]: https://img.shields.io/gitter/room/wooorm/remark.svg\n\n[chat]: https://gitter.im/wooorm/remark\n\n[license]: LICENSE\n\n[author]: http://wooorm.com\n\n[npm]: https://docs.npmjs.com/cli/install\n\n[mdast]: https://github.com/syntax-tree/mdast\n\n[strip-markdown]: https://github.com/wooorm/strip-markdown\n",
+    "licenseText": "(The MIT License)\n\nCopyright (c) 2015 Titus Wormer <tituswormer@gmail.com>\n\nPermission is hereby granted, free of charge, to any person obtaining\na copy of this software and associated documentation files (the\n'Software'), to deal in the Software without restriction, including\nwithout limitation the rights to use, copy, modify, merge, publish,\ndistribute, sublicense, and/or sell copies of the Software, and to\npermit persons to whom the Software is furnished to do so, subject to\nthe following conditions:\n\nThe above copyright notice and this permission notice shall be\nincluded in all copies or substantial portions of the Software.\n\nTHE SOFTWARE IS PROVIDED 'AS IS', WITHOUT WARRANTY OF ANY KIND,\nEXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF\nMERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT.\nIN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY\nCLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT,\nTORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE\nSOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.\n"
+  },
+  "artifacts": [],
+  "remote": {
+    "resolved": "https://registry.yarnpkg.com/mdast-util-to-string/-/mdast-util-to-string-1.0.4.tgz#5c455c878c9355f0c1e7f3e8b719cf583691acfb",
+    "type": "tarball",
+    "reference": "https://registry.yarnpkg.com/mdast-util-to-string/-/mdast-util-to-string-1.0.4.tgz",
+    "hash": "5c455c878c9355f0c1e7f3e8b719cf583691acfb",
+    "registry": "npm"
+  },
+  "registry": "npm",
+  "hash": "5c455c878c9355f0c1e7f3e8b719cf583691acfb"
+}

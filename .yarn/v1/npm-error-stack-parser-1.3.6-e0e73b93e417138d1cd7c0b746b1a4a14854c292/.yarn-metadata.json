@@ -1,0 +1,94 @@
+{
+  "manifest": {
+    "name": "error-stack-parser",
+    "description": "Extract meaning from JS Errors",
+    "maintainers": [
+      {
+        "name": "Eric Wendelin",
+        "email": "me@eriwen.com",
+        "url": "https://www.eriwen.com"
+      },
+      {
+        "name": "Victor Homyakov",
+        "email": "vkhomyackov@gmail.com",
+        "url": "https://github.com/victor-homyakov"
+      },
+      {
+        "name": "Oliver Salzburg",
+        "url": "https://github.com/oliversalzburg"
+      }
+    ],
+    "version": "1.3.6",
+    "license": "Unlicense",
+    "keywords": [
+      "stacktrace",
+      "error",
+      "stack",
+      "parser"
+    ],
+    "homepage": "https://www.stacktracejs.com/",
+    "dependencies": {
+      "stackframe": "^0.3.1"
+    },
+    "repository": {
+      "type": "git",
+      "url": "git://github.com/stacktracejs/error-stack-parser.git"
+    },
+    "devDependencies": {
+      "colors": "^1.1.2",
+      "del": "^1.2.1",
+      "gulp": "^3.9.0",
+      "gulp-concat": "^2.6.0",
+      "gulp-coveralls": "^0.1.4",
+      "gulp-jshint": "^2.0.0",
+      "gulp-sourcemaps": "^1.6.0",
+      "gulp-uglify": "^1.5.1",
+      "jasmine": "^2.3.2",
+      "jasmine-core": "^2.3.4",
+      "jscs": "^2.9.0",
+      "jsdoc-dash-template": "^1.2.0",
+      "jshint": "^2.8.0",
+      "karma": "~0.13",
+      "karma-chrome-launcher": "^0.1.12",
+      "karma-coverage": "^0.5.3",
+      "karma-firefox-launcher": "^0.1.7",
+      "karma-ie-launcher": "^0.2.0",
+      "karma-jasmine": "^0.3.6",
+      "karma-opera-launcher": "^0.1.0",
+      "karma-phantomjs2-launcher": "^0.3.2",
+      "karma-safari-launcher": "^0.1.1",
+      "karma-sauce-launcher": "^0.3.0",
+      "karma-spec-reporter": "0.0.23",
+      "run-sequence": "^1.1.5"
+    },
+    "bugs": {
+      "url": "https://github.com/stacktracejs/error-stack-parser/issues"
+    },
+    "main": "./error-stack-parser.js",
+    "files": [
+      "LICENSE",
+      "README.md",
+      "error-stack-parser.js",
+      "dist/"
+    ],
+    "scripts": {
+      "test": "gulp test",
+      "prepublish": "gulp dist"
+    },
+    "_registry": "npm",
+    "_loc": "/home/ali/Project/uforce/cairo/.yarn/v1/npm-error-stack-parser-1.3.6-e0e73b93e417138d1cd7c0b746b1a4a14854c292/package.json",
+    "readmeFilename": "README.md",
+    "readme": "error-stack-parser.js - Extract meaning from JS Errors\n===============\n[![Build Status](https://travis-ci.org/stacktracejs/error-stack-parser.svg?branch=master)](https://travis-ci.org/stacktracejs/error-stack-parser) [![Coverage Status](https://img.shields.io/coveralls/stacktracejs/error-stack-parser.svg)](https://coveralls.io/r/stacktracejs/error-stack-parser) [![GitHub license](https://img.shields.io/github/license/stacktracejs/error-stack-parser.svg)](http://unlicense.org)\n\nSimple, cross-browser [Error](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Error) parser.\nThis library parses and extracts function names, URLs, line numbers, and column numbers from the given Error's `stack` as\nan Array of [StackFrame](http://git.io/stackframe)s. \n\nOnce you have parsed out StackFrames, you can do much more interesting things. See [stacktrace-gps](http://git.io/stacktrace-gps).\n\nNote that in IE9 and earlier, `Error` objects don't have enough information to extract much of anything. In IE 10, `Error`s\nare given a `stack` once they're `throw`n.\n\n## Browser Support\n[![Sauce Test Status](https://saucelabs.com/browser-matrix/stacktracejs.svg)](https://saucelabs.com/u/stacktracejs)\n\n## Usage\n```js\nErrorStackParser.parse(new Error('boom'));\n\n=> [\n        StackFrame('funky1', [], 'path/to/file.js', 35, 79), \n        StackFrame('filter', undefined, 'https://cdn.somewherefast.com/utils.min.js', 1, 832),\n        StackFrame(... and so on ...)\n   ]\n```\n\n## Installation\n```bash\nnpm install error-stack-parser\nbower install error-stack-parser\nhttps://raw.githubusercontent.com/stacktracejs/error-stack-parser/master/dist/error-stack-parser.min.js\n```\n\n## Contributing\nWant to be listed as a *Contributor*? Start with the [Contributing Guide](.github/CONTRIBUTING.md)!\n\n",
+    "licenseText": "This is free and unencumbered software released into the public domain.\n\nAnyone is free to copy, modify, publish, use, compile, sell, or\ndistribute this software, either in source code form or as a compiled\nbinary, for any purpose, commercial or non-commercial, and by any\nmeans.\n\nIn jurisdictions that recognize copyright laws, the author or authors\nof this software dedicate any and all copyright interest in the\nsoftware to the public domain. We make this dedication for the benefit\nof the public at large and to the detriment of our heirs and\nsuccessors. We intend this dedication to be an overt act of\nrelinquishment in perpetuity of all present and future rights to this\nsoftware under copyright law.\n\nTHE SOFTWARE IS PROVIDED \"AS IS\", WITHOUT WARRANTY OF ANY KIND,\nEXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF\nMERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT.\nIN NO EVENT SHALL THE AUTHORS BE LIABLE FOR ANY CLAIM, DAMAGES OR\nOTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE,\nARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR\nOTHER DEALINGS IN THE SOFTWARE.\n\nFor more information, please refer to <http://unlicense.org>\n"
+  },
+  "artifacts": [],
+  "remote": {
+    "resolved": "https://registry.yarnpkg.com/error-stack-parser/-/error-stack-parser-1.3.6.tgz#e0e73b93e417138d1cd7c0b746b1a4a14854c292",
+    "type": "tarball",
+    "reference": "https://registry.yarnpkg.com/error-stack-parser/-/error-stack-parser-1.3.6.tgz",
+    "hash": "e0e73b93e417138d1cd7c0b746b1a4a14854c292",
+    "registry": "npm"
+  },
+  "registry": "npm",
+  "hash": "e0e73b93e417138d1cd7c0b746b1a4a14854c292"
+}

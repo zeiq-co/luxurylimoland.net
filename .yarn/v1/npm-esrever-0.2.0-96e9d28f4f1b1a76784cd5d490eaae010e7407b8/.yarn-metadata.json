@@ -1,0 +1,67 @@
+{
+  "manifest": {
+    "name": "esrever",
+    "version": "0.2.0",
+    "description": "A fully Unicode-aware string reverser written in JavaScript.",
+    "homepage": "https://mths.be/esrever",
+    "main": "esrever.js",
+    "bin": {
+      "esrever": "bin/esrever"
+    },
+    "man": [
+      "man/esrever.1"
+    ],
+    "keywords": [
+      "string",
+      "reverse",
+      "unicode"
+    ],
+    "license": "MIT",
+    "author": {
+      "name": "Mathias Bynens",
+      "url": "https://mathiasbynens.be/"
+    },
+    "repository": {
+      "type": "git",
+      "url": "https://github.com/mathiasbynens/esrever.git"
+    },
+    "bugs": {
+      "url": "https://github.com/mathiasbynens/esrever/issues"
+    },
+    "files": [
+      "LICENSE-MIT.txt",
+      "esrever.js",
+      "bin/",
+      "man/"
+    ],
+    "scripts": {
+      "test": "node tests/tests.js"
+    },
+    "devDependencies": {
+      "coveralls": "^2.11.2",
+      "grunt": "^0.4.5",
+      "grunt-shell": "^1.1.1",
+      "grunt-template": "^0.2.3",
+      "istanbul": "^0.3.5",
+      "qunit-extras": "^1.4.1",
+      "qunitjs": "~1.11.0",
+      "regenerate": "^1.1.0",
+      "requirejs": "^2.1.15",
+      "unicode-7.0.0": "^0.1.5"
+    },
+    "_registry": "npm",
+    "_loc": "/home/ali/Project/uforce/cairo/.yarn/v1/npm-esrever-0.2.0-96e9d28f4f1b1a76784cd5d490eaae010e7407b8/package.json",
+    "readmeFilename": "README.md",
+    "readme": "# Esrever [![Build status](https://travis-ci.org/mathiasbynens/esrever.svg?branch=master)](https://travis-ci.org/mathiasbynens/esrever) [![Code coverage status](https://coveralls.io/repos/mathiasbynens/esrever/badge.svg)](https://coveralls.io/r/mathiasbynens/esrever) [![Dependency status](https://gemnasium.com/mathiasbynens/esrever.svg)](https://gemnasium.com/mathiasbynens/esrever)\n\n_Esrever_ is a Unicode-aware string reverser written in JavaScript. It allows you to easily reverse any string of Unicode symbols, while handling combining marks and astral symbols just fine. [Here’s an online demo.](https://mothereff.in/reverse-string)\n\n## Why not just use `string.split('').reverse().join('')`?\n\nThe following code snippet is commonly used to reverse a string in JavaScript:\n\n```js\n// Don’t use this!\nvar naiveReverse = function(string) {\n  return string.split('').reverse().join('');\n};\n```\n\nHowever, there are some problems with this solution. For example:\n\n```js\nnaiveReverse('foo 𝌆 bar');\n// → 'rab �� oof'\n// Where did the `𝌆` symbol go? Whoops!\n```\n\nIf you’re wondering why this happens, [read up on JavaScript’s internal character encoding](https://mathiasbynens.be/notes/javascript-encoding).\n\nBut there’s more:\n\n```js\nnaiveReverse('mañana mañana');\n// → 'anãnam anañam'\n// Wait, so now the tilde is applied to the `a` instead of the `n`? WAT.\n```\n\nIn order to correctly reverse any given string, Esrever implements an algorithm that was [originally developed](http://www.youtube.com/watch?v=UODX_pYpVxk&t=33s \"Work It\") by Missy ‘Misdemeanor’ Elliot in September 2002:\n\n> _I put my thang down, flip it, and reverse it.\n> I put my thang down, flip it, and reverse it._\n\nAnd indeed: by swapping the position of any combining marks with the symbol they belong to, as well as reversing any surrogate pairs before further processing the string, the above issues are avoided successfully. Thanks, Missy!\n\n## Installation\n\nVia [npm](https://www.npmjs.com/):\n\n```bash\nnpm install esrever\n```\n\nVia [Bower](http://bower.io/):\n\n```bash\nbower install esrever\n```\n\nVia [Component](https://github.com/component/component):\n\n```bash\ncomponent install mathiasbynens/esrever\n```\n\nIn a browser:\n\n```html\n<script src=\"esrever.js\"></script>\n```\n\nIn [Narwhal](http://narwhaljs.org/), [Node.js](https://nodejs.org/), and [RingoJS](http://ringojs.org/):\n\n```js\nvar esrever = require('esrever');\n```\n\nIn [Rhino](http://www.mozilla.org/rhino/):\n\n```js\nload('esrever.js');\n```\n\nUsing an AMD loader like [RequireJS](http://requirejs.org/):\n\n```js\nrequire(\n  {\n    'paths': {\n      'esrever': 'path/to/esrever'\n    }\n  },\n  ['esrever'],\n  function(esrever) {\n    console.log(esrever);\n  }\n);\n```\n\n## API\n\n### `esrever.version`\n\nA string representing the semantic version number.\n\n### `esrever.reverse(string)`\n\nThis function takes a string and returns the reversed version of that string, correctly accounting for Unicode combining marks and astral symbols.\n\n## Usage example\n\n```js\nvar input = 'Lorem ipsum 𝌆 dolor sit ameͨ͆t.';\nvar reversed = esrever.reverse(input);\n\nconsole.log(reversed);\n// → '.teͨ͆ma tis rolod 𝌆 muspi meroL'\n\nesrever.reverse(reversed) == input;\n// → true\n```\n\n### Using the `esrever` binary\n\nTo use the `esrever` binary in your shell, simply install Esrever globally using npm:\n\n```bash\nnpm install -g esrever\n```\n\nAfter that you will be able to reverse strings from the command line:\n\n```bash\n$ esrever 'I put my thang down, flip it, and reverse it.'\n.ti esrever dna ,ti pilf ,nwod gnaht ym tup I\n\n$ esrever 'H̹̙̦̮͉̩̗̗ͧ̇̏̊̾Eͨ͆͒̆ͮ̃͏̷̮̣̫̤̣ ̵̞̹̻̀̉̓ͬ͑͡ͅCͯ̂͐͏̨̛͔̦̟͈̻O̜͎͍͙͚̬̝̣̽ͮ͐͗̀ͤ̍̀͢M̴̡̲̭͍͇̼̟̯̦̉̒͠Ḛ̛̙̞̪̗ͥͤͩ̾͑̔͐ͅṮ̴̷̷̗̼͍̿̿̓̽͐H̙̙̔̄͜'\nH̙̙̔̄͜Ṯ̴̷̷̗̼͍̿̿̓̽͐Ḛ̛̙̞̪̗ͥͤͩ̾͑̔͐ͅM̴̡̲̭͍͇̼̟̯̦̉̒͠O̜͎͍͙͚̬̝̣̽ͮ͐͗̀ͤ̍̀͢Cͯ̂͐͏̨̛͔̦̟͈̻ ̵̞̹̻̀̉̓ͬ͑͡ͅEͨ͆͒̆ͮ̃͏̷̮̣̫̤̣H̹̙̦̮͉̩̗̗ͧ̇̏̊̾\n\n$ cat foo.txt\nThese are the contents of `foo.txt`.\nThis is line two.\n\n$ esrever -f foo.txt\n.owt enil si sihT\n.`txt.oof` fo stnetnoc eht era esehT\n\n$ esrever -l foo.txt\n.`txt.oof` fo stnetnoc eht era esehT\n.owt enil si sihT\n```\n\nWhy not just use the good old `rev` command instead? Glad you asked. `rev` doesn’t account for Unicode combining marks:\n\n```bash\n$ rev <<< 'mañana mañana'\nanãnam anañam\n```\n\nOn the other hand, the `esrever` binary returns the expected result:\n\n```\n$ esrever 'mañana mañana'\nanañam anañam\n```\n\nSee `esrever --help` for the full list of options.\n\n## Support\n\nEsrever has been tested in at least Chrome 27-29, Firefox 3-22, Safari 4-6, Opera 10-12, IE 6-10, Node.js v0.10.0, io.js v1.0.0, Narwhal 0.3.2, RingoJS 0.8-0.11, PhantomJS 1.9.0, and Rhino 1.7RC4.\n\n## Unit tests & code coverage\n\nAfter cloning this repository, run `npm install` to install the dependencies needed for Esrever development and testing. You may want to install Istanbul _globally_ using `npm install istanbul -g`.\n\nOnce that’s done, you can run the unit tests in Node using `npm test` or `node tests/tests.js`. To run the tests in Rhino, Ringo, Narwhal, and web browsers as well, use `grunt test`.\n\nTo generate the code coverage report, use `grunt cover`.\n\n## Author\n\n| [![twitter/mathias](https://gravatar.com/avatar/24e08a9ea84deb17ae121074d0f17125?s=70)](https://twitter.com/mathias \"Follow @mathias on Twitter\") |\n|---|\n| [Mathias Bynens](https://mathiasbynens.be/) |\n\n## License\n\nEsrever is available under the [MIT](https://mths.be/mit) license.\n"
+  },
+  "artifacts": [],
+  "remote": {
+    "resolved": "https://registry.yarnpkg.com/esrever/-/esrever-0.2.0.tgz#96e9d28f4f1b1a76784cd5d490eaae010e7407b8",
+    "type": "tarball",
+    "reference": "https://registry.yarnpkg.com/esrever/-/esrever-0.2.0.tgz",
+    "hash": "96e9d28f4f1b1a76784cd5d490eaae010e7407b8",
+    "registry": "npm"
+  },
+  "registry": "npm",
+  "hash": "96e9d28f4f1b1a76784cd5d490eaae010e7407b8"
+}

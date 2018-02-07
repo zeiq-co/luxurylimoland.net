@@ -1,0 +1,95 @@
+{
+  "manifest": {
+    "name": "remark-rehype",
+    "version": "2.0.1",
+    "description": "rehype support for remark",
+    "license": "MIT",
+    "keywords": [
+      "remark",
+      "rehype",
+      "mdast",
+      "hast"
+    ],
+    "repository": {
+      "type": "git",
+      "url": "https://github.com/wooorm/remark-rehype"
+    },
+    "bugs": {
+      "url": "https://github.com/wooorm/remark-rehype/issues"
+    },
+    "author": {
+      "name": "Titus Wormer",
+      "email": "tituswormer@gmail.com",
+      "url": "http://wooorm.com"
+    },
+    "contributors": [
+      {
+        "name": "Titus Wormer",
+        "email": "tituswormer@gmail.com",
+        "url": "http://wooorm.com"
+      }
+    ],
+    "dependencies": {
+      "mdast-util-to-hast": "^2.2.0"
+    },
+    "files": [
+      "index.js"
+    ],
+    "devDependencies": {
+      "browserify": "^14.1.0",
+      "esmangle": "^1.0.1",
+      "nyc": "^11.0.0",
+      "rehype-stringify": "^3.0.0",
+      "remark-cli": "^3.0.0",
+      "remark-parse": "^3.0.0",
+      "remark-preset-wooorm": "^3.0.0",
+      "remark-stringify": "^3.0.0",
+      "tape": "^4.0.0",
+      "unified": "^6.0.0",
+      "xo": "^0.18.0"
+    },
+    "scripts": {
+      "build-md": "remark . -qfo",
+      "build-bundle": "browserify index.js --bare -s remarkRehype > remark-rehype.js",
+      "build-mangle": "esmangle remark-rehype.js > remark-rehype.min.js",
+      "build": "npm run build-md && npm run build-bundle && npm run build-mangle",
+      "lint": "xo",
+      "test-api": "node test.js",
+      "test-coverage": "nyc --reporter lcov tape test.js",
+      "test": "npm run build && npm run lint && npm run test-coverage"
+    },
+    "nyc": {
+      "check-coverage": true,
+      "lines": 100,
+      "functions": 100,
+      "branches": 100
+    },
+    "xo": {
+      "space": true,
+      "esnext": false,
+      "ignores": [
+        "remark-rehype.js"
+      ]
+    },
+    "remarkConfig": {
+      "plugins": [
+        "preset-wooorm"
+      ]
+    },
+    "_registry": "npm",
+    "_loc": "/home/ali/Project/uforce/cairo/.yarn/v1/npm-remark-rehype-2.0.1-13e989f89ee15444bd2354dffd767da922b985e3/package.json",
+    "readmeFilename": "readme.md",
+    "readme": "# remark-rehype [![Build Status][travis-badge]][travis] [![Coverage Status][codecov-badge]][codecov]\n\nBridge / mutate from [**remark**][remark] to [**rehype**][rehype].\n\n## Installation\n\n[npm][npm-install]:\n\n```bash\nnpm install remark-rehype\n```\n\n## Usage\n\nSay we have the following file, `example.md`:\n\n```markdown\n# Hello world\n\n> Block quote.\n\nSome _emphasis_, **importance**, and `code`.\n```\n\nAnd our script, `example.js`, looks as follows:\n\n```javascript\nvar vfile = require('to-vfile');\nvar report = require('vfile-reporter');\nvar unified = require('unified');\nvar markdown = require('remark-parse');\nvar remark2rehype = require('remark-rehype');\nvar doc = require('rehype-document');\nvar format = require('rehype-format');\nvar html = require('rehype-stringify');\n\nunified()\n  .use(markdown)\n  .use(remark2rehype)\n  .use(doc)\n  .use(format)\n  .use(html)\n  .process(vfile.readSync('example.md'), function (err, file) {\n    console.error(report(err || file));\n    console.log(String(file));\n  });\n```\n\nNow, running `node example` yields:\n\n```html\nexample.md: no issues found\n<!DOCTYPE html>\n<html lang=\"en\">\n  <head>\n    <meta charset=\"utf-8\">\n    <title>example</title>\n    <meta name=\"viewport\" content=\"width=device-width, initial-scale=1\">\n  </head>\n  <body>\n    <h1>Hello world</h1>\n    <blockquote>\n      <p>Block quote.</p>\n    </blockquote>\n    <p>Some <em>emphasis</em>, <strong>importance</strong>, and <code>code</code>.</p>\n  </body>\n</html>\n```\n\n## API\n\n### `origin.use(remark2rehype[, destination][, options])`\n\nEither bridge or mutate from [**remark**][remark] ([MDAST][]) to\n[**rehype**][rehype] ([HAST][]).\n\n###### `destination`\n\nIf given ([`Unified`][processor]), runs the destination processor\nwith the new HAST tree, then, after running discards that tree and\ncontinues on running the origin processor with the original tree\n([bridge-mode][bridge]).  Otherwise, passes the tree to further\nplug-ins (mutate-mode).\n\n###### `options`\n\n`options` are passed through to [`mdast-util-to-hast`][to-hast], if given.\n\n## Related\n\n*   [`rehype-remark`](https://github.com/wooorm/rehype-remark)\n    — Transform HTML to markdown\n*   [`rehype-retext`](https://github.com/wooorm/rehype-retext)\n    — Transform HTML to [NLCST][]\n*   [`remark-retext`](https://github.com/wooorm/remark-retext)\n    — Transform markdown to [NLCST][]\n\n## License\n\n[MIT][license] © [Titus Wormer][author]\n\n<!-- Definitions -->\n\n[travis-badge]: https://img.shields.io/travis/wooorm/remark-rehype.svg\n\n[travis]: https://travis-ci.org/wooorm/remark-rehype\n\n[codecov-badge]: https://img.shields.io/codecov/c/github/wooorm/remark-rehype.svg\n\n[codecov]: https://codecov.io/github/wooorm/remark-rehype\n\n[npm-install]: https://docs.npmjs.com/cli/install\n\n[license]: LICENSE\n\n[author]: http://wooorm.com\n\n[mdast]: https://github.com/wooorm/mdast\n\n[hast]: https://github.com/wooorm/hast\n\n[remark]: https://github.com/wooorm/remark\n\n[rehype]: https://github.com/wooorm/rehype\n\n[processor]: https://github.com/wooorm/unified#processor\n\n[bridge]: https://github.com/wooorm/unified#bridge\n\n[to-hast]: https://github.com/wooorm/mdast-util-to-hast#tohastnode-options\n\n[nlcst]: https://github.com/syntax-tree/nlcst\n",
+    "licenseText": "(The MIT License)\n\nCopyright (c) 2016 Titus Wormer <tituswormer@gmail.com>\n\nPermission is hereby granted, free of charge, to any person obtaining\na copy of this software and associated documentation files (the\n'Software'), to deal in the Software without restriction, including\nwithout limitation the rights to use, copy, modify, merge, publish,\ndistribute, sublicense, and/or sell copies of the Software, and to\npermit persons to whom the Software is furnished to do so, subject to\nthe following conditions:\n\nThe above copyright notice and this permission notice shall be\nincluded in all copies or substantial portions of the Software.\n\nTHE SOFTWARE IS PROVIDED 'AS IS', WITHOUT WARRANTY OF ANY KIND,\nEXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF\nMERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT.\nIN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY\nCLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT,\nTORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE\nSOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.\n"
+  },
+  "artifacts": [],
+  "remote": {
+    "resolved": "https://registry.yarnpkg.com/remark-rehype/-/remark-rehype-2.0.1.tgz#13e989f89ee15444bd2354dffd767da922b985e3",
+    "type": "tarball",
+    "reference": "https://registry.yarnpkg.com/remark-rehype/-/remark-rehype-2.0.1.tgz",
+    "hash": "13e989f89ee15444bd2354dffd767da922b985e3",
+    "registry": "npm"
+  },
+  "registry": "npm",
+  "hash": "13e989f89ee15444bd2354dffd767da922b985e3"
+}

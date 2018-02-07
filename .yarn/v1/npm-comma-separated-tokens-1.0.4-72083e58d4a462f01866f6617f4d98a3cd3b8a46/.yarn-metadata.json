@@ -1,0 +1,88 @@
+{
+  "manifest": {
+    "name": "comma-separated-tokens",
+    "version": "1.0.4",
+    "description": "Parse and stringify comma-separated tokens",
+    "license": "MIT",
+    "keywords": [
+      "dom",
+      "html",
+      "comma",
+      "separated",
+      "tokens",
+      "parse",
+      "stringify"
+    ],
+    "repository": {
+      "type": "git",
+      "url": "https://github.com/wooorm/comma-separated-tokens.git"
+    },
+    "bugs": {
+      "url": "https://github.com/wooorm/comma-separated-tokens/issues"
+    },
+    "author": {
+      "name": "Titus Wormer",
+      "email": "tituswormer@gmail.com",
+      "url": "http://wooorm.com"
+    },
+    "contributors": [
+      {
+        "name": "Titus Wormer",
+        "email": "tituswormer@gmail.com",
+        "url": "http://wooorm.com"
+      }
+    ],
+    "files": [
+      "index.js"
+    ],
+    "dependencies": {
+      "trim": "0.0.1"
+    },
+    "devDependencies": {
+      "browserify": "^14.1.0",
+      "esmangle": "^1.0.1",
+      "nyc": "^11.0.0",
+      "remark-cli": "^3.0.0",
+      "remark-preset-wooorm": "^3.0.0",
+      "tape": "^4.0.0",
+      "xo": "^0.18.0"
+    },
+    "scripts": {
+      "build-md": "remark . -qfo",
+      "build-bundle": "browserify index.js --bare -s commaSeparatedTokens > comma-separated-tokens.js",
+      "build-mangle": "esmangle comma-separated-tokens.js > comma-separated-tokens.min.js",
+      "build": "npm run build-md && npm run build-bundle && npm run build-mangle",
+      "lint": "xo",
+      "test-api": "node test",
+      "test-coverage": "nyc --reporter lcov tape test.js",
+      "test": "npm run build && npm run lint && npm run test-coverage"
+    },
+    "xo": {
+      "space": true,
+      "esnext": false,
+      "ignores": [
+        "comma-separated-tokens.js"
+      ]
+    },
+    "remarkConfig": {
+      "plugins": [
+        "preset-wooorm"
+      ]
+    },
+    "_registry": "npm",
+    "_loc": "/home/ali/Project/uforce/cairo/.yarn/v1/npm-comma-separated-tokens-1.0.4-72083e58d4a462f01866f6617f4d98a3cd3b8a46/package.json",
+    "readmeFilename": "readme.md",
+    "readme": "# comma-separated-tokens [![Build Status][travis-badge]][travis] [![Coverage Status][codecov-badge]][codecov]\n\nParse and stringify comma-separated tokens according to the [spec][].\n\n## Installation\n\n[npm][]:\n\n```bash\nnpm install comma-separated-tokens\n```\n\n## Usage\n\n```javascript\nvar commaSeparated = require('comma-separated-tokens');\n\ncommaSeparated.parse(' a ,b,,d d '); //=> ['a', 'b', '', 'd d']\ncommaSeparated.stringify(['a', 'b', '', 'd d']); //=> 'a, b, , d d'\n```\n\n## API\n\n### `commaSeparated.parse(value)`\n\nParse comma-separated tokens (`string`) to an array of strings, according\nto the [spec][].\n\n### `commaSeparated.stringify(values[, options])`\n\nCompile an array of strings to comma-separated tokens (`string`).\nHandles empty items at start or end correctly.\nNote that it’s not possible to specify initial or final\nwhite-space per value.\n\n##### `options`\n\n###### `options.padLeft`\n\nWhether to pad a space before a token (`boolean`, default: `true`).\n\n###### `options.padRight`\n\nWhether to pad a space after a token (`boolean`, default: `false`).\n\n## Related\n\n*   [`collapse-white-space`](https://github.com/wooorm/collapse-white-space)\n    — Replace multiple white-space characters with a single space\n*   [`property-information`](https://github.com/wooorm/property-information)\n    — Information on HTML properties\n*   [`space-separated-tokens`](https://github.com/wooorm/space-separated-tokens)\n    — Parse/stringify space-separated tokens\n\n## License\n\n[MIT][license] © [Titus Wormer][author]\n\n<!-- Definitions -->\n\n[travis-badge]: https://img.shields.io/travis/wooorm/comma-separated-tokens.svg\n\n[travis]: https://travis-ci.org/wooorm/comma-separated-tokens\n\n[codecov-badge]: https://img.shields.io/codecov/c/github/wooorm/comma-separated-tokens.svg\n\n[codecov]: https://codecov.io/github/wooorm/comma-separated-tokens\n\n[npm]: https://docs.npmjs.com/cli/install\n\n[license]: LICENSE\n\n[author]: http://wooorm.com\n\n[spec]: https://html.spec.whatwg.org/#comma-separated-tokens\n",
+    "licenseText": "(The MIT License)\n\nCopyright (c) 2016 Titus Wormer <tituswormer@gmail.com>\n\nPermission is hereby granted, free of charge, to any person obtaining\na copy of this software and associated documentation files (the\n'Software'), to deal in the Software without restriction, including\nwithout limitation the rights to use, copy, modify, merge, publish,\ndistribute, sublicense, and/or sell copies of the Software, and to\npermit persons to whom the Software is furnished to do so, subject to\nthe following conditions:\n\nThe above copyright notice and this permission notice shall be\nincluded in all copies or substantial portions of the Software.\n\nTHE SOFTWARE IS PROVIDED 'AS IS', WITHOUT WARRANTY OF ANY KIND,\nEXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF\nMERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT.\nIN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY\nCLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT,\nTORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE\nSOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.\n"
+  },
+  "artifacts": [],
+  "remote": {
+    "resolved": "https://registry.yarnpkg.com/comma-separated-tokens/-/comma-separated-tokens-1.0.4.tgz#72083e58d4a462f01866f6617f4d98a3cd3b8a46",
+    "type": "tarball",
+    "reference": "https://registry.yarnpkg.com/comma-separated-tokens/-/comma-separated-tokens-1.0.4.tgz",
+    "hash": "72083e58d4a462f01866f6617f4d98a3cd3b8a46",
+    "registry": "npm"
+  },
+  "registry": "npm",
+  "hash": "72083e58d4a462f01866f6617f4d98a3cd3b8a46"
+}

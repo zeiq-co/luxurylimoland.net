@@ -1,0 +1,47 @@
+{
+  "manifest": {
+    "name": "exenv",
+    "version": "1.2.2",
+    "description": "React's ExecutionEnvironment module extracted for use in other packages & components",
+    "main": "index.js",
+    "scripts": {
+      "test": "echo \"See React tests\" && exit 0"
+    },
+    "repository": {
+      "type": "git",
+      "url": "https://github.com/JedWatson/exenv.git"
+    },
+    "keywords": [
+      "react",
+      "browser",
+      "server",
+      "environment",
+      "env",
+      "execution",
+      "executionenvironment"
+    ],
+    "author": {
+      "name": "Jed Watson"
+    },
+    "license": "BSD-3-Clause",
+    "bugs": {
+      "url": "https://github.com/JedWatson/exenv/issues"
+    },
+    "homepage": "https://github.com/JedWatson/exenv",
+    "_registry": "npm",
+    "_loc": "/home/ali/Project/uforce/cairo/.yarn/v1/npm-exenv-1.2.2-2ae78e85d9894158670b03d47bec1f03bd91bb9d/package.json",
+    "readmeFilename": "README.md",
+    "readme": "# exenv\n\nReact's ExecutionEnvironment module extracted for use in other packages &amp; components.\n\n## Usage\n\n```\nnpm install exenv --save\n```\n\n```js\nvar ExecutionEnvironment = require('exenv');\n\n// You now have...\nExecutionEnvironment.canUseDOM             // is the DOM available? i.e window document etc. \nExecutionEnvironment.canUseWorkers         // are Web Workers available?\nExecutionEnvironment.canUseEventListeners  // are Events available? i.e addEventListener etc.\nExecutionEnvironment.canUseViewport        // is there a viewport? i.e window.screen\n```\n\n### Differences from React's ExecutionEnvironment\n\nThe `ExecutionEnvironment` lib in React 0.13 includes an `isInWorker` property, which is `!canUseDOM`. This is highly specific to React internals and probably (a) hacky and (b) not useful to other packages, so it has been left out. Please open an issue with your thoughts if you disagree or have a better idea.\n\n## Why?\n\nA number of packages and components use React's private ExecutionEnvironment lib to detect available features, particularly to detect server-side rendering, e.g\n\n```\ncanUseDOM = require('react/lib/ExecutionEnvironment').canUseDOM; // BAD\n```\n\n**It is bad practice to use React internals** and this is likely to be broken / disabled in the future.\n\nUse this package instead!\n",
+    "licenseText": "BSD License\n\nFor React software\n\nCopyright (c) 2013-2015, Facebook, Inc.\nAll rights reserved.\n\nRedistribution and use in source and binary forms, with or without modification,\nare permitted provided that the following conditions are met:\n\n * Redistributions of source code must retain the above copyright notice, this\n   list of conditions and the following disclaimer.\n\n * Redistributions in binary form must reproduce the above copyright notice,\n   this list of conditions and the following disclaimer in the documentation\n   and/or other materials provided with the distribution.\n\n * Neither the name Facebook nor the names of its contributors may be used to\n   endorse or promote products derived from this software without specific\n   prior written permission.\n\nTHIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS \"AS IS\" AND\nANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE IMPLIED\nWARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE ARE\nDISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT HOLDER OR CONTRIBUTORS BE LIABLE FOR\nANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR CONSEQUENTIAL DAMAGES\n(INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR SERVICES;\nLOSS OF USE, DATA, OR PROFITS; OR BUSINESS INTERRUPTION) HOWEVER CAUSED AND ON\nANY THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT\n(INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS\nSOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.\n"
+  },
+  "artifacts": [],
+  "remote": {
+    "resolved": "https://registry.yarnpkg.com/exenv/-/exenv-1.2.2.tgz#2ae78e85d9894158670b03d47bec1f03bd91bb9d",
+    "type": "tarball",
+    "reference": "https://registry.yarnpkg.com/exenv/-/exenv-1.2.2.tgz",
+    "hash": "2ae78e85d9894158670b03d47bec1f03bd91bb9d",
+    "registry": "npm"
+  },
+  "registry": "npm",
+  "hash": "2ae78e85d9894158670b03d47bec1f03bd91bb9d"
+}

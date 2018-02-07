@@ -1,0 +1,62 @@
+{
+  "manifest": {
+    "name": "webpack-md5-hash",
+    "version": "0.0.5",
+    "description": "Plugin to replace a standard webpack chunkhash with md5.",
+    "main": "index.js",
+    "scripts": {
+      "clean": "rimraf dist",
+      "pretest": "jshint",
+      "test": "jasmine-node --captureExceptions spec"
+    },
+    "repository": {
+      "type": "git",
+      "url": "https://github.com/erm0l0v/webpack-md5-hash.git"
+    },
+    "keywords": [
+      "webpack",
+      "hash",
+      "plugin",
+      "md5"
+    ],
+    "author": {
+      "name": "Kirill Ermolov"
+    },
+    "contributors": [
+      {
+        "name": "Sebastien Dubois",
+        "email": "seb@dsebastien.net",
+        "url": "https://www.dsebastien.net"
+      }
+    ],
+    "license": "MIT",
+    "bugs": {
+      "url": "https://github.com/erm0l0v/webpack-md5-hash/issues"
+    },
+    "homepage": "https://github.com/erm0l0v/webpack-md5-hash",
+    "dependencies": {
+      "md5": "^2.0.0"
+    },
+    "devDependencies": {
+      "argparse": "^1.0.4",
+      "jasmine-node": "^1.14.5",
+      "jshint": "^2.8.0",
+      "rimraf": "^2.5.0"
+    },
+    "_registry": "npm",
+    "_loc": "/home/ali/Project/uforce/cairo/.yarn/v1/npm-webpack-md5-hash-0.0.5-d9f1899ead664459dd8b6b0c926ac71cfbd7bc7a/package.json",
+    "readmeFilename": "README.md",
+    "readme": "# webpack-md5-hash\n\n[![NPM](https://nodei.co/npm/webpack-md5-hash.png)](https://npmjs.org/package/webpack-md5-hash)\n\nPlugin to replace a standard webpack chunkhash with md5.\n\n## Installation\n\n```\nnpm install webpack-md5-hash --save-dev\n```\n\n## Usage\n\nJust add this plugin as usual.\n\n``` javascript\n\n// webpack.config.js\n\nvar WebpackMd5Hash = require('webpack-md5-hash');\n\nmodule.exports = {\n    // ...\n    output: {\n        //...\n        chunkFilename: \"[chunkhash].[id].chunk.js\"\n    },\n    plugins: [\n        new WebpackMd5Hash()\n    ]\n};\n\n```\n\n## Development\n\n### Setup Docker\n\n* Install [Doker Toolbox](https://www.docker.com/docker-toolbox)\n* Setup [Docker Machine](https://docs.docker.com/machine/get-started/)\n\n### Generate Docker files\n\n* Change versions on node and webpack in *versions.json*\n* Run `./build.js gen_docker` to generate files\n\n### Run tests\n\n* Build Docker images `docker-compose build`\n* Run tests `docker-compose up` or `docker-compose up | grep exited`\n\n### Run tests for specific environment\n\n> Example: you need test code on node v0.12 and webpack v1.8\n\n* Build image `docker-compose build test_n_0.12_w_1.8`\n* Run tests `docker-compose run --rm test_n_0.12_w_1.8`\n\nAnd now instead of standard value of chunkhash you'll get a md5 based on chunk's modules.\n",
+    "licenseText": "The MIT License (MIT)\n\nCopyright (c) 2015 Kirill Ermolov\n\nPermission is hereby granted, free of charge, to any person obtaining a copy\nof this software and associated documentation files (the \"Software\"), to deal\nin the Software without restriction, including without limitation the rights\nto use, copy, modify, merge, publish, distribute, sublicense, and/or sell\ncopies of the Software, and to permit persons to whom the Software is\nfurnished to do so, subject to the following conditions:\n\nThe above copyright notice and this permission notice shall be included in all\ncopies or substantial portions of the Software.\n\nTHE SOFTWARE IS PROVIDED \"AS IS\", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR\nIMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,\nFITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE\nAUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER\nLIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,\nOUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE\nSOFTWARE.\n\n"
+  },
+  "artifacts": [],
+  "remote": {
+    "resolved": "https://registry.yarnpkg.com/webpack-md5-hash/-/webpack-md5-hash-0.0.5.tgz#d9f1899ead664459dd8b6b0c926ac71cfbd7bc7a",
+    "type": "tarball",
+    "reference": "https://registry.yarnpkg.com/webpack-md5-hash/-/webpack-md5-hash-0.0.5.tgz",
+    "hash": "d9f1899ead664459dd8b6b0c926ac71cfbd7bc7a",
+    "registry": "npm"
+  },
+  "registry": "npm",
+  "hash": "d9f1899ead664459dd8b6b0c926ac71cfbd7bc7a"
+}

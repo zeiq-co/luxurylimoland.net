@@ -1,0 +1,50 @@
+{
+  "manifest": {
+    "name": "webpack-configurator",
+    "version": "0.3.1",
+    "description": "Helper for creating and extending Webpack configuration structures.",
+    "main": "index.js",
+    "scripts": {
+      "test": "node_modules/.bin/mocha"
+    },
+    "keywords": [
+      "webpack",
+      "config",
+      "extend",
+      "merge",
+      "loaders",
+      "plugins"
+    ],
+    "author": {
+      "name": "Lewis Barnes"
+    },
+    "repository": {
+      "type": "git",
+      "url": "http://github.com/lewie9021/webpack-configurator"
+    },
+    "license": "MIT",
+    "dependencies": {
+      "lodash": "3.10.1"
+    },
+    "devDependencies": {
+      "chai": "3.4.0",
+      "extract-text-webpack-plugin": "0.8.2",
+      "mocha": "2.3.3"
+    },
+    "_registry": "npm",
+    "_loc": "/home/ali/Project/uforce/cairo/.yarn/v1/npm-webpack-configurator-0.3.1-d16802afa674101a0cbfa6fc344d415c9649540b/package.json",
+    "readmeFilename": "README.md",
+    "readme": "# Webpack Configurator\n\n## Install\n\n```\n$ npm install webpack-configurator\n````\n\n## Motivation\n\nIn a number of my old projects, I found it difficult to DRY up the configuration files. My setup often contained a number of build modes (e.g. dev, test, and production), each sharing similar parts to one another. These common chunks were placed in a 'base' build mode. I wanted to still maintain the flexibility of including build mode specific configuration, while at the same time making slight changes to things such as loader query strings. In the end, I still found that my build mode files contained repetitive boilerplate code that I really wanted to avoid.\n\n## API\n\n### config.merge(config)\n\n<!-- Description of why you might want to use this method. -->\n\n**Arguments**\n\n1. `config` *(Object|Function)*: If an object is passed, this will be merged with the current value of config._config using the default way of merging (concat arrays nested within the data structure). If a function is passed, the first parameter will be a copy of the value contained within config._config. You can then make all the necessary changes to the data structure before returning the new value.\n\n**Returns**\n\n*`(Object)`*: The config object to allow function chaining.\n\n**Example**\n\n```javascript\n// Config as an object.\nconfig.merge({\n     entry: \"./app.entry.js\"\n});\n\n// Config as a function.\nconfig.merge(function(current) {\n    current.entry = \"./app.entry.js\";\n\n    return current;\n});\n```\n\n### config.loader(key, config, resolver)\n\nProvides a way of adding loaders to the config. You can add two other types of loaders using `config.preLoader` and `config.postLoader`.\n\n**Arguments**\n\n1. `key` *(String)*: Name of the loader. This is used to differentiate between loaders when merging/extending. When resolving, this value is used as a fallback for the 'loader' property value.\n2. `config` *(Object|Function)*: If an object is passed, this will be merged with the current value of the loader's config using the default way of merging (concat arrays nested within the data structure). If a function is passed, the first parameter will be a copy of the loader's config. You can then make all the necessary changes to the data structure before returning the new value.\n3. `resolver` *(Function)*: This works in a similar way to the `config` parameter, however, it is only called when resolving. It provides an opportunity to make final changes once the configuration is has been completely merged. **Note**: If the loader already has a resolver, the value will simply get replaced.\n\n**Returns**\n\n*`(Object)`*: The config object to allow function chaining.\n\n**Examples**\n\nConfig as an object.\n```javascript\nconfig.loader(\"dustjs-linkedin\", {\n    test: /\\.dust$/\n});\n```\n\nConfig as a function.\n```javascript\nconfig.loader(\"dustjs-linkedin\", function(current) {\n    current.test = /\\.dust$/;\n    \n    return current;\n});\n```\n\nConfig as an object with a resolver function.\n```javascript\nvar ExtractTextPlugin = require('extract-text-webpack-plugin');\n\nconfig.loader(\"sass\", {\n    test: /\\.scss$/,\n    queries: {\n        css: {\n            sourceMap: true\n        },\n        sass: {\n            sourceMap: true\n        }\n    }\n}, function(config) {\n    var loaders = [];\n\n    for (var key in config.queries)\n        loaders.push(key + \"?\" + JSON.stringify(config.queries[key]));\n\n    config.loader = ExtractTextPlugin.extract(loaders.join(\"!\"));\n\n    return config;\n});\n```\n<!--- An example of how merging works. -->\n\n### config.removeLoader(key)\n\nProvides a way to remove loaders without directly modifying internal data structures on the instance. You can remove two other types of loaders using the following: `config.removePreLoader(key)` and `config.removePostLoader(key)`.\n\n**Arguments**\n\n1. `key` *(String)*: Name of the loader you wish to remove. This is the same value used when calling the 'loader' method.\n\n**Returns**\n\n*`(Object)`*: The config object to allow function chaining.\n\n**Example**\n\n```javascript\n// Create a loader with the key 'dustjs-linkedin'\nconfig.loader(\"dustjs-linkedin\", {\n    test: /\\.dust$/\n});\n\n// Remove the loader using the same key as above.\nconfig.removeLoader(\"dustjs-linkedin\");\n```\n\n### config.plugin(key, constructor, parameters)\n\n<!-- Description of why you might want to use this method. -->\n\n**Arguments**\n\n1. `key` *(String)*: Name of the plugin. This is used to differentiate between plugins when merging/extending.\n2. `constructor` *(Class)*: The class constructor that you wish to be instantiated when resolving. **Note**: If the plugin already has a constructor, the value will simply get replaced. You may merge/extend `parameters` by passing null for this parameter.\n3. `parameters` *(Array|Function)*: If an array is passed, this will be merged with the current value of the plugin's parameters using the default way of merging (concat arrays nested within the data structure). If a function is passed, the first parameter will be a copy of the plugin's parameters array. You can then make all the necessary changes to the data structure before returning the new value. **Note** This must be an array.\n\n**Returns**\n\n*`(Object)`*: The config object to allow function chaining.\n\n**Examples**\n\nParameters as an array.\n```javascript\nvar Webpack = require(\"webpack\");\n\nconfig.plugin(\"webpack-define\", Webpack.DefinePlugin, [{\n    __DEV__: true\n}]);\n```\n\nParameters as a function.\n```javascript\nvar Webpack = require(\"webpack\");\n\nconfig.plugin(\"webpack-define\", Webpack.DefinePlugin, function(current) {\n    return [{\n        __DEV__: true\n    }];\n});\n```\n\n### config.removePlugin(key)\n\n<!-- Description of why you might want to use this method. -->\n\n**Arguments**\n\n1. `key` *(String)*: Name of the plugin you wish to remove. This is the same value used when calling the 'plugin' method.\n\n**Returns**\n\n*`(Object)`*: The config object to allow function chaining.\n\n**Example**\n\n```javascript\nvar Webpack = require(\"webpack\");\n\n// Create a plugin with the key 'webpack-define'.\nconfig.plugin(\"webpack-define\", Webpack.DefinePlugin, [{\n    __DEV__: true\n}]);\n\n// Remove the plugin using the same key as above.\nconfig.removePlugin(\"webpack-define\");\n```\n\n<!-- Show how it's more useful when extending... -->\n\n### config.resolve()\n\nCall when you want to return a complete Webpack configuration object, typically at the end. It can be called numerous times since it doesn't produce any side effects.\n\n**Returns**\n\n*`(Object)`*: A valid Webpack configuration object\n\n**Examples**\n\nA simple webpack.config.js file demonstrating the module's use.\n```javascript\nvar Config = require(\"webpack-configurator\");\nvar Webpack = require(\"webpack\");\n\nmodule.exports = (function() {\n    var config = new Config();\n\n    config.merge({\n        entry: \"./main.js\",\n        output: {\n            filename: \"bundle.js\"       \n        }\n    });\n\n    config.loader(\"dustjs-linkedin\", {\n        test: /\\.dust$/\n    });\n\n    config.loader(\"sass\", {\n        test: /\\.scss$/,\n        loader: \"style!css!sass?indentedSyntax\"\n    });\n\n    config.plugin(\"webpack-define\", Webpack.DefinePlugin, [{\n        VERSION: \"1.0.0\"\n    }]);\n\n    return config.resolve();\n})();\n```\n",
+    "licenseText": "The MIT License (MIT)\n\nCopyright (c) 2015 Lewis Barnes\n\nPermission is hereby granted, free of charge, to any person obtaining a copy\nof this software and associated documentation files (the \"Software\"), to deal\nin the Software without restriction, including without limitation the rights\nto use, copy, modify, merge, publish, distribute, sublicense, and/or sell\ncopies of the Software, and to permit persons to whom the Software is\nfurnished to do so, subject to the following conditions:\n\nThe above copyright notice and this permission notice shall be included in all\ncopies or substantial portions of the Software.\n\nTHE SOFTWARE IS PROVIDED \"AS IS\", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR\nIMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,\nFITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE\nAUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER\nLIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,\nOUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE\nSOFTWARE.\n\n"
+  },
+  "artifacts": [],
+  "remote": {
+    "resolved": "https://registry.yarnpkg.com/webpack-configurator/-/webpack-configurator-0.3.1.tgz#d16802afa674101a0cbfa6fc344d415c9649540b",
+    "type": "tarball",
+    "reference": "https://registry.yarnpkg.com/webpack-configurator/-/webpack-configurator-0.3.1.tgz",
+    "hash": "d16802afa674101a0cbfa6fc344d415c9649540b",
+    "registry": "npm"
+  },
+  "registry": "npm",
+  "hash": "d16802afa674101a0cbfa6fc344d415c9649540b"
+}

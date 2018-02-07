@@ -1,0 +1,47 @@
+{
+  "manifest": {
+    "name": "topo",
+    "description": "Topological sorting with grouping support",
+    "version": "2.0.2",
+    "repository": {
+      "type": "git",
+      "url": "git://github.com/hapijs/topo"
+    },
+    "main": "lib/index.js",
+    "keywords": [
+      "topological",
+      "sort",
+      "toposort",
+      "topsort"
+    ],
+    "engines": {
+      "node": ">=4.0.0"
+    },
+    "dependencies": {
+      "hoek": "4.x.x"
+    },
+    "devDependencies": {
+      "code": "3.x.x",
+      "lab": "10.x.x"
+    },
+    "scripts": {
+      "test": "lab -a code -t 100 -L",
+      "test-cov-html": "lab -a code -t 100 -L -r html -o coverage.html"
+    },
+    "license": "BSD-3-Clause",
+    "_registry": "npm",
+    "_loc": "/home/ali/Project/uforce/cairo/.yarn/v1/npm-topo-2.0.2-cd5615752539057c0dc0491a621c3bc6fbe1d182/package.json",
+    "readmeFilename": "README.md",
+    "readme": "# topo\n\nTopological sorting with grouping support.\n\n[![Build Status](https://secure.travis-ci.org/hapijs/topo.svg?branch=master)](http://travis-ci.org/hapijs/topo)\n\nLead Maintainer: [Devin Ivy](https://github.com/devinivy)\n\n## Usage\n\nSee the [API Reference](API.md)\n\n**Example**\n```node\nconst Topo = require('topo');\n\nconst morning = new Topo();\n\nmorning.add('Nap', { after: ['breakfast', 'prep'] });\n\nmorning.add([\n    'Make toast',\n    'Pour juice'\n], { before: 'breakfast', group: 'prep' });\n\nmorning.add('Eat breakfast', { group: 'breakfast' });\n\nmorning.nodes;        // ['Make toast', 'Pour juice', 'Eat breakfast', 'Nap']\n```\n"
+  },
+  "artifacts": [],
+  "remote": {
+    "resolved": "https://registry.yarnpkg.com/topo/-/topo-2.0.2.tgz#cd5615752539057c0dc0491a621c3bc6fbe1d182",
+    "type": "tarball",
+    "reference": "https://registry.yarnpkg.com/topo/-/topo-2.0.2.tgz",
+    "hash": "cd5615752539057c0dc0491a621c3bc6fbe1d182",
+    "registry": "npm"
+  },
+  "registry": "npm",
+  "hash": "cd5615752539057c0dc0491a621c3bc6fbe1d182"
+}

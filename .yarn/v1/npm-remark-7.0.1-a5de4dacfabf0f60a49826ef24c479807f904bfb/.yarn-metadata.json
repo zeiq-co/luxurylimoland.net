@@ -1,0 +1,62 @@
+{
+  "manifest": {
+    "name": "remark",
+    "version": "7.0.1",
+    "description": "Markdown processor powered by plugins",
+    "license": "MIT",
+    "keywords": [
+      "markdown",
+      "abstract",
+      "syntax",
+      "tree",
+      "ast",
+      "parse",
+      "stringify",
+      "process"
+    ],
+    "dependencies": {
+      "remark-parse": "^3.0.0",
+      "remark-stringify": "^3.0.0",
+      "unified": "^6.0.0"
+    },
+    "homepage": "http://remark.js.org/",
+    "repository": {
+      "type": "git",
+      "url": "https://github.com/wooorm/remark/tree/master/packages/remark"
+    },
+    "bugs": {
+      "url": "https://github.com/wooorm/remark/issues"
+    },
+    "author": {
+      "name": "Titus Wormer",
+      "email": "tituswormer@gmail.com",
+      "url": "http://wooorm.com"
+    },
+    "contributors": [
+      {
+        "name": "Titus Wormer",
+        "email": "tituswormer@gmail.com",
+        "url": "http://wooorm.com"
+      }
+    ],
+    "files": [
+      "index.js"
+    ],
+    "scripts": {},
+    "xo": false,
+    "_registry": "npm",
+    "_loc": "/home/ali/Project/uforce/cairo/.yarn/v1/npm-remark-7.0.1-a5de4dacfabf0f60a49826ef24c479807f904bfb/package.json",
+    "readmeFilename": "readme.md",
+    "readme": "# remark [![Build Status][build-badge]][build-status] [![Coverage Status][coverage-badge]][coverage-status] [![Chat][chat-badge]][chat]\n\nThe [**remark**][remark] processor is a markdown processor powered by\n[plug-ins][plugins].\n\n*   Interface by [**unified**][unified]\n*   [**MDAST**][mdast] syntax tree\n*   Parses markdown to the tree with [**remark-parse**][parse]\n*   [Plug-ins][plugins] transform the tree\n*   Compiles the tree to markdown using [**remark-stringify**][stringify]\n\nDon’t need the parser?  Or the compiler?  [That’s OK][unified-usage].\n\n## Installation\n\n[npm][]:\n\n```sh\nnpm install remark\n```\n\n## Usage\n\n```js\nvar remark = require('remark');\nvar recommended = require('remark-preset-lint-recommended');\nvar html = require('remark-html');\nvar report = require('vfile-reporter');\n\nremark()\n  .use(recommended)\n  .use(html)\n  .process('## Hello world!', function (err, file) {\n    console.error(report(err || file));\n    console.log(String(file));\n  });\n```\n\nYields:\n\n```txt\n1:1  warning  Missing newline character at end of file  final-newline  remark-lint\n\n⚠ 1 warning\n<h2>Hello world!</h2>\n```\n\n## License\n\n[MIT][license] © [Titus Wormer][author]\n\n<!-- Definitions -->\n\n[build-badge]: https://img.shields.io/travis/wooorm/remark.svg\n\n[build-status]: https://travis-ci.org/wooorm/remark\n\n[coverage-badge]: https://img.shields.io/codecov/c/github/wooorm/remark.svg\n\n[coverage-status]: https://codecov.io/github/wooorm/remark\n\n[chat-badge]: https://img.shields.io/gitter/room/wooorm/remark.svg\n\n[chat]: https://gitter.im/wooorm/remark\n\n[license]: https://github.com/wooorm/remark/blob/master/LICENSE\n\n[author]: http://wooorm.com\n\n[npm]: https://docs.npmjs.com/cli/install\n\n[remark]: https://github.com/wooorm/remark\n\n[unified]: https://github.com/wooorm/unified\n\n[mdast]: https://github.com/wooorm/mdast\n\n[parse]: https://github.com/wooorm/remark/blob/master/packages/remark-parse\n\n[stringify]: https://github.com/wooorm/remark/blob/master/packages/remark-stringify\n\n[plugins]: https://github.com/wooorm/remark/blob/master/doc/plugins.md\n\n[unified-usage]: https://github.com/wooorm/unified#usage\n"
+  },
+  "artifacts": [],
+  "remote": {
+    "resolved": "https://registry.yarnpkg.com/remark/-/remark-7.0.1.tgz#a5de4dacfabf0f60a49826ef24c479807f904bfb",
+    "type": "tarball",
+    "reference": "https://registry.yarnpkg.com/remark/-/remark-7.0.1.tgz",
+    "hash": "a5de4dacfabf0f60a49826ef24c479807f904bfb",
+    "registry": "npm"
+  },
+  "registry": "npm",
+  "hash": "a5de4dacfabf0f60a49826ef24c479807f904bfb"
+}

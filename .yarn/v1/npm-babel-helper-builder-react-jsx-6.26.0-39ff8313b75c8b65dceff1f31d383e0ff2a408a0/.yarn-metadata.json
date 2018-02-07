@@ -1,0 +1,32 @@
+{
+  "manifest": {
+    "name": "babel-helper-builder-react-jsx",
+    "version": "6.26.0",
+    "description": "Helper function to build react jsx",
+    "repository": {
+      "type": "git",
+      "url": "https://github.com/babel/babel/tree/master/packages/babel-helper-builder-react-jsx"
+    },
+    "license": "MIT",
+    "main": "lib/index.js",
+    "dependencies": {
+      "babel-runtime": "^6.26.0",
+      "babel-types": "^6.26.0",
+      "esutils": "^2.0.2"
+    },
+    "_registry": "npm",
+    "_loc": "/home/ali/Project/uforce/cairo/.yarn/v1/npm-babel-helper-builder-react-jsx-6.26.0-39ff8313b75c8b65dceff1f31d383e0ff2a408a0/package.json",
+    "readmeFilename": "README.md",
+    "readme": "# babel-helper-builder-react-jsx\n\n## Usage\n\n```javascript\ntype ElementState = {\n  tagExpr: Object; // tag node\n  tagName: string; // raw string tag name\n  args: Array<Object>; // array of call arguments\n  call?: Object; // optional call property that can be set to override the call expression returned\n  pre?: Function; // function called with (state: ElementState) before building attribs\n  post?: Function; // function called with (state: ElementState) after building attribs\n};\n\nrequire(\"babel-helper-builder-react-jsx\")({\n  pre: function (state: ElementState) {\n    // called before building the element\n  },\n\n  post: function (state: ElementState) {\n    // called after building the element\n  }\n});\n```\n"
+  },
+  "artifacts": [],
+  "remote": {
+    "resolved": "https://registry.yarnpkg.com/babel-helper-builder-react-jsx/-/babel-helper-builder-react-jsx-6.26.0.tgz#39ff8313b75c8b65dceff1f31d383e0ff2a408a0",
+    "type": "tarball",
+    "reference": "https://registry.yarnpkg.com/babel-helper-builder-react-jsx/-/babel-helper-builder-react-jsx-6.26.0.tgz",
+    "hash": "39ff8313b75c8b65dceff1f31d383e0ff2a408a0",
+    "registry": "npm"
+  },
+  "registry": "npm",
+  "hash": "39ff8313b75c8b65dceff1f31d383e0ff2a408a0"
+}

@@ -1,0 +1,57 @@
+{
+  "manifest": {
+    "name": "read-chunk",
+    "version": "1.0.1",
+    "description": "Read a chunk from a file",
+    "license": "MIT",
+    "repository": {
+      "type": "git",
+      "url": "https://github.com/sindresorhus/read-chunk.git"
+    },
+    "author": {
+      "name": "Sindre Sorhus",
+      "email": "sindresorhus@gmail.com",
+      "url": "http://sindresorhus.com"
+    },
+    "engines": {
+      "node": ">=0.10.0"
+    },
+    "scripts": {
+      "test": "mocha"
+    },
+    "files": [
+      "index.js"
+    ],
+    "keywords": [
+      "read",
+      "file",
+      "readfile",
+      "fs",
+      "chunk",
+      "slice",
+      "part",
+      "head",
+      "tail",
+      "buffer",
+      "fd",
+      "open"
+    ],
+    "devDependencies": {
+      "mocha": "*"
+    },
+    "_registry": "npm",
+    "_loc": "/home/ali/Project/uforce/cairo/.yarn/v1/npm-read-chunk-1.0.1-5f68cab307e663f19993527d9b589cace4661194/package.json",
+    "readmeFilename": "readme.md",
+    "readme": "# read-chunk [![Build Status](https://travis-ci.org/sindresorhus/read-chunk.svg?branch=master)](https://travis-ci.org/sindresorhus/read-chunk)\n\n> Read a chunk from a file\n\nBecause the built-in way is too much boilerplate.\n\n\n## Install\n\n```sh\n$ npm install --save read-chunk\n```\n\n\n## Usage\n\n```js\nvar readChunk = require('read-chunk');\n\n// foo.txt => hello\n\nreadChunk.sync('foo.txt', 1, 3);\n//=> ell\n```\n\n\n## API\n\n### readChunk(filepath, position, length, callback)\n\n#### filepath\n\nType: `string`\n\n#### position\n\nType: `number`\n\nPosition to start reading.\n\n#### length\n\nType: `number`\n\nNumber of bytes to read.\n\n#### callback(error, buffer)\n\nType: `function`\n\n\n### readChunk.sync(filepath, start, length)\n\nSame arguments as `readChunk` except the callback.\n\nReturns a buffer.\n\n\n## License\n\nMIT © [Sindre Sorhus](http://sindresorhus.com)\n"
+  },
+  "artifacts": [],
+  "remote": {
+    "resolved": "https://registry.yarnpkg.com/read-chunk/-/read-chunk-1.0.1.tgz#5f68cab307e663f19993527d9b589cace4661194",
+    "type": "tarball",
+    "reference": "https://registry.yarnpkg.com/read-chunk/-/read-chunk-1.0.1.tgz",
+    "hash": "5f68cab307e663f19993527d9b589cace4661194",
+    "registry": "npm"
+  },
+  "registry": "npm",
+  "hash": "5f68cab307e663f19993527d9b589cace4661194"
+}

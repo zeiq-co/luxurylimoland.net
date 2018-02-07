@@ -1,0 +1,109 @@
+{
+  "manifest": {
+    "name": "hast-util-to-html",
+    "version": "3.1.0",
+    "description": "Transform HAST to HTML",
+    "license": "MIT",
+    "keywords": [
+      "hast",
+      "util",
+      "html"
+    ],
+    "repository": {
+      "type": "git",
+      "url": "https://github.com/syntax-tree/hast-util-to-html"
+    },
+    "bugs": {
+      "url": "https://github.com/syntax-tree/hast-util-to-html/issues"
+    },
+    "author": {
+      "name": "Titus Wormer",
+      "email": "tituswormer@gmail.com",
+      "url": "http://wooorm.com"
+    },
+    "contributors": [
+      {
+        "name": "Titus Wormer",
+        "email": "tituswormer@gmail.com",
+        "url": "http://wooorm.com"
+      }
+    ],
+    "files": [
+      "lib",
+      "index.js"
+    ],
+    "dependencies": {
+      "ccount": "^1.0.0",
+      "comma-separated-tokens": "^1.0.1",
+      "hast-util-is-element": "^1.0.0",
+      "hast-util-whitespace": "^1.0.0",
+      "html-void-elements": "^1.0.0",
+      "kebab-case": "^1.0.0",
+      "property-information": "^3.1.0",
+      "space-separated-tokens": "^1.0.0",
+      "stringify-entities": "^1.0.1",
+      "unist-util-is": "^2.0.0",
+      "xtend": "^4.0.1"
+    },
+    "devDependencies": {
+      "browserify": "^14.0.0",
+      "bundle-collapser": "^1.2.1",
+      "esmangle": "^1.0.1",
+      "hastscript": "^3.0.0",
+      "nyc": "^11.0.0",
+      "remark-cli": "^4.0.0",
+      "remark-preset-wooorm": "^3.0.0",
+      "tape": "^4.0.0",
+      "unist-builder": "^1.0.1",
+      "xo": "^0.18.0"
+    },
+    "scripts": {
+      "build-md": "remark . --quiet --frail --output",
+      "build-bundle": "browserify index.js --bare -s hastUtilToHTML > hast-util-to-html.js",
+      "build-mangle": "bundle-collapser hast-util-to-html.js | esmangle > hast-util-to-html.min.js",
+      "build": "npm run build-md && npm run build-bundle && npm run build-mangle",
+      "lint": "xo",
+      "test-api": "node test",
+      "test-coverage": "nyc --reporter lcov tape test",
+      "test": "npm run build && npm run lint && npm run test-coverage"
+    },
+    "xo": {
+      "space": true,
+      "esnext": false,
+      "rules": {
+        "guard-for-in": "off",
+        "eqeqeq": "off",
+        "no-eq-null": "off"
+      },
+      "ignores": [
+        "hast-util-to-html.js"
+      ]
+    },
+    "nyc": {
+      "check-coverage": true,
+      "lines": 100,
+      "functions": 100,
+      "branches": 100
+    },
+    "remarkConfig": {
+      "plugins": [
+        "preset-wooorm"
+      ]
+    },
+    "_registry": "npm",
+    "_loc": "/home/ali/Project/uforce/cairo/.yarn/v1/npm-hast-util-to-html-3.1.0-882c99849e40130e991c042e456d453d95c36cff/package.json",
+    "readmeFilename": "readme.md",
+    "readme": "# hast-util-to-html [![Build Status][travis-badge]][travis] [![Coverage Status][codecov-badge]][codecov]\n\nTransform [HAST][] to HTML.\n\n## Installation\n\n[npm][]:\n\n```bash\nnpm install hast-util-to-html\n```\n\n## Usage\n\n```javascript\nvar h = require('hastscript');\nvar toHTML = require('hast-util-to-html');\n\nvar tree = h('.alpha', [\n  'bravo ',\n  h('b', 'charlie'),\n  ' delta ',\n  h('a.echo', {\n    download: true\n  }, 'foxtrot')\n]);\n\nconsole.log(toHTML(tree));\n```\n\nYields:\n\n```html\n<div class=\"alpha\">bravo <b>charlie</b> delta <a class=\"echo\" download>foxtrot</a></div>\n```\n\n## API\n\n### `toHTML(node[, options])`\n\nStringify the given [HAST node][hast].\n\n###### `options.entities`\n\nConfiguration for [`stringify-entities`][stringify-entities]\n(`Object`, default: `{}`).  Do not use `escapeOnly`, `attribute`, or\n`subset` (`toHTML` already passes those).  However, `useNamedReferences`,\n`useShortestReferences`, and `omitOptionalSemicolons` are all fine.\n\n###### `options.voids`\n\nTag-names of elements to stringify without closing tag (`Array.<string>`,\ndefault: [`html-void-elements`][html-void-elements]).\n\n###### `options.quote`\n\nPreferred quote to use (`'\"'` or `'\\''`, default: `'\"'`).\n\n###### `options.quoteSmart`\n\nUse the other quote if that results in less bytes (`boolean`, default:\n`false`).\n\n###### `options.preferUnquoted`\n\nLeave attributes unquoted if that results in less bytes (`boolean`,\ndefault: `false`).\n\n###### `options.omitOptionalTags`\n\nOmit optional opening and closing tags (`boolean`, default: `false`).\nFor example, in `<ol><li>one</li><li>two</li></ol>`, both `</li>`\nclosing tags can be omitted.  The first because it’s followed by\nanother `li`, the last because it’s followed by nothing.\n\n###### `options.collapseEmptyAttributes`\n\nCollapse empty attributes: `class=\"\"` is stringified as `class` instead\n(`boolean`, default: `false`).  **Note**: boolean attributes, such as\n`hidden`, are always collapsed.\n\n###### `options.closeSelfClosing`\n\nClose self-closing nodes with an extra slash (`/`): `<img />` instead of\n`<img>` (`boolean`, default: `false`).\n\n###### `options.tightSelfClosing`\n\nDo not use an extra space when closing self-closing elements: `<img/>`\ninstead of `<img />` (`boolean`, default: `false`).  **Note**: Only used\nif `closeSelfClosing: true`.\n\n###### `options.tightCommaSeparatedLists`\n\nJoin known comma-separated attribute values with just a comma (`,`),\ninstead of padding them on the right as well (`,`) (`boolean`,\ndefault: `false`).\n\n###### `options.tightAttributes`\n\nJoin attributes together, without white-space, if possible:\n`class=\"a b\" title=\"c d\"` is stringified as `class=\"a b\"title=\"c d\"`\ninstead to save bytes (`boolean`, default: `false`).  **Note**: creates\ninvalid (but working) markup.\n\n###### `options.allowParseErrors`\n\nDo not encode characters which trigger parse errors (even though they\nwork), to save bytes (`boolean`, default: `false`).  **Note**: creates\ninvalid (but working) markup.\n\n###### `options.allowDangerousCharacters`\n\nDo not encode some characters which cause XSS vulnerabilities in older\nbrowsers (`boolean`, default: `false`).  **Note**: Only set this if you\ncompletely trust the content.\n\n###### `options.allowDangerousHTML`\n\nAllow `raw` nodes and insert them as raw HTML.  When falsey, encodes\n`raw` nodes (`boolean`, default: `false`).  **Note**: Only set this if\nyou completely trust the content.\n\n## Related\n\n*   [`hast-util-sanitize`][hast-util-sanitize]\n    — Sanitize HAST nodes\n*   [`rehype-stringify`](https://github.com/wooorm/rehype/tree/master/packages/rehype-stringify)\n    — Wrapper around this project for [**rehype**](https://github.com/wooorm/rehype)\n\n## License\n\n[MIT][license] © [Titus Wormer][author]\n\n<!-- Definitions -->\n\n[travis-badge]: https://img.shields.io/travis/syntax-tree/hast-util-to-html.svg\n\n[travis]: https://travis-ci.org/syntax-tree/hast-util-to-html\n\n[codecov-badge]: https://img.shields.io/codecov/c/github/syntax-tree/hast-util-to-html.svg\n\n[codecov]: https://codecov.io/github/syntax-tree/hast-util-to-html\n\n[npm]: https://docs.npmjs.com/cli/install\n\n[license]: LICENSE\n\n[author]: http://wooorm.com\n\n[hast]: https://github.com/syntax-tree/hast\n\n[html-void-elements]: https://github.com/wooorm/html-void-elements\n\n[stringify-entities]: https://github.com/wooorm/stringify-entities\n\n[hast-util-sanitize]: https://github.com/syntax-tree/hast-util-sanitize\n",
+    "licenseText": "(The MIT License)\n\nCopyright (c) 2016 Titus Wormer <tituswormer@gmail.com>\n\nPermission is hereby granted, free of charge, to any person obtaining\na copy of this software and associated documentation files (the\n'Software'), to deal in the Software without restriction, including\nwithout limitation the rights to use, copy, modify, merge, publish,\ndistribute, sublicense, and/or sell copies of the Software, and to\npermit persons to whom the Software is furnished to do so, subject to\nthe following conditions:\n\nThe above copyright notice and this permission notice shall be\nincluded in all copies or substantial portions of the Software.\n\nTHE SOFTWARE IS PROVIDED 'AS IS', WITHOUT WARRANTY OF ANY KIND,\nEXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF\nMERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT.\nIN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY\nCLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT,\nTORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE\nSOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.\n"
+  },
+  "artifacts": [],
+  "remote": {
+    "resolved": "https://registry.yarnpkg.com/hast-util-to-html/-/hast-util-to-html-3.1.0.tgz#882c99849e40130e991c042e456d453d95c36cff",
+    "type": "tarball",
+    "reference": "https://registry.yarnpkg.com/hast-util-to-html/-/hast-util-to-html-3.1.0.tgz",
+    "hash": "882c99849e40130e991c042e456d453d95c36cff",
+    "registry": "npm"
+  },
+  "registry": "npm",
+  "hash": "882c99849e40130e991c042e456d453d95c36cff"
+}

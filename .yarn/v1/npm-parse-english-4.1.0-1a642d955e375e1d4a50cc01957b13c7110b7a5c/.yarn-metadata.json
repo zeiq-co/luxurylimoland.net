@@ -1,0 +1,104 @@
+{
+  "manifest": {
+    "name": "parse-english",
+    "version": "4.1.0",
+    "description": "English natural language parser",
+    "license": "MIT",
+    "keywords": [
+      "nlcst",
+      "english",
+      "natural",
+      "language",
+      "parser"
+    ],
+    "repository": {
+      "type": "git",
+      "url": "https://github.com/wooorm/parse-english"
+    },
+    "bugs": {
+      "url": "https://github.com/wooorm/parse-english/issues"
+    },
+    "author": {
+      "name": "Titus Wormer",
+      "email": "tituswormer@gmail.com",
+      "url": "http://wooorm.com"
+    },
+    "contributors": [
+      {
+        "name": "Titus Wormer",
+        "email": "tituswormer@gmail.com",
+        "url": "http://wooorm.com"
+      }
+    ],
+    "files": [
+      "index.js"
+    ],
+    "dependencies": {
+      "nlcst-to-string": "^2.0.0",
+      "parse-latin": "^4.0.0",
+      "unist-util-modify-children": "^1.0.0",
+      "unist-util-visit-children": "^1.0.0"
+    },
+    "devDependencies": {
+      "browserify": "^14.0.0",
+      "bundle-collapser": "^1.2.1",
+      "esmangle": "^1.0.1",
+      "is-hidden": "^1.0.1",
+      "negate": "^1.0.0",
+      "nlcst-test": "^1.0.0",
+      "nyc": "^11.0.0",
+      "remark-cli": "^4.0.0",
+      "remark-preset-wooorm": "^3.0.0",
+      "tape": "^4.0.0",
+      "unist-util-remove-position": "^1.1.0",
+      "vfile": "^2.0.0",
+      "xo": "^0.18.0"
+    },
+    "scripts": {
+      "build-md": "remark . -qfo",
+      "build-bundle": "browserify index.js -p bundle-collapser/plugin --bare -s ParseEnglish > parse-english.js",
+      "build-mangle": "esmangle parse-english.js > parse-english.min.js",
+      "build": "npm run build-md && npm run build-bundle && npm run build-mangle",
+      "lint": "xo",
+      "test-api": "node test",
+      "test-coverage": "nyc --reporter lcov tape test/index.js",
+      "test": "npm run build && npm run lint && npm run test-coverage"
+    },
+    "nyc": {
+      "check-coverage": true,
+      "lines": 100,
+      "functions": 100,
+      "branches": 100
+    },
+    "xo": {
+      "space": true,
+      "esnext": false,
+      "rules": {
+        "max-depth": "off"
+      },
+      "ignores": [
+        "parse-english.js"
+      ]
+    },
+    "remarkConfig": {
+      "plugins": [
+        "preset-wooorm"
+      ]
+    },
+    "_registry": "npm",
+    "_loc": "/home/ali/Project/uforce/cairo/.yarn/v1/npm-parse-english-4.1.0-1a642d955e375e1d4a50cc01957b13c7110b7a5c/package.json",
+    "readmeFilename": "readme.md",
+    "readme": "# parse-english [![Build Status][travis-badge]][travis] [![Coverage Status][codecov-badge]][codecov] [![Chat][chat-badge]][chat]\n\nEnglish language parser for [**retext**][retext] producing\n[**NLCST**][nlcst] nodes.\n\n## Installation\n\n[npm][]:\n\n```bash\nnpm install parse-english\n```\n\n## Usage\n\n```javascript\nvar inspect = require('unist-util-inspect');\nvar English = require('parse-english');\n\nvar tree = new English().parse('Mr. Henry Brown: A hapless but friendly City of London worker.');\n\nconsole.log(inspect(tree));\n```\n\nYields:\n\n```txt\nRootNode[1] (1:1-1:63, 0-62)\n└─ ParagraphNode[1] (1:1-1:63, 0-62)\n   └─ SentenceNode[23] (1:1-1:63, 0-62)\n      ├─ WordNode[2] (1:1-1:4, 0-3)\n      │  ├─ TextNode: \"Mr\" (1:1-1:3, 0-2)\n      │  └─ PunctuationNode: \".\" (1:3-1:4, 2-3)\n      ├─ WhiteSpaceNode: \" \" (1:4-1:5, 3-4)\n      ├─ WordNode[1] (1:5-1:10, 4-9)\n      │  └─ TextNode: \"Henry\" (1:5-1:10, 4-9)\n      ├─ WhiteSpaceNode: \" \" (1:10-1:11, 9-10)\n      ├─ WordNode[1] (1:11-1:16, 10-15)\n      │  └─ TextNode: \"Brown\" (1:11-1:16, 10-15)\n      ├─ PunctuationNode: \":\" (1:16-1:17, 15-16)\n      ├─ WhiteSpaceNode: \" \" (1:17-1:18, 16-17)\n      ├─ WordNode[1] (1:18-1:19, 17-18)\n      │  └─ TextNode: \"A\" (1:18-1:19, 17-18)\n      ├─ WhiteSpaceNode: \" \" (1:19-1:20, 18-19)\n      ├─ WordNode[1] (1:20-1:27, 19-26)\n      │  └─ TextNode: \"hapless\" (1:20-1:27, 19-26)\n      ├─ WhiteSpaceNode: \" \" (1:27-1:28, 26-27)\n      ├─ WordNode[1] (1:28-1:31, 27-30)\n      │  └─ TextNode: \"but\" (1:28-1:31, 27-30)\n      ├─ WhiteSpaceNode: \" \" (1:31-1:32, 30-31)\n      ├─ WordNode[1] (1:32-1:40, 31-39)\n      │  └─ TextNode: \"friendly\" (1:32-1:40, 31-39)\n      ├─ WhiteSpaceNode: \" \" (1:40-1:41, 39-40)\n      ├─ WordNode[1] (1:41-1:45, 40-44)\n      │  └─ TextNode: \"City\" (1:41-1:45, 40-44)\n      ├─ WhiteSpaceNode: \" \" (1:45-1:46, 44-45)\n      ├─ WordNode[1] (1:46-1:48, 45-47)\n      │  └─ TextNode: \"of\" (1:46-1:48, 45-47)\n      ├─ WhiteSpaceNode: \" \" (1:48-1:49, 47-48)\n      ├─ WordNode[1] (1:49-1:55, 48-54)\n      │  └─ TextNode: \"London\" (1:49-1:55, 48-54)\n      ├─ WhiteSpaceNode: \" \" (1:55-1:56, 54-55)\n      ├─ WordNode[1] (1:56-1:62, 55-61)\n      │  └─ TextNode: \"worker\" (1:56-1:62, 55-61)\n      └─ PunctuationNode: \".\" (1:62-1:63, 61-62)\n```\n\n## API\n\n`parse-english` exposes [the same API as `parse-latin`][latin].\n\n## Algorithm\n\nAll of [`parse-latin`][latin] is included, and the following support\nfor the English natural language:\n\n*   Unit abbreviations (`tsp.`, `tbsp.`, `oz.`, `ft.`, and more)\n*   Time references (`sec.`, `min.`, `tues.`, `thu.`, `feb.`, and more)\n*   Business Abbreviations (`Inc.` and `Ltd.`)\n*   Social titles (`Mr.`, `Mmes.`, `Sr.`, and more)\n*   Rank and academic titles (`Dr.`, `Rep.`, `Gen.`, `Prof.`, `Pres.`,\n    and more)\n*   Geographical abbreviations (`Ave.`, `Blvd.`, `Ft.`, `Hwy.`, and more)\n*   American state abbreviations (`Ala.`, `Minn.`, `La.`, `Tex.`, and more)\n*   Canadian province abbreviations (`Alta.`, `Qué.`, `Yuk.`, and more)\n*   English county abbreviations (`Beds.`, `Leics.`, `Shrops.`, and more)\n*   Common elision (omission of letters) (`’n’`, `’o`, `’em`, `’twas`,\n    `’80s`, and more)\n\n## License\n\n[MIT][license] © [Titus Wormer][author]\n\n<!-- Definitions -->\n\n[travis-badge]: https://img.shields.io/travis/wooorm/parse-english.svg\n\n[travis]: https://travis-ci.org/wooorm/parse-english\n\n[codecov-badge]: https://img.shields.io/codecov/c/github/wooorm/parse-english.svg\n\n[codecov]: https://codecov.io/github/wooorm/parse-english\n\n[chat-badge]: https://img.shields.io/gitter/room/wooorm/retext.svg\n\n[chat]: https://gitter.im/wooorm/retext\n\n[npm]: https://docs.npmjs.com/cli/install\n\n[license]: LICENSE\n\n[author]: http://wooorm.com\n\n[retext]: https://github.com/wooorm/retext\n\n[nlcst]: https://github.com/syntax-tree/nlcst\n\n[latin]: https://github.com/wooorm/parse-latin\n",
+    "licenseText": "(The MIT License)\n\nCopyright (c) 2014 Titus Wormer <tituswormer@gmail.com>\n\nPermission is hereby granted, free of charge, to any person obtaining\na copy of this software and associated documentation files (the\n'Software'), to deal in the Software without restriction, including\nwithout limitation the rights to use, copy, modify, merge, publish,\ndistribute, sublicense, and/or sell copies of the Software, and to\npermit persons to whom the Software is furnished to do so, subject to\nthe following conditions:\n\nThe above copyright notice and this permission notice shall be\nincluded in all copies or substantial portions of the Software.\n\nTHE SOFTWARE IS PROVIDED 'AS IS', WITHOUT WARRANTY OF ANY KIND,\nEXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF\nMERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT.\nIN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY\nCLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT,\nTORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE\nSOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.\n"
+  },
+  "artifacts": [],
+  "remote": {
+    "resolved": "https://registry.yarnpkg.com/parse-english/-/parse-english-4.1.0.tgz#1a642d955e375e1d4a50cc01957b13c7110b7a5c",
+    "type": "tarball",
+    "reference": "https://registry.yarnpkg.com/parse-english/-/parse-english-4.1.0.tgz",
+    "hash": "1a642d955e375e1d4a50cc01957b13c7110b7a5c",
+    "registry": "npm"
+  },
+  "registry": "npm",
+  "hash": "1a642d955e375e1d4a50cc01957b13c7110b7a5c"
+}

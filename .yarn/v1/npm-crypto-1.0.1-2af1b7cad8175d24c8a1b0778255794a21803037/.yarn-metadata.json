@@ -1,0 +1,35 @@
+{
+  "manifest": {
+    "name": "crypto",
+    "version": "1.0.1",
+    "description": "This package is no longer supported and has been deprecated. To avoid malicious use, npm is hanging on to the package name.",
+    "main": "index.js",
+    "scripts": {
+      "test": "echo \"Error: no test specified\" && exit 1"
+    },
+    "repository": {
+      "type": "git",
+      "url": "git+https://github.com/npm/deprecate-holder.git"
+    },
+    "author": {},
+    "license": "ISC",
+    "bugs": {
+      "url": "https://github.com/npm/deprecate-holder/issues"
+    },
+    "homepage": "https://github.com/npm/deprecate-holder#readme",
+    "_registry": "npm",
+    "_loc": "/home/ali/Project/uforce/cairo/.yarn/v1/npm-crypto-1.0.1-2af1b7cad8175d24c8a1b0778255794a21803037/package.json",
+    "readmeFilename": "README.md",
+    "readme": "# Deprecated Package\n\nThis package is no longer supported and has been deprecated. To avoid malicious use, npm is hanging on to the package name.\n\nIt's now a built-in Node module. If you've depended on crypto, you should switch to the one that's built-in.\n\nPlease contact support@npmjs.com if you have questions about this package.\n"
+  },
+  "artifacts": [],
+  "remote": {
+    "resolved": "https://registry.yarnpkg.com/crypto/-/crypto-1.0.1.tgz#2af1b7cad8175d24c8a1b0778255794a21803037",
+    "type": "tarball",
+    "reference": "https://registry.yarnpkg.com/crypto/-/crypto-1.0.1.tgz",
+    "hash": "2af1b7cad8175d24c8a1b0778255794a21803037",
+    "registry": "npm"
+  },
+  "registry": "npm",
+  "hash": "2af1b7cad8175d24c8a1b0778255794a21803037"
+}

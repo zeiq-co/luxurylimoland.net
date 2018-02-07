@@ -1,0 +1,98 @@
+{
+  "manifest": {
+    "name": "hast-util-from-parse5",
+    "version": "1.1.0",
+    "description": "Transform Parse5’s AST to HAST",
+    "license": "MIT",
+    "keywords": [
+      "parse5",
+      "ast",
+      "hast",
+      "utility"
+    ],
+    "files": [
+      "index.js"
+    ],
+    "repository": {
+      "type": "git",
+      "url": "https://github.com/wooorm/hast-util-from-parse5"
+    },
+    "bugs": {
+      "url": "https://github.com/wooorm/hast-util-from-parse5/issues"
+    },
+    "author": {
+      "name": "Titus Wormer",
+      "email": "tituswormer@gmail.com",
+      "url": "http://wooorm.com"
+    },
+    "contributors": [
+      {
+        "name": "Titus Wormer",
+        "email": "tituswormer@gmail.com",
+        "url": "http://wooorm.com"
+      }
+    ],
+    "dependencies": {
+      "camelcase": "^3.0.0",
+      "has": "^1.0.1",
+      "hastscript": "^3.0.0",
+      "property-information": "^3.1.0",
+      "vfile-location": "^2.0.0"
+    },
+    "devDependencies": {
+      "browserify": "^13.0.1",
+      "esmangle": "^1.0.1",
+      "nyc": "^8.3.0",
+      "parse5": "^2.1.5",
+      "remark-cli": "^2.0.0",
+      "remark-preset-wooorm": "^1.0.0",
+      "tape": "^4.0.0",
+      "vfile": "^2.0.0",
+      "xo": "^0.17.0"
+    },
+    "scripts": {
+      "build-md": "remark . --quiet --frail",
+      "build-bundle": "browserify index.js --bare -s hastUtilFromParse5 > hast-util-from-parse5.js",
+      "build-mangle": "esmangle hast-util-from-parse5.js > hast-util-from-parse5.min.js",
+      "build": "npm run build-md && npm run build-bundle && npm run build-mangle",
+      "lint": "xo",
+      "test-api": "node test",
+      "test-coverage": "nyc --reporter lcov tape test",
+      "test": "npm run build && npm run lint && npm run test-coverage"
+    },
+    "xo": {
+      "space": true,
+      "rules": {
+        "guard-for-in": "off"
+      },
+      "ignores": [
+        "hast-util-from-parse5.js"
+      ]
+    },
+    "nyc": {
+      "check-coverage": true,
+      "lines": 100,
+      "functions": 100,
+      "branches": 100
+    },
+    "remarkConfig": {
+      "output": true,
+      "presets": "wooorm"
+    },
+    "_registry": "npm",
+    "_loc": "/home/ali/Project/uforce/cairo/.yarn/v1/npm-hast-util-from-parse5-1.1.0-359cc339dc8ccf1dfaca41915ad63fd546130acd/package.json",
+    "readmeFilename": "readme.md",
+    "readme": "# hast-util-from-parse5 [![Build Status][travis-badge]][travis] [![Coverage Status][codecov-badge]][codecov]\n\nTransform [HAST][] to [Parse5’s AST][ast].\n\n## Installation\n\n[npm][npm-install]:\n\n```bash\nnpm install hast-util-from-parse5\n```\n\n## Usage\n\nDependencies:\n\n```javascript\nvar parse5 = require('parse5');\nvar inspect = require('unist-util-inspect');\nvar vfile = require('vfile');\nvar fromParse5 = require('hast-util-from-parse5');\n```\n\nFixture:\n\n```javascript\nvar doc = '<!doctype html><title>Hello!</title><h1 id=\"world\">World!<!--after-->';\n```\n\nParse:\n\n```javascript\nvar ast = parse5.parse(doc, {locationInfo: true});\n```\n\nTransform:\n\n```javascript\nvar hast = fromParse5(ast, vfile(doc));\n```\n\nYields:\n\n```txt\nroot[2] (1:1-1:70, 0-69) [data={\"quirksMode\":false}]\n├─ doctype (1:1-1:16, 0-15) [name=\"html\"]\n└─ element[2] [tagName=\"html\"]\n   ├─ element[1] [tagName=\"head\"]\n   │  └─ element[1] (1:16-1:37, 15-36) [tagName=\"title\"]\n   │     └─ text: \"Hello!\" (1:23-1:29, 22-28)\n   └─ element[1] [tagName=\"body\"]\n      └─ element[2] (1:37-1:70, 36-69) [tagName=\"h1\"][properties={\"id\":\"world\"}]\n         ├─ text: \"World!\" (1:52-1:58, 51-57)\n         └─ comment: \"after\" (1:58-1:70, 57-69)\n```\n\n## API\n\n### `toParse5(ast[, options])`\n\nTransform an `ASTNode` to a [HAST Node][node].\n\n##### `options`\n\nIf `options` is a [VFile][], it’s treated as `{file: options}`.\n\n###### `options.file`\n\n[Virtual file][vfile], used to add positional information to HAST nodes.\nIf given, the file should have the original HTML source as its contents.\n\n###### `options.verbose`\n\nWhether to add positional information about starting tags, closing tags,\nand attributes to elements (`boolean`, default: `false`).  Note: not used\nwithout `file`.\n\nFor the following HTML:\n\n```html\n<img src=\"http://example.com/fav.ico\" alt=\"foo\" title=\"bar\">\n```\n\nThe verbose info would looks as follows:\n\n```js\n{\n  type: 'element',\n  tagName: 'img',\n  properties: {\n    src: 'http://example.com/fav.ico',\n    alt: 'foo',\n    title: 'bar'\n  },\n  children: [],\n  data: {\n    position: {\n      opening: {\n        start: {line: 1, column: 1, offset: 0},\n        end: {line: 1, column: 61, offset: 60}\n      },\n      closing: null,\n      properties: {\n        src: {\n          start: {line: 1, column: 6, offset: 5},\n          end: {line: 1, column: 38, offset: 37}\n        },\n        alt: {\n          start: {line: 1, column: 39, offset: 38},\n          end: {line: 1, column: 48, offset: 47}\n        },\n        title: {\n          start: {line: 1, column: 49, offset: 48},\n          end: {line: 1, column: 60, offset: 59}\n        }\n      }\n    }\n  },\n  position: {\n    start: {line: 1, column: 1, offset: 0},\n    end: {line: 1, column: 61, offset: 60}\n  }\n}\n```\n\n## License\n\n[MIT][license] © [Titus Wormer][author]\n\n<!-- Definitions -->\n\n[travis-badge]: https://img.shields.io/travis/wooorm/hast-util-from-parse5.svg\n\n[travis]: https://travis-ci.org/wooorm/hast-util-from-parse5\n\n[codecov-badge]: https://img.shields.io/codecov/c/github/wooorm/hast-util-from-parse5.svg\n\n[codecov]: https://codecov.io/github/wooorm/hast-util-from-parse5\n\n[npm-install]: https://docs.npmjs.com/cli/install\n\n[license]: LICENSE\n\n[author]: http://wooorm.com\n\n[hast]: https://github.com/wooorm/hast\n\n[ast]: https://github.com/inikulin/parse5/wiki/Documentation\n\n[node]: https://github.com/wooorm/hast#ast\n\n[vfile]: https://github.com/wooorm/vfile\n",
+    "licenseText": "(The MIT License)\n\nCopyright (c) 2016 Titus Wormer <tituswormer@gmail.com>\n\nPermission is hereby granted, free of charge, to any person obtaining\na copy of this software and associated documentation files (the\n'Software'), to deal in the Software without restriction, including\nwithout limitation the rights to use, copy, modify, merge, publish,\ndistribute, sublicense, and/or sell copies of the Software, and to\npermit persons to whom the Software is furnished to do so, subject to\nthe following conditions:\n\nThe above copyright notice and this permission notice shall be\nincluded in all copies or substantial portions of the Software.\n\nTHE SOFTWARE IS PROVIDED 'AS IS', WITHOUT WARRANTY OF ANY KIND,\nEXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF\nMERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT.\nIN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY\nCLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT,\nTORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE\nSOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.\n"
+  },
+  "artifacts": [],
+  "remote": {
+    "resolved": "https://registry.yarnpkg.com/hast-util-from-parse5/-/hast-util-from-parse5-1.1.0.tgz#359cc339dc8ccf1dfaca41915ad63fd546130acd",
+    "type": "tarball",
+    "reference": "https://registry.yarnpkg.com/hast-util-from-parse5/-/hast-util-from-parse5-1.1.0.tgz",
+    "hash": "359cc339dc8ccf1dfaca41915ad63fd546130acd",
+    "registry": "npm"
+  },
+  "registry": "npm",
+  "hash": "359cc339dc8ccf1dfaca41915ad63fd546130acd"
+}

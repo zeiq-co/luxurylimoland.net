@@ -1,0 +1,47 @@
+{
+  "manifest": {
+    "name": "gatsby-link",
+    "version": "1.6.34",
+    "description": "An enhanced Link component for Gatsby sites with support for resource prefetching",
+    "main": "index.js",
+    "types": "index.d.ts",
+    "scripts": {
+      "build": "babel src --out-dir . --ignore __tests__",
+      "watch": "babel -w src --out-dir . --ignore __tests__",
+      "prepublish": "cross-env NODE_ENV=production npm run build"
+    },
+    "keywords": [
+      "gatsby",
+      "gatsby-component"
+    ],
+    "author": {
+      "name": "Kyle Mathews",
+      "email": "mathews.kyle@gmail.com"
+    },
+    "license": "MIT",
+    "devDependencies": {
+      "babel-cli": "^6.26.0",
+      "cross-env": "^5.0.5",
+      "react-router-dom": "^4.2.2"
+    },
+    "dependencies": {
+      "babel-runtime": "^6.26.0",
+      "prop-types": "^15.5.8",
+      "ric": "^1.3.0"
+    },
+    "_registry": "npm",
+    "_loc": "/home/ali/Project/uforce/cairo/.yarn/v1/npm-gatsby-link-1.6.34-c1ce57cfcb2f693128b2a7d0eff3dde0c6cefec4/package.json",
+    "readmeFilename": "README.md",
+    "readme": "# gatsby-link\n\nA `<Link>` component for Gatsby.\n\nIt's a wrapper around\n[React Router's Link component](https://github.com/ReactTraining/react-router/blob/master/packages/react-router-dom/docs/api/Link.md)\nthat adds enhancements specific to Gatsby. All props are passed through to React\nRouter's Link.\n\nYou can set the `activeStyle` or `activeClassName` prop to add styling\nattributes to the rendered element when it matches the current URL, and Gatsby\nalso supports React Router's props `exact`, `strict`, `isActive`, and\n`location`. If any of these props are set, then\n[React Router's NavLink component](https://github.com/ReactTraining/react-router/blob/master/packages/react-router-dom/docs/api/NavLink.md)\nwill be used instead of the default `Link`.\n\nGatsby does per-route code splitting. This means that when navigating to a new\npage, the code chunks necessary for that page might not be loaded. This is bad.\nAny unnecessary latency when changing pages should be avoided. So to avoid that\nGatsby preloads code chunks and page data.\n\nPreloading is triggered by a link entering the viewport; Gatsby uses\n`Link`/`NavLink`'s `innerRef` property to create a new InteractionObserver (on\nsupported browsers) to monitor visible links. This way, Gatsby only prefetches\ncode/data chunks for pages the user is likely to navigate to. You can also get\naccess to the link element by passing in a `innerRef` prop.\n\n## Install\n\n`npm install --save gatsby-link`\n\n## How to use\n\nIn JavaScript:\n\n```jsx\nimport Link from \"gatsby-link\"\n\nrender () {\n  <div>\n    <Link\n      to=\"/another-page/\"\n      activeStyle={{\n        color: 'red'\n      }}\n      innerRef={(el) => { this.myLink = el }}\n    >\n    Another page\n    </Link>\n  </div>\n}\n```\n\n## Programmatic navigation\n\nFor cases when you can only use event handlers for navigation, you can use\n`navigateTo`:\n\n```jsx\nimport { navigateTo } from \"gatsby-link\"\n\nrender () {\n  <div onClick={ () => navigateTo('/example')}>\n    <p>Example</p>\n  </div>\n}\n```\n\n## Prefixed paths helper\n\nGatsby allows you to [automatically prefix links](/docs/path-prefix/) for sites\nhosted on GitHub Pages or other places where your site isn't at the root of the\ndomain.\n\nThis can create problems during development as pathnames won't be prefixed. To\nhandle both, gatsby-link exports a helper function `withPrefix` that prepends\nthe prefix during production but doesn't in development.\n\nThis is only for pathnames you're constructing manually. The `<Link>` component\nhandles prefixing automatically.\n\n```jsx\nimport { withPrefix } from \"gatsby-link\";\n\nconst IndexLayout = ({ children, location }) => {\n  const isHomepage = location.pathname === withPrefix(\"/\");\n\n  return (\n    <div>\n      <h1>Welcome {isHomepage ? \"home\" : \"aboard\"}!</h1>\n      {children()}\n    </div>\n  );\n};\n```\n"
+  },
+  "artifacts": [],
+  "remote": {
+    "resolved": "https://registry.yarnpkg.com/gatsby-link/-/gatsby-link-1.6.34.tgz#c1ce57cfcb2f693128b2a7d0eff3dde0c6cefec4",
+    "type": "tarball",
+    "reference": "https://registry.yarnpkg.com/gatsby-link/-/gatsby-link-1.6.34.tgz",
+    "hash": "c1ce57cfcb2f693128b2a7d0eff3dde0c6cefec4",
+    "registry": "npm"
+  },
+  "registry": "npm",
+  "hash": "c1ce57cfcb2f693128b2a7d0eff3dde0c6cefec4"
+}

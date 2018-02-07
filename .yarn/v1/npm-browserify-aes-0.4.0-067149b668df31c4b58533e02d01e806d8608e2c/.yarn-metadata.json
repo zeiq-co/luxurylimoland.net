@@ -1,0 +1,47 @@
+{
+  "manifest": {
+    "name": "browserify-aes",
+    "version": "0.4.0",
+    "description": "aes, for browserify",
+    "main": "index.js",
+    "scripts": {
+      "test": "node test/index.js|tspec"
+    },
+    "repository": {
+      "type": "git",
+      "url": "git://github.com/calvinmetcalf/browserify-aes.git"
+    },
+    "keywords": [
+      "aes",
+      "crypto",
+      "browserify"
+    ],
+    "author": {},
+    "license": "MIT",
+    "bugs": {
+      "url": "https://github.com/calvinmetcalf/browserify-aes/issues"
+    },
+    "homepage": "https://github.com/calvinmetcalf/browserify-aes",
+    "dependencies": {
+      "inherits": "^2.0.1"
+    },
+    "devDependencies": {
+      "tape": "^3.0.0",
+      "tap-spec": "^1.0.0"
+    },
+    "_registry": "npm",
+    "_loc": "/home/ali/Project/uforce/cairo/.yarn/v1/npm-browserify-aes-0.4.0-067149b668df31c4b58533e02d01e806d8608e2c/package.json",
+    "readmeFilename": "readme.md",
+    "readme": "browserify-aes [![Build Status](https://travis-ci.org/calvinmetcalf/browserify-aes.svg)](https://travis-ci.org/calvinmetcalf/browserify-aes)\n====\n\nmuch of this taken from the aes implimentation in [triplesec](https://github.com/keybase/triplesec) which in turn based its implimentation on [crypto-js](https://code.google.com/p/crypto-js/).\n\nEVP_BytesToKey is a strait up port of the same function from openssl as there is literally no documenation on it beyond it using 'undocumented extentions' for longer keys."
+  },
+  "artifacts": [],
+  "remote": {
+    "resolved": "https://registry.yarnpkg.com/browserify-aes/-/browserify-aes-0.4.0.tgz#067149b668df31c4b58533e02d01e806d8608e2c",
+    "type": "tarball",
+    "reference": "https://registry.yarnpkg.com/browserify-aes/-/browserify-aes-0.4.0.tgz",
+    "hash": "067149b668df31c4b58533e02d01e806d8608e2c",
+    "registry": "npm"
+  },
+  "registry": "npm",
+  "hash": "067149b668df31c4b58533e02d01e806d8608e2c"
+}

@@ -1,0 +1,112 @@
+{
+  "manifest": {
+    "name": "react-autowhatever",
+    "version": "10.1.0",
+    "description": "Accessible rendering layer for Autosuggest and Autocomplete components",
+    "main": "dist/index.js",
+    "repository": {
+      "type": "git",
+      "url": "https://github.com/moroshko/react-autowhatever.git"
+    },
+    "author": {
+      "name": "Misha Moroshko",
+      "email": "michael.moroshko@gmail.com"
+    },
+    "scripts": {
+      "start": "mkdir -p demo/dist && npm run copy-static-files && node server",
+      "lint": "eslint src test demo/src demo/standalone/app.js server.js webpack.*.js",
+      "test": "mocha \"test/**/*.test.js\" --compilers js:babel-register --require test/setup.js",
+      "copy-static-files": "cp demo/src/index.html demo/dist/",
+      "dist": "rm -rf dist && mkdir dist && babel src -d dist",
+      "demo-dist": "rm -rf demo/dist && mkdir demo/dist && npm run copy-static-files && webpack --config webpack.gh-pages.config.js",
+      "standalone": "webpack --config webpack.standalone.config.js && webpack --config webpack.standalone-demo.config.js",
+      "prebuild": "npm run lint && npm test",
+      "build": "npm run dist && npm run standalone",
+      "gh-pages-build": "npm run prebuild && npm run demo-dist",
+      "deploy": "./scripts/deploy-to-gh-pages.sh",
+      "preversion": "npm run prebuild",
+      "postversion": "git push && git push --tags",
+      "prepublish": "npm run dist && npm run standalone"
+    },
+    "dependencies": {
+      "prop-types": "^15.5.8",
+      "react-themeable": "^1.1.0",
+      "section-iterator": "^2.0.0"
+    },
+    "peerDependencies": {
+      "react": ">=0.14.7"
+    },
+    "devDependencies": {
+      "autoprefixer": "^6.7.7",
+      "autosuggest-highlight": "^3.1.0",
+      "babel-cli": "^6.24.1",
+      "babel-core": "^6.24.1",
+      "babel-eslint": "^7.2.2",
+      "babel-loader": "^6.4.1",
+      "babel-preset-es2015": "^6.24.1",
+      "babel-preset-react": "^6.24.1",
+      "babel-preset-stage-0": "^6.24.1",
+      "babel-register": "^6.24.1",
+      "chai": "^3.5.0",
+      "css-loader": "^0.28.0",
+      "eslint": "^3.19.0",
+      "eslint-plugin-react": "^6.10.3",
+      "extract-text-webpack-plugin": "^1.0.1",
+      "jsdom": "^9.12.0",
+      "less": "^2.7.2",
+      "less-loader": "^2.2.3",
+      "mocha": "^3.2.0",
+      "openurl": "^1.1.1",
+      "postcss-loader": "^1.3.3",
+      "react": "^15.5.4",
+      "react-dom": "^15.5.4",
+      "react-hot-loader": "^1.3.1",
+      "react-isolated-scroll": "^0.1.0",
+      "react-redux": "^4.4.8",
+      "redux": "^3.6.0",
+      "sinon": "^1.17.7",
+      "sinon-chai": "^2.9.0",
+      "style-loader": "^0.16.1",
+      "webpack": "^1.13.2",
+      "webpack-dev-server": "^1.16.2"
+    },
+    "files": [
+      "dist"
+    ],
+    "keywords": [
+      "autosuggest",
+      "autocomplete",
+      "auto-suggest",
+      "auto-complete",
+      "auto suggest",
+      "auto complete",
+      "react autosuggest",
+      "react autocomplete",
+      "react auto-suggest",
+      "react auto-complete",
+      "react auto suggest",
+      "react auto complete",
+      "react-autosuggest",
+      "react-autocomplete",
+      "react-auto-suggest",
+      "react-auto-complete",
+      "react-component"
+    ],
+    "license": "MIT",
+    "_registry": "npm",
+    "_loc": "/home/ali/Project/uforce/cairo/.yarn/v1/npm-react-autowhatever-10.1.0-41f6d69382437d3447a0a3c8913bb8ca2feaabc1/package.json",
+    "readmeFilename": "README.md",
+    "readme": "[![Build Status](https://img.shields.io/codeship/6c79f8c0-2565-0133-4af8-72f090cba113/master.svg?style=flat-square)](https://codeship.com/projects/96953)\n\n[![npm Downloads](https://img.shields.io/npm/dm/react-autowhatever.svg?style=flat-square)](https://npmjs.org/package/react-autowhatever)\n[![npm Version](https://img.shields.io/npm/v/react-autowhatever.svg?style=flat-square)](https://npmjs.org/package/react-autowhatever)\n\n# React Autowhatever\n\nAccessible rendering layer for Autosuggest and Autocomplete components.\n\n## Demo\n\nCheck out the [Homepage](http://react-autowhatever.js.org) and the [Codepen examples](http://codepen.io/collection/nmZqgW).\n\n## Installation\n\n```shell\nyarn add react-autowhatever\n```\n\nor\n\n```shell\nnpm install react-autowhatever --save\n```\n\n## Related\n\n* [react-autosuggest](https://github.com/moroshko/react-autosuggest) - WAI-ARIA compliant React autosuggest component\n\n## License\n\n[MIT](http://moroshko.mit-license.org)\n",
+    "licenseText": "The MIT License (MIT)\n\nCopyright © 2016 Misha Moroshko\n\nPermission is hereby granted, free of charge, to any person obtaining a copy of\nthis software and associated documentation files (the “Software”), to deal in\nthe Software without restriction, including without limitation the rights to\nuse, copy, modify, merge, publish, distribute, sublicense, and/or sell copies\nof the Software, and to permit persons to whom the Software is furnished to do\nso, subject to the following conditions:\n\nThe above copyright notice and this permission notice shall be included in all\ncopies or substantial portions of the Software.\n\nTHE SOFTWARE IS PROVIDED “AS IS”, WITHOUT WARRANTY OF ANY KIND, EXPRESS OR\nIMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,\nFITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE\nAUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER\nLIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,\nOUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE\nSOFTWARE.\n"
+  },
+  "artifacts": [],
+  "remote": {
+    "resolved": "https://registry.yarnpkg.com/react-autowhatever/-/react-autowhatever-10.1.0.tgz#41f6d69382437d3447a0a3c8913bb8ca2feaabc1",
+    "type": "tarball",
+    "reference": "https://registry.yarnpkg.com/react-autowhatever/-/react-autowhatever-10.1.0.tgz",
+    "hash": "41f6d69382437d3447a0a3c8913bb8ca2feaabc1",
+    "registry": "npm"
+  },
+  "registry": "npm",
+  "hash": "41f6d69382437d3447a0a3c8913bb8ca2feaabc1"
+}

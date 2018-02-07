@@ -1,0 +1,64 @@
+{
+  "manifest": {
+    "name": "gatsby-cli",
+    "description": "Gatsby command-line interface for creating new sites and running Gatsby commands",
+    "version": "1.1.28",
+    "author": {
+      "name": "Kyle Mathews",
+      "email": "mathews.kyle@gmail.com"
+    },
+    "bin": {
+      "gatsby": "lib/index.js"
+    },
+    "files": [
+      "lib"
+    ],
+    "dependencies": {
+      "babel-code-frame": "^6.26.0",
+      "babel-runtime": "^6.26.0",
+      "bluebird": "^3.5.0",
+      "common-tags": "^1.4.0",
+      "convert-hrtime": "^2.0.0",
+      "core-js": "^2.5.0",
+      "execa": "^0.8.0",
+      "fs-extra": "^4.0.1",
+      "hosted-git-info": "^2.5.0",
+      "lodash": "^4.17.4",
+      "pretty-error": "^2.1.1",
+      "resolve-cwd": "^2.0.0",
+      "source-map": "^0.5.7",
+      "stack-trace": "^0.0.10",
+      "update-notifier": "^2.3.0",
+      "yargs": "^8.0.2",
+      "yurnalist": "^0.2.1"
+    },
+    "devDependencies": {
+      "babel-cli": "^6.26.0",
+      "cross-env": "^5.0.5"
+    },
+    "keywords": [
+      "gatsby"
+    ],
+    "license": "MIT",
+    "main": "lib/index.js",
+    "scripts": {
+      "build": "babel src --out-dir lib --ignore __tests__",
+      "watch": "babel -w src --out-dir lib --ignore __tests__",
+      "prepublish": "cross-env NODE_ENV=production npm run build"
+    },
+    "_registry": "npm",
+    "_loc": "/home/ali/Project/uforce/cairo/.yarn/v1/npm-gatsby-cli-1.1.28-0d0a397566154a3ce3e4680d545c9cfdc33ad95b/package.json",
+    "readmeFilename": "README.md",
+    "readme": "# gatsby-cli\n\nGatsby command line tool.\n\nLet's you create new Gatsby sites using\n[Gatsby starters](https://www.gatsbyjs.org/docs/gatsby-starters/).\n\nIt also let's you run commands on sites. The tool runs code from the `gatsby`\npackage installed locally.\n\n## Install\n\n`npm install --global gatsby-cli`\n\n## How to use\n\nRun `gatsby --help` for full help.\n\n### New\n\n`gatsby new gatsby-site`\n\nSee the [Gatsby starters docs](https://www.gatsbyjs.org/docs/gatsby-starters/)\nfor more.\n\n### Develop\n\nAt the root of a Gatsby site run `gatsby develop` to start the Gatsby\ndevelopment server.\n\n### Build\n\nAt the root of a Gatsby site run `gatsby build` to do a production build of a\nsite.\n\n### Serve\n\nAt the root of a Gatsby site run `gatsby serve` to serve the production build of\nthe site for testing.\n"
+  },
+  "artifacts": [],
+  "remote": {
+    "resolved": "https://registry.yarnpkg.com/gatsby-cli/-/gatsby-cli-1.1.28.tgz#0d0a397566154a3ce3e4680d545c9cfdc33ad95b",
+    "type": "tarball",
+    "reference": "https://registry.yarnpkg.com/gatsby-cli/-/gatsby-cli-1.1.28.tgz",
+    "hash": "0d0a397566154a3ce3e4680d545c9cfdc33ad95b",
+    "registry": "npm"
+  },
+  "registry": "npm",
+  "hash": "0d0a397566154a3ce3e4680d545c9cfdc33ad95b"
+}

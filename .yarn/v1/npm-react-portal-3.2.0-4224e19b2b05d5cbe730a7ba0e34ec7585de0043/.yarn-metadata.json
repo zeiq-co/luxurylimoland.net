@@ -1,0 +1,94 @@
+{
+  "manifest": {
+    "name": "react-portal",
+    "version": "3.2.0",
+    "description": "React component for transportation of modals, lightboxes, loading bars... to document.body",
+    "main": "build/portal",
+    "files": [
+      "*.md",
+      "LICENSE",
+      "lib",
+      "build"
+    ],
+    "repository": {
+      "type": "git",
+      "url": "https://github.com/tajo/react-portal"
+    },
+    "author": {
+      "name": "Vojtech Miksu",
+      "email": "vojtech@miksu.cz"
+    },
+    "license": "MIT",
+    "scripts": {
+      "start": "node devServerIndex.js",
+      "build": "mkdir -p build && babel ./lib/portal.js --out-file ./build/portal.js",
+      "build:examples": "npm run clean && npm run build:examples:webpack",
+      "build:examples:webpack": "cross-env NODE_ENV=production webpack --config webpack.config.prod.babel.js",
+      "clean": "rimraf build",
+      "test": "mocha",
+      "lint": "mocha test/eslint_spec.js",
+      "prepublish": "cross-env NODE_ENV=production npm run build"
+    },
+    "tags": [
+      "react"
+    ],
+    "keywords": [
+      "react",
+      "react-component",
+      "modal",
+      "lightbox",
+      "react-portal",
+      "portal",
+      "transportation"
+    ],
+    "devDependencies": {
+      "babel-cli": "^6.8.0",
+      "babel-core": "^6.8.0",
+      "babel-eslint": "^6.0.4",
+      "babel-loader": "^6.2.1",
+      "babel-plugin-add-module-exports": "^0.2.1",
+      "babel-preset-es2015": "^6.3.13",
+      "babel-preset-react": "^6.3.13",
+      "babel-preset-react-hmre": "^1.0.1",
+      "babel-register": "^6.8.0",
+      "cross-env": "^1.0.7",
+      "enzyme": "^2.3.0",
+      "eslint": "^2.9.0",
+      "eslint-config-airbnb": "^9.0.1",
+      "eslint-plugin-import": "^1.8.0",
+      "eslint-plugin-jsx-a11y": "^1.2.0",
+      "eslint-plugin-react": "^5.1.1",
+      "express": "^4.13.3",
+      "jsdom": "^9.0.0",
+      "mocha": "^2.3.4",
+      "mocha-eslint": "^2.0.2",
+      "react": "^15.2.0",
+      "react-addons-test-utils": "^15.2.0",
+      "react-dom": "^15.2.0",
+      "rimraf": "^2.5.0",
+      "sinon": "^1.17.4",
+      "tween.js": "^16.3.1",
+      "webpack": "^1.13.0",
+      "webpack-dev-middleware": "^1.6.1",
+      "webpack-hot-middleware": "^2.6.0"
+    },
+    "dependencies": {
+      "prop-types": "^15.5.8"
+    },
+    "_registry": "npm",
+    "_loc": "/home/ali/Project/uforce/cairo/.yarn/v1/npm-react-portal-3.2.0-4224e19b2b05d5cbe730a7ba0e34ec7585de0043/package.json",
+    "readmeFilename": "README.md",
+    "readme": "React-portal\n============\n[![npm version](https://img.shields.io/npm/v/react-portal.svg?style=flat-square)](https://www.npmjs.com/package/react-portal)\n[![npm downloads](https://img.shields.io/npm/dm/react-portal.svg?style=flat-square)](https://www.npmjs.com/package/react-portal)\n[![Build Status](https://travis-ci.org/tajo/react-portal.svg?branch=master)](https://travis-ci.org/tajo/react-portal)\n\n> Struggling with modals, lightboxes or loading bars in React? React-portal creates a new top-level React tree and injects its child into it. That's necessary for proper styling (especially positioning).\n\n## Features\n\n- transports its child into a new React component and appends it to the **document.body** (creates a new independent React tree)\n- can be opened by the prop **isOpened**\n- can be opened after a click on an element that you pass through the prop **openByClickOn** (and then it takes care of the open/close state)\n- doesn't leave any mess in DOM after closing\n- provides its child with **this.props.closePortal** callback\n- provides **close on ESC** and **close on outside mouse click** out of the box\n- supports absolute positioned components (great for tooltips)\n- **no dependencies**\n- **fully covered by tests**\n\n## Demo\n\nTry [https://miksu.cz/react-portal](https://miksu.cz/react-portal) **or**\n\n```shell\ngit clone https://github.com/tajo/react-portal\ncd react-portal\nnpm install\nnpm run build:examples\nopen examples/index.html\n```\n\n## Installation\n\n```shell\nnpm install react react-dom react-portal --save\n```\n\n## Usage\n```jsx\nimport React from 'react';\nimport ReactDOM from 'react-dom';\nimport Portal from 'react-portal';\n\nexport default class App extends React.Component {\n\n  render() {\n    const button1 = <button>Open portal with pseudo modal</button>;\n\n    return (\n      <Portal closeOnEsc closeOnOutsideClick openByClickOn={button1}>\n        <PseudoModal>\n          <h2>Pseudo Modal</h2>\n          <p>This react component is appended to the document body.</p>\n        </PseudoModal>\n      </Portal>\n    );\n  }\n\n}\n\nexport class PseudoModal extends React.Component {\n\n  render() {\n    return (\n      <div>\n        {this.props.children}\n        <p><button onClick={this.props.closePortal}>Close this</button></p>\n      </div>\n    );\n  }\n\n}\n\nReactDOM.render(<App />, document.getElementById('react-body'));\n```\n## Documentation - props\n\n### Always required\n\n#### children : ReactElement\nThe portal expects one child (`<Portal><Child ... /></Portal>`) that will be ported.\n\n### One of these two required\n\n#### isOpened : bool\nIf true, the portal is open. If false, the portal is closed. It's up to you to take care of the closing (aka taking care of the state). Don't use this prop if you want to make your life easier. Use openByClickOn instead!\n\n#### openByClickOn : ReactElement\nThe second way how to open the portal. This element will be rendered by the portal immediately\nwith `onClick` handler that triggers portal opening. **How to close the portal then?** The portal provides its ported child with a callback `this.props.closePortal`. Or you can use built-in portal closing methods (closeOnEsc, ... more below). Notice that you don't have to deal with the open/close state (like when using the `isOpened` prop).\n\n### Optional\n\n#### closeOnEsc: bool\nIf true, the portal can be closed by the key ESC.\n\n#### closeOnOutsideClick: bool\nIf true, the portal can be closed by the outside mouse click.\n\n#### onOpen: func(DOMNode)\nThis callback is called when the portal is opened and rendered (useful for animating the DOMNode).\n\n#### beforeClose: func(DOMNode, removeFromDOM)\nThis callback is called when the closing event is triggered but it prevents normal removal from the DOM. So, you can do some DOMNode animation first and then call `removeFromDOM()` that removes the portal from DOM.\n\nIf you'd like to execute some async logic in beforeClose, you should pass `isUnmounted:boolean` to `removeFromDom(isUnmounted)`.\n\n#### onClose: func\nThis callback is called when the portal closes and after beforeClose.\n\n#### onUpdate: func\nThis callback is called when the portal is (re)rendered.\n\n\n## Tips & Tricks\n- Does your modal have a fullscreen overlay and the `closeOnOutsideClick` doesn't work? [There is a simple solution](https://github.com/tajo/react-portal/issues/2#issuecomment-92058826).\n- Does your inner inner component `<LevelTwo />`\n\n```jsx\n<Portal>\n  <LevelOne>\n    <LevelTwo />\n  </LevelOne>\n</Portal>\n```\n\nalso need an access to `this.props.closePortal()`? You can't just use `{this.props.children}` in render method of `<LevelOne>` component. You have to clone it instead:\n\n```jsx\n{React.cloneElement(\n  this.props.children,\n  {closePortal: this.props.closePortal}\n)}\n```\n\n#### Open modal programmatically\n\nSometimes you need to open your portal (e.g. modal) automatically. There is no button to click on. No problem, because the portal has the `isOpened` prop, so you can just set it to `true` or `false`. However, then it's completely up to you to take care about the portal closing (ESC, outside click, no `this.props.closePortal` callback...).\n\nHowever, there is a nice trick how to make this happen even without `isOpened`:\n\n```jsx\n<Portal ref=\"myPortal\">\n  <PseudoModal title=\"My modal\">\n    Modal content\n  </PseudoModal>\n</Portal>\n```\n\n```jsx\nthis.refs.myPortal.openPortal()\n// opens the portal, yay!\n```\n\n## Contribution\n\nPlease, create issues and pull requests.\n\n```shell\ngit clone https://github.com/tajo/react-portal\ncd react-portal\nnpm install\nnpm start\nopen http://localhost:3000\n```\n\n**Don't forget to run this before every commit:**\n\n```\nnpm test\n```\n\n## Credits\n\nInspired by the talk [React.js Conf 2015 - Hype!, Ryan Florence](https://www.youtube.com/watch?v=z5e7kWSHWTg)\n\nVojtech Miksu 2015, [miksu.cz](https://miksu.cz), [@vmiksu](https://twitter.com/vmiksu)\n",
+    "licenseText": "The MIT License (MIT)\n\nCopyright (c) 2016 Vojtech Miksu\n\nPermission is hereby granted, free of charge, to any person obtaining a copy\nof this software and associated documentation files (the \"Software\"), to deal\nin the Software without restriction, including without limitation the rights\nto use, copy, modify, merge, publish, distribute, sublicense, and/or sell\ncopies of the Software, and to permit persons to whom the Software is\nfurnished to do so, subject to the following conditions:\n\nThe above copyright notice and this permission notice shall be included in all\ncopies or substantial portions of the Software.\n\nTHE SOFTWARE IS PROVIDED \"AS IS\", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR\nIMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,\nFITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE\nAUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER\nLIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,\nOUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE\nSOFTWARE.\n"
+  },
+  "artifacts": [],
+  "remote": {
+    "resolved": "https://registry.yarnpkg.com/react-portal/-/react-portal-3.2.0.tgz#4224e19b2b05d5cbe730a7ba0e34ec7585de0043",
+    "type": "tarball",
+    "reference": "https://registry.yarnpkg.com/react-portal/-/react-portal-3.2.0.tgz",
+    "hash": "4224e19b2b05d5cbe730a7ba0e34ec7585de0043",
+    "registry": "npm"
+  },
+  "registry": "npm",
+  "hash": "4224e19b2b05d5cbe730a7ba0e34ec7585de0043"
+}

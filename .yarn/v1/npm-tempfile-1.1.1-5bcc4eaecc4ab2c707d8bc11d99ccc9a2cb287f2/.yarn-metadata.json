@@ -1,0 +1,58 @@
+{
+  "manifest": {
+    "name": "tempfile",
+    "version": "1.1.1",
+    "description": "Get a random temp file path",
+    "license": "MIT",
+    "repository": {
+      "type": "git",
+      "url": "https://github.com/sindresorhus/tempfile.git"
+    },
+    "author": {
+      "name": "Sindre Sorhus",
+      "email": "sindresorhus@gmail.com",
+      "url": "http://sindresorhus.com"
+    },
+    "engines": {
+      "node": ">=0.10.0"
+    },
+    "scripts": {
+      "test": "mocha"
+    },
+    "files": [
+      "index.js"
+    ],
+    "keywords": [
+      "tmp",
+      "temp",
+      "temporary",
+      "tempfile",
+      "file",
+      "path",
+      "random",
+      "rand"
+    ],
+    "dependencies": {
+      "os-tmpdir": "^1.0.0",
+      "uuid": "^2.0.1"
+    },
+    "devDependencies": {
+      "mocha": "*"
+    },
+    "_registry": "npm",
+    "_loc": "/home/ali/Project/uforce/cairo/.yarn/v1/npm-tempfile-1.1.1-5bcc4eaecc4ab2c707d8bc11d99ccc9a2cb287f2/package.json",
+    "readmeFilename": "readme.md",
+    "readme": "# tempfile [![Build Status](https://travis-ci.org/sindresorhus/tempfile.svg?branch=master)](https://travis-ci.org/sindresorhus/tempfile)\n\n> Get a random temp file path\n\n\n## Install\n\n```sh\n$ npm install --save tempfile\n```\n\n\n## Usage\n\n```js\nvar tempfile = require('tempfile');\n\ntempfile('.png');\n//=> /var/folders/_1/tk89k8215ts0rg0kmb096nj80000gn/T/4049f192-43e7-43b2-98d9-094e6760861b.png\n```\n\n\n## API\n\n### tempfile(extension)\n\n#### extension\n\nType: `string`\n\nOptionally supply an extension to append to the path.\n\n\n## License\n\nMIT © [Sindre Sorhus](http://sindresorhus.com)\n",
+    "licenseText": "The MIT License (MIT)\n\nCopyright (c) Sindre Sorhus <sindresorhus@gmail.com> (sindresorhus.com)\n\nPermission is hereby granted, free of charge, to any person obtaining a copy\nof this software and associated documentation files (the \"Software\"), to deal\nin the Software without restriction, including without limitation the rights\nto use, copy, modify, merge, publish, distribute, sublicense, and/or sell\ncopies of the Software, and to permit persons to whom the Software is\nfurnished to do so, subject to the following conditions:\n\nThe above copyright notice and this permission notice shall be included in\nall copies or substantial portions of the Software.\n\nTHE SOFTWARE IS PROVIDED \"AS IS\", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR\nIMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,\nFITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE\nAUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER\nLIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,\nOUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN\nTHE SOFTWARE.\n"
+  },
+  "artifacts": [],
+  "remote": {
+    "resolved": "https://registry.yarnpkg.com/tempfile/-/tempfile-1.1.1.tgz#5bcc4eaecc4ab2c707d8bc11d99ccc9a2cb287f2",
+    "type": "tarball",
+    "reference": "https://registry.yarnpkg.com/tempfile/-/tempfile-1.1.1.tgz",
+    "hash": "5bcc4eaecc4ab2c707d8bc11d99ccc9a2cb287f2",
+    "registry": "npm"
+  },
+  "registry": "npm",
+  "hash": "5bcc4eaecc4ab2c707d8bc11d99ccc9a2cb287f2"
+}

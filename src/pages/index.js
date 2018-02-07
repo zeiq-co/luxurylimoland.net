@@ -24,11 +24,14 @@ export default class IndexPage extends React.Component {
     const { edges: posts } = data.allMarkdownRemark;
     const { edges: carItems } = data.allAirtable;
     const { Banner: banner } = data.site.siteMetadata.IndexPage[0];
+    const { Separator: separator } = data.site.siteMetadata.IndexPage[0];
+    const { SoicalLinks: soicalLinks } = data.site.siteMetadata;
+    console.log("separator", separator);
 
     return (
         <div id="main">
           <Banner banner={banner}/>
-          <Separator/>
+          <Separator separator={separator} soicalLinks={soicalLinks}/>
           <CarList carItems={carItems}/>
          <section id="three" className="wrapper style3 special">
          <div className="inner">
@@ -73,8 +76,17 @@ export const pageQuery = graphql`
     }
   site{
     siteMetadata{
+      SoicalLinks {
+        twiiter
+        facebook
+        instagram
+      }
       IndexPage{
         Banner{
+          title
+          heading
+        }
+        Separator{
           title
           heading
         }

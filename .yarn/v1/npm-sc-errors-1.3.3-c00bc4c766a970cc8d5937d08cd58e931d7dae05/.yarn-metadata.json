@@ -1,0 +1,43 @@
+{
+  "manifest": {
+    "name": "sc-errors",
+    "version": "1.3.3",
+    "description": "Error types for use throughout SocketCluster",
+    "main": "index.js",
+    "scripts": {
+      "test": "echo \"Error: no test specified\" && exit 1"
+    },
+    "repository": {
+      "type": "git",
+      "url": "https://github.com/SocketCluster/sc-errors.git"
+    },
+    "keywords": [
+      "errors",
+      "socketcluster"
+    ],
+    "author": {
+      "name": "Jonathan Gros-Dubois",
+      "email": "grosjona@yahoo.com.au"
+    },
+    "license": "MIT",
+    "bugs": {
+      "url": "https://github.com/SocketCluster/sc-errors/issues"
+    },
+    "homepage": "https://github.com/SocketCluster/sc-errors",
+    "dependencies": {},
+    "_registry": "npm",
+    "_loc": "/home/ali/Project/uforce/cairo/.yarn/v1/npm-sc-errors-1.3.3-c00bc4c766a970cc8d5937d08cd58e931d7dae05/package.json",
+    "readmeFilename": "README.md",
+    "readme": "# sc-errors\nError types for SocketCluster\n"
+  },
+  "artifacts": [],
+  "remote": {
+    "resolved": "https://registry.yarnpkg.com/sc-errors/-/sc-errors-1.3.3.tgz#c00bc4c766a970cc8d5937d08cd58e931d7dae05",
+    "type": "tarball",
+    "reference": "https://registry.yarnpkg.com/sc-errors/-/sc-errors-1.3.3.tgz",
+    "hash": "c00bc4c766a970cc8d5937d08cd58e931d7dae05",
+    "registry": "npm"
+  },
+  "registry": "npm",
+  "hash": "c00bc4c766a970cc8d5937d08cd58e931d7dae05"
+}

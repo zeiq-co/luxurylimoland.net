@@ -1,0 +1,61 @@
+{
+  "manifest": {
+    "name": "lazy-req",
+    "version": "1.1.0",
+    "description": "Require modules lazily",
+    "license": "MIT",
+    "repository": {
+      "type": "git",
+      "url": "https://github.com/sindresorhus/lazy-req.git"
+    },
+    "author": {
+      "name": "Sindre Sorhus",
+      "email": "sindresorhus@gmail.com",
+      "url": "http://sindresorhus.com"
+    },
+    "contributors": [
+      {
+        "name": "Jorge Bucaran",
+        "email": "jbucaran@me.com"
+      }
+    ],
+    "engines": {
+      "node": ">=0.10.0"
+    },
+    "scripts": {
+      "test": "xo && node test.js"
+    },
+    "files": [
+      "index.js"
+    ],
+    "keywords": [
+      "require",
+      "load",
+      "module",
+      "modules",
+      "lazy",
+      "lazily",
+      "defer",
+      "deferred"
+    ],
+    "devDependencies": {
+      "ava": "0.0.4",
+      "xo": "*"
+    },
+    "_registry": "npm",
+    "_loc": "/home/ali/Project/uforce/cairo/.yarn/v1/npm-lazy-req-1.1.0-bdaebead30f8d824039ce0ce149d4daa07ba1fac/package.json",
+    "readmeFilename": "readme.md",
+    "readme": "# lazy-req [![Build Status](https://travis-ci.org/sindresorhus/lazy-req.svg?branch=master)](https://travis-ci.org/sindresorhus/lazy-req)\n\n> Require modules lazily\n\n\n## Install\n\n```\n$ npm install --save lazy-req\n```\n\n\n## Usage\n\n```js\n// pass in `require` or a custom require function\nvar lazyReq = require('lazy-req')(require);\nvar _ = lazyReq('lodash');\n\n// where you would normally do\n_.isNumber(2);\n\n// you now instead call it as a function\n_().isNumber(2);\n\n// it's cached on consecutive calls\n_().isString('unicorn');\n\n// extract lazy variations of the props you need\nvar members = lazyReq('lodash')('isNumber', 'isString');\n\n// useful when using destructuring assignment in ES2015\nconst { isNumber, isString } = lazyReq('lodash')('isNumber', 'isString');\n\n// works out of the box for functions and regular properties\nvar stuff = lazyReq('./math-lib')('sum', 'PHI');\nconsole.log(stuff.sum(1, 2)); // => 3\nconsole.log(stuff.PHI); // => 1.618033\n```\n\n\n## License\n\nMIT © [Sindre Sorhus](http://sindresorhus.com)\n",
+    "licenseText": "The MIT License (MIT)\n\nCopyright (c) Sindre Sorhus <sindresorhus@gmail.com> (sindresorhus.com)\n\nPermission is hereby granted, free of charge, to any person obtaining a copy\nof this software and associated documentation files (the \"Software\"), to deal\nin the Software without restriction, including without limitation the rights\nto use, copy, modify, merge, publish, distribute, sublicense, and/or sell\ncopies of the Software, and to permit persons to whom the Software is\nfurnished to do so, subject to the following conditions:\n\nThe above copyright notice and this permission notice shall be included in\nall copies or substantial portions of the Software.\n\nTHE SOFTWARE IS PROVIDED \"AS IS\", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR\nIMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,\nFITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE\nAUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER\nLIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,\nOUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN\nTHE SOFTWARE.\n"
+  },
+  "artifacts": [],
+  "remote": {
+    "resolved": "https://registry.yarnpkg.com/lazy-req/-/lazy-req-1.1.0.tgz#bdaebead30f8d824039ce0ce149d4daa07ba1fac",
+    "type": "tarball",
+    "reference": "https://registry.yarnpkg.com/lazy-req/-/lazy-req-1.1.0.tgz",
+    "hash": "bdaebead30f8d824039ce0ce149d4daa07ba1fac",
+    "registry": "npm"
+  },
+  "registry": "npm",
+  "hash": "bdaebead30f8d824039ce0ce149d4daa07ba1fac"
+}

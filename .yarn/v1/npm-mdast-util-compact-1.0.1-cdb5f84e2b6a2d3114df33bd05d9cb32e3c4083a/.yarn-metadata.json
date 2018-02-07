@@ -1,0 +1,93 @@
+{
+  "manifest": {
+    "name": "mdast-util-compact",
+    "version": "1.0.1",
+    "description": "Make an MDAST tree compact",
+    "license": "MIT",
+    "keywords": [
+      "mdast",
+      "utility",
+      "compact",
+      "node"
+    ],
+    "files": [
+      "index.js"
+    ],
+    "repository": {
+      "type": "git",
+      "url": "https://github.com/syntax-tree/mdast-util-compact"
+    },
+    "bugs": {
+      "url": "https://github.com/syntax-tree/mdast-util-compact/issues"
+    },
+    "author": {
+      "name": "Titus Wormer",
+      "email": "tituswormer@gmail.com",
+      "url": "http://wooorm.com"
+    },
+    "contributors": [
+      {
+        "name": "Titus Wormer",
+        "email": "tituswormer@gmail.com",
+        "url": "http://wooorm.com"
+      }
+    ],
+    "dependencies": {
+      "unist-util-modify-children": "^1.0.0",
+      "unist-util-visit": "^1.1.0"
+    },
+    "devDependencies": {
+      "browserify": "^14.0.0",
+      "esmangle": "^1.0.1",
+      "nyc": "^11.0.0",
+      "remark-cli": "^3.0.0",
+      "remark-preset-wooorm": "^3.0.0",
+      "tape": "^4.0.0",
+      "unist-builder": "^1.0.2",
+      "xo": "^0.18.0"
+    },
+    "scripts": {
+      "build-md": "remark . --quiet --frail --output",
+      "build-bundle": "browserify index.js --bare -s mdastUtilCompact > mdast-util-compact.js",
+      "build-mangle": "esmangle < mdast-util-compact.js > mdast-util-compact.min.js",
+      "build": "npm run build-md && npm run build-bundle && npm run build-mangle",
+      "lint": "xo",
+      "test-api": "node test",
+      "test-coverage": "nyc --reporter lcov tape test.js",
+      "test": "npm run build && npm run lint && npm run test-coverage"
+    },
+    "xo": {
+      "space": true,
+      "esnext": false,
+      "ignores": [
+        "mdast-util-compact.js"
+      ]
+    },
+    "nyc": {
+      "check-coverage": true,
+      "lines": 100,
+      "functions": 100,
+      "branches": 100
+    },
+    "remarkConfig": {
+      "plugins": [
+        "preset-wooorm"
+      ]
+    },
+    "_registry": "npm",
+    "_loc": "/home/ali/Project/uforce/cairo/.yarn/v1/npm-mdast-util-compact-1.0.1-cdb5f84e2b6a2d3114df33bd05d9cb32e3c4083a/package.json",
+    "readmeFilename": "readme.md",
+    "readme": "# mdast-util-compact [![Build Status][travis-badge]][travis] [![Coverage Status][codecov-badge]][codecov]\n\nMake an [MDAST][] tree compact: collapse text nodes (when possible),\nand blockquotes (in commonmark mode).\n\n## Installation\n\n[npm][]:\n\n```bash\nnpm install mdast-util-compact\n```\n\n## Usage\n\n```javascript\nvar u = require('unist-builder');\nvar compact = require('mdast-util-compact');\n\nvar tree = u('strong', [\n  u('text', 'alpha'),\n  u('text', ' '),\n  u('text', 'bravo')\n]);\n\ncompact(tree);\n\nconsole.log(tree);\n```\n\nYields:\n\n```js\n{ type: 'strong',\n  children: [ { type: 'text', value: 'alpha bravo' } ] }\n```\n\n## API\n\n### `compact(tree[, commonmark])`\n\nVisit the tree and collapse nodes.  Combines adjacent text nodes (but\nnot when they represent entities or escapes).  If `commonmark` is `true`,\ncollapses `blockquote` nodes.\n\nHandles positional information properly.\n\n###### Returns\n\nThe given `tree`.\n\n## License\n\n[MIT][license] © [Titus Wormer][author]\n\n<!-- Definitions -->\n\n[travis-badge]: https://img.shields.io/travis/syntax-tree/mdast-util-compact.svg\n\n[travis]: https://travis-ci.org/syntax-tree/mdast-util-compact\n\n[codecov-badge]: https://img.shields.io/codecov/c/github/syntax-tree/mdast-util-compact.svg\n\n[codecov]: https://codecov.io/github/syntax-tree/mdast-util-compact\n\n[npm]: https://docs.npmjs.com/cli/install\n\n[license]: LICENSE\n\n[author]: http://wooorm.com\n\n[mdast]: https://github.com/syntax-tree/mdast\n",
+    "licenseText": "(The MIT License)\n\nCopyright (c) 2016 Titus Wormer <tituswormer@gmail.com>\n\nPermission is hereby granted, free of charge, to any person obtaining\na copy of this software and associated documentation files (the\n'Software'), to deal in the Software without restriction, including\nwithout limitation the rights to use, copy, modify, merge, publish,\ndistribute, sublicense, and/or sell copies of the Software, and to\npermit persons to whom the Software is furnished to do so, subject to\nthe following conditions:\n\nThe above copyright notice and this permission notice shall be\nincluded in all copies or substantial portions of the Software.\n\nTHE SOFTWARE IS PROVIDED 'AS IS', WITHOUT WARRANTY OF ANY KIND,\nEXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF\nMERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT.\nIN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY\nCLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT,\nTORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE\nSOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.\n"
+  },
+  "artifacts": [],
+  "remote": {
+    "resolved": "https://registry.yarnpkg.com/mdast-util-compact/-/mdast-util-compact-1.0.1.tgz#cdb5f84e2b6a2d3114df33bd05d9cb32e3c4083a",
+    "type": "tarball",
+    "reference": "https://registry.yarnpkg.com/mdast-util-compact/-/mdast-util-compact-1.0.1.tgz",
+    "hash": "cdb5f84e2b6a2d3114df33bd05d9cb32e3c4083a",
+    "registry": "npm"
+  },
+  "registry": "npm",
+  "hash": "cdb5f84e2b6a2d3114df33bd05d9cb32e3c4083a"
+}

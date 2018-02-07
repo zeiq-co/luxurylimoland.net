@@ -1,0 +1,56 @@
+{
+  "manifest": {
+    "name": "babel-plugin-transform-amd-system-wrapper",
+    "version": "0.3.7",
+    "description": "Wraps AMD scripts into System.registerDynamic(...",
+    "repository": {
+      "type": "git",
+      "url": "http://github.com/jrauschenbusch/babel-plugin-transform-amd-system-wrapper.git"
+    },
+    "author": {
+      "name": "Jochen Rauschenbusch"
+    },
+    "license": "MIT",
+    "main": "lib/index.js",
+    "dependencies": {
+      "babel-template": "^6.9.0"
+    },
+    "devDependencies": {
+      "babel-cli": "^6.4.5",
+      "babel-core": "^6.10.4",
+      "babel-preset-es2015": "^6.3.13",
+      "babel-register": "^6.9.0",
+      "file-exists": "^1.0.0",
+      "mocha": "^2.2.5",
+      "rimraf": "^2.5.3"
+    },
+    "scripts": {
+      "clean": "rimraf lib",
+      "build": "babel src -d lib",
+      "test": "mocha --compilers js:babel-register",
+      "test:watch": "npm run test -- --watch",
+      "prepublish": "npm run clean && npm run build"
+    },
+    "keywords": [
+      "babel",
+      "plugin",
+      "systemjs",
+      "babel-plugin"
+    ],
+    "_registry": "npm",
+    "_loc": "/home/ali/Project/uforce/cairo/.yarn/v1/npm-babel-plugin-transform-amd-system-wrapper-0.3.7-521c782d35644491c979ea683e8a5e1caff0ba42/package.json",
+    "readmeFilename": "README.md",
+    "readme": "# babel-plugin-transform-amd-system-wrapper\n\nWraps AMD modules into `System.registerDynamic(...`\n\n## Example\n\n**In**\n\n```js\ndefine(['bar'], function(bar, require, module) {\n  module.exports = {\n\t  bar: bar\n  }\n});\n```\n\n**Babel Options**\n```js\n{\n  plugins: [\n    ['transform-amd-system-wrapper', {\n      map: function(dep) {\n        return dep;\n      }\n    }]\n  ]\n}\n```\n\n**Out**\n\n```js\nSystem.registerDynamic(['bar'], false, function ($__require, $__exports, $__module) {\n  'use strict';\n\n  $__module.uri = $__module.id;\n  return (function(bar, require, module) {\n    module.exports = {\n\t  bar: bar\n\t}\n  }).call(this, $__require('bar'), $__require, $__module);\n});\n```\n\n## Installation\n\n```sh\n$ npm install babel-plugin-transform-amd-system-wrapper\n```\n\n## Usage\n\n### Via `.babelrc`\n\n**.babelrc**\n\n```json\n{\n  \"plugins\": [\n    [\"transform-amd-system-wrapper\", {\n      \"systemGlobal\": \"SystemJS\",\n      \"filterMode\": false,\n      \"deps\": []\n    }]\n  ]\n}\n```\n\n### Via CLI\n\n```sh\n$ babel --plugins transform-amd-system-wrapper script.js\n```\n\n### Via Node API (Recommended)\n\n```javascript\nrequire(\"babel-core\").transform(\"code\", {\n  plugins: [\n    [\"transform-amd-system-wrapper\", {\n      systemGlobal: \"SystemJS\", // Overwrites the default system global identifier. optional (default: 'System')\n      filterMode: true, // Flag to disable the transformation process. Enables the filter mode to filter AMD dependencies which will be added to output.metadata.amdDeps. optional (default: false)\n      esModule: true, // Indicates \"__esModule\" flag should be added to module if not already for named exports compatibility\n      deps: [], // Array of additional dependencies to add to the registerDynamic dependencies array. optional (default: [])  \n      map: function(dep) {\n        return dep;\n      } // Dependency mapping function hook. optional (default: identity)\n    }]\n  ]\n});\n```\n",
+    "licenseText": "MIT License\n\nCopyright (c) 2016 Jochen Rauschenbusch\n\nPermission is hereby granted, free of charge, to any person obtaining a copy\nof this software and associated documentation files (the \"Software\"), to deal\nin the Software without restriction, including without limitation the rights\nto use, copy, modify, merge, publish, distribute, sublicense, and/or sell\ncopies of the Software, and to permit persons to whom the Software is\nfurnished to do so, subject to the following conditions:\n\nThe above copyright notice and this permission notice shall be included in all\ncopies or substantial portions of the Software.\n\nTHE SOFTWARE IS PROVIDED \"AS IS\", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR\nIMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,\nFITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE\nAUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER\nLIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,\nOUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE\nSOFTWARE.\n"
+  },
+  "artifacts": [],
+  "remote": {
+    "resolved": "https://registry.yarnpkg.com/babel-plugin-transform-amd-system-wrapper/-/babel-plugin-transform-amd-system-wrapper-0.3.7.tgz#521c782d35644491c979ea683e8a5e1caff0ba42",
+    "type": "tarball",
+    "reference": "https://registry.yarnpkg.com/babel-plugin-transform-amd-system-wrapper/-/babel-plugin-transform-amd-system-wrapper-0.3.7.tgz",
+    "hash": "521c782d35644491c979ea683e8a5e1caff0ba42",
+    "registry": "npm"
+  },
+  "registry": "npm",
+  "hash": "521c782d35644491c979ea683e8a5e1caff0ba42"
+}

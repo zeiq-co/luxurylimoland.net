@@ -1,0 +1,44 @@
+{
+  "manifest": {
+    "name": "graphql-skip-limit",
+    "description": "A library to help construct a graphql-js server supporting skip/relay style pagination. Built for Gatsby but perhaps useful elsewhere.",
+    "version": "1.0.9",
+    "author": {
+      "name": "Kyle Mathews",
+      "email": "mathews.kyle@gmail.com"
+    },
+    "devDependencies": {
+      "babel-cli": "^6.26.0",
+      "cross-env": "^5.0.5"
+    },
+    "keywords": [
+      "gatsby",
+      "graphql"
+    ],
+    "license": "MIT",
+    "main": "dist/index.js",
+    "scripts": {
+      "build": "babel src --out-dir dist",
+      "watch": "babel -w src --out-dir dist",
+      "prepublish": "cross-env NODE_ENV=production npm run build"
+    },
+    "dependencies": {
+      "babel-runtime": "^6.26.0",
+      "graphql": "^0.11.7"
+    },
+    "_registry": "npm",
+    "_loc": "/home/ali/Project/uforce/cairo/.yarn/v1/npm-graphql-skip-limit-1.0.9-20d0de6bd6cf3460c4fdcee3d6b379634d0d44b7/package.json",
+    "readmeFilename": "README.md",
+    "readme": "# graphql-skip-limit\n\nThis library provides helper functions for building Relay-style connections but\nwith skip/limit style pagination instead of Relay's cursor-based pagination.\n\nIt is built and maintained for the\n[React.js static site generator Gatsby](https://github.com/gatsbyjs/gatsby) to\ndrive its GraphQL-based data layer.\n\nIt is a port from [graphql-relay](https://github.com/graphql/graphql-relay-js)\nso can be used in a similar fashion. See the tests in `src/connection/__tests__`\nfor an example of using this library.\n\nConnections built with this library can be queried like the following:\n\n```graphql\n{\n  allFile(skip: 1, limit: 10) {\n    edges {\n      node {\n        id\n      }\n    }\n  }\n}\n```\n\nIn this query, we skip the first result and limit our results to 10.\n"
+  },
+  "artifacts": [],
+  "remote": {
+    "resolved": "https://registry.yarnpkg.com/graphql-skip-limit/-/graphql-skip-limit-1.0.9.tgz#20d0de6bd6cf3460c4fdcee3d6b379634d0d44b7",
+    "type": "tarball",
+    "reference": "https://registry.yarnpkg.com/graphql-skip-limit/-/graphql-skip-limit-1.0.9.tgz",
+    "hash": "20d0de6bd6cf3460c4fdcee3d6b379634d0d44b7",
+    "registry": "npm"
+  },
+  "registry": "npm",
+  "hash": "20d0de6bd6cf3460c4fdcee3d6b379634d0d44b7"
+}

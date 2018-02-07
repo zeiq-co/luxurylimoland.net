@@ -1,0 +1,44 @@
+{
+  "manifest": {
+    "name": "sc-channel",
+    "version": "1.0.6",
+    "description": "Channel object for SocketCluster",
+    "main": "index.js",
+    "repository": {
+      "type": "git",
+      "url": "https://github.com/SocketCluster/sc-channel.git"
+    },
+    "dependencies": {
+      "sc-emitter": "1.x.x"
+    },
+    "keywords": [
+      "channel",
+      "socketcluster",
+      "pubsub",
+      "publish",
+      "subscribe"
+    ],
+    "author": {
+      "name": "Jonathan Gros-Dubois"
+    },
+    "license": "MIT",
+    "bugs": {
+      "url": "https://github.com/SocketCluster/sc-channel/issues"
+    },
+    "homepage": "https://github.com/SocketCluster/sc-channel",
+    "_registry": "npm",
+    "_loc": "/home/ali/Project/uforce/cairo/.yarn/v1/npm-sc-channel-1.0.6-b38bd47a993e78290fbc53467867f6b2a0a08639/package.json",
+    "readmeFilename": "README.md",
+    "readme": "# scchannel\nChannels for SocketCluster\n"
+  },
+  "artifacts": [],
+  "remote": {
+    "resolved": "https://registry.yarnpkg.com/sc-channel/-/sc-channel-1.0.6.tgz#b38bd47a993e78290fbc53467867f6b2a0a08639",
+    "type": "tarball",
+    "reference": "https://registry.yarnpkg.com/sc-channel/-/sc-channel-1.0.6.tgz",
+    "hash": "b38bd47a993e78290fbc53467867f6b2a0a08639",
+    "registry": "npm"
+  },
+  "registry": "npm",
+  "hash": "b38bd47a993e78290fbc53467867f6b2a0a08639"
+}

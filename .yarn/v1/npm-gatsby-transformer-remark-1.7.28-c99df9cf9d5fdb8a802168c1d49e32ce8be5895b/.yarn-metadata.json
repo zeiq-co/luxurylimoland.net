@@ -1,0 +1,61 @@
+{
+  "manifest": {
+    "name": "gatsby-transformer-remark",
+    "description": "Gatsby transformer plugin for Markdown using the Remark library and ecosystem",
+    "version": "1.7.28",
+    "author": {
+      "name": "Kyle Mathews",
+      "email": "mathews.kyle@gmail.com"
+    },
+    "dependencies": {
+      "babel-runtime": "^6.26.0",
+      "bluebird": "^3.5.0",
+      "gray-matter": "^3.0.0",
+      "hast-util-to-html": "^3.0.0",
+      "lodash": "^4.17.4",
+      "mdast-util-to-hast": "^2.4.0",
+      "mdast-util-toc": "^2.0.1",
+      "remark": "^7.0.1",
+      "remark-parse": "^4.0.0",
+      "remark-retext": "^3.1.0",
+      "remark-stringify": "^4.0.0",
+      "retext-english": "^3.0.0",
+      "sanitize-html": "^1.14.1",
+      "underscore.string": "^3.3.4",
+      "unified": "^6.1.5",
+      "unist-util-select": "^1.5.0",
+      "unist-util-visit": "^1.1.1"
+    },
+    "devDependencies": {
+      "babel-cli": "^6.26.0",
+      "babel-plugin-transform-object-rest-spread": "^6.20.2",
+      "cross-env": "^5.0.5"
+    },
+    "keywords": [
+      "gatsby",
+      "gatsby-plugin",
+      "markdown",
+      "remark"
+    ],
+    "license": "MIT",
+    "scripts": {
+      "build": "babel src --out-dir . --ignore __tests__",
+      "watch": "babel -w src --out-dir . --ignore __tests__",
+      "prepublish": "cross-env NODE_ENV=production npm run build"
+    },
+    "_registry": "npm",
+    "_loc": "/home/ali/Project/uforce/cairo/.yarn/v1/npm-gatsby-transformer-remark-1.7.28-c99df9cf9d5fdb8a802168c1d49e32ce8be5895b/package.json",
+    "readmeFilename": "README.md",
+    "readme": "# gatsby-transformer-remark\n\nParses Markdown files using [Remark](http://remark.js.org/).\n\n## Install\n\n`npm install --save gatsby-transformer-remark`\n\n## How to use\n\n```javascript\n// In your gatsby-config.js\nplugins: [`gatsby-transformer-remark`];\n```\n\nA full explanation of how to use markdown in Gatsby can be found here:\n[Creating a Blog with Gatsby](/blog/2017-07-19-creating-a-blog-with-gatsby/)\n\nThere are many Gatsby Remark plugins which you can install to customize how Markdown is processed. Many of them are demoed at https://using-remark.gatsbyjs.org/. See also the [source code for using-remark](https://github.com/gatsbyjs/gatsby/tree/master/examples/using-remark).\n\n## Parsing algorithm\n\nIt recognizes files with the following extensions as Markdown:\n\n* md\n* rmd\n* mkd\n* mkdn\n* mdwn\n* mdown\n* litcoffee\n* markdown\n\nEach Markdown file is parsed into a node of type `MarkdownRemark`.\n\nAll frontmatter fields are converted into GraphQL fields. TODO link to docs on\nauto-inferring types/fields.\n\nThis plugin adds additional fields to the `MarkdownRemark` GraphQL type\nincluding `html`, `excerpt`, `headings`, etc. Other Gatsby plugins can also add\nadditional fields.\n\n## How to query\n\nA sample GraphQL query to get MarkdownRemark nodes:\n\n```graphql\n{\n  allMarkdownRemark {\n    edges {\n      node {\n        html\n        headings {\n          depth\n          value\n        }\n        frontmatter {\n          # Assumes you're using title in your frontmatter.\n          title\n        }\n      }\n    }\n  }\n}\n```\n"
+  },
+  "artifacts": [],
+  "remote": {
+    "resolved": "https://registry.yarnpkg.com/gatsby-transformer-remark/-/gatsby-transformer-remark-1.7.28.tgz#c99df9cf9d5fdb8a802168c1d49e32ce8be5895b",
+    "type": "tarball",
+    "reference": "https://registry.yarnpkg.com/gatsby-transformer-remark/-/gatsby-transformer-remark-1.7.28.tgz",
+    "hash": "c99df9cf9d5fdb8a802168c1d49e32ce8be5895b",
+    "registry": "npm"
+  },
+  "registry": "npm",
+  "hash": "c99df9cf9d5fdb8a802168c1d49e32ce8be5895b"
+}

@@ -1,0 +1,45 @@
+{
+  "manifest": {
+    "name": "stream-combiner2",
+    "version": "1.1.1",
+    "homepage": "https://github.com/substack/stream-combiner2",
+    "repository": {
+      "type": "git",
+      "url": "git://github.com/substack/stream-combiner2.git"
+    },
+    "dependencies": {
+      "duplexer2": "~0.1.0",
+      "readable-stream": "^2.0.2"
+    },
+    "devDependencies": {
+      "tape": "~2.3.0",
+      "through2": "^2.0.0",
+      "event-stream": "~3.0.7"
+    },
+    "scripts": {
+      "test": "set -e; for t in test/*.js; do node $t; done"
+    },
+    "author": {
+      "name": "'Dominic Tarr'",
+      "email": "dominic.tarr@gmail.com",
+      "url": "http://dominictarr.com"
+    },
+    "license": "MIT",
+    "_registry": "npm",
+    "_loc": "/home/ali/Project/uforce/cairo/.yarn/v1/npm-stream-combiner2-1.1.1-fb4d8a1420ea362764e21ad4780397bebcb41cbe/package.json",
+    "readmeFilename": "README.md",
+    "readme": "# stream-combiner2\n\nThis is a sequel to\n[stream-combiner](https://npmjs.org/package/stream-combiner)\nfor streams3.\n\n``` js\nvar combine = require('stream-combiner2')\n```\n\n## Combine (stream1,...,streamN)\n\nTurn a pipeline into a single stream. `Combine` returns a stream that writes to the first stream\nand reads from the last stream. \n\nStreams1 streams are automatically upgraded to be streams3 streams.\n\nListening for 'error' will recieve errors from all streams inside the pipe.\n\n```js\nvar Combine = require('stream-combiner')\nvar es      = require('event-stream')\n\nCombine(                                  // connect streams together with `pipe`\n  process.openStdin(),                    // open stdin\n  es.split(),                             // split stream to break on newlines\n  es.map(function (data, callback) {      // turn this async function into a stream\n    var repr = inspect(JSON.parse(data))  // render it nicely\n    callback(null, repr)\n  }),\n  process.stdout                          // pipe it to stdout !\n)\n```\n\n## License\n\nMIT\n",
+    "description": "This is a sequel to [stream-combiner](https://npmjs.org/package/stream-combiner) for streams3.",
+    "licenseText": "Copyright (c) 2012 'Dominic Tarr'\n\nPermission is hereby granted, free of charge, \nto any person obtaining a copy of this software and \nassociated documentation files (the \"Software\"), to \ndeal in the Software without restriction, including \nwithout limitation the rights to use, copy, modify, \nmerge, publish, distribute, sublicense, and/or sell \ncopies of the Software, and to permit persons to whom \nthe Software is furnished to do so, \nsubject to the following conditions:\n\nThe above copyright notice and this permission notice \nshall be included in all copies or substantial portions of the Software.\n\nTHE SOFTWARE IS PROVIDED \"AS IS\", WITHOUT WARRANTY OF ANY KIND, \nEXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES \nOF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. \nIN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR \nANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, \nTORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE \nSOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.\n"
+  },
+  "artifacts": [],
+  "remote": {
+    "resolved": "https://registry.yarnpkg.com/stream-combiner2/-/stream-combiner2-1.1.1.tgz#fb4d8a1420ea362764e21ad4780397bebcb41cbe",
+    "type": "tarball",
+    "reference": "https://registry.yarnpkg.com/stream-combiner2/-/stream-combiner2-1.1.1.tgz",
+    "hash": "fb4d8a1420ea362764e21ad4780397bebcb41cbe",
+    "registry": "npm"
+  },
+  "registry": "npm",
+  "hash": "fb4d8a1420ea362764e21ad4780397bebcb41cbe"
+}
