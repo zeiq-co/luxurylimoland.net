@@ -98,6 +98,7 @@ export const pageQuery = graphql`
       node{
         name
         description
+        carUrl
         image{
           url
         }

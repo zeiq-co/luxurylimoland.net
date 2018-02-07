@@ -12,7 +12,7 @@ const CarList = ({carItems}) => (
          <p>{data.node.description}</p>
          <ul className="actions">
 				<li>
-          <a href="https://luxurylimoland.com" className="button special">Book Now </a>
+          <a href={data.node.carUrl} className="button special">Book Now </a>
         </li>
 			</ul>
        </div>

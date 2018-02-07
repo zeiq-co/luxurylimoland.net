@@ -31,6 +31,8 @@ export const CarPageQuery = graphql`
     edges{
       node{
         name
+        description
+        carUrl
         image{
           url
         }
