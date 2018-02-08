@@ -2,9 +2,10 @@ import React from "react";
 import Link from "gatsby-link";
 import Script from "react-load-script";
 import graphql from "graphql";
-import Banner from "../components/Banner"
-import CarList from '../components/CarList'
-import Separator from '../components/Separator'
+import Banner from "../components/Banner";
+import CarList from '../components/CarList';
+import Separator from '../components/Separator';
+
 export default class IndexPage extends React.Component {
   handleScriptLoad() {
     if (typeof window !== `undefined` && window.netlifyIdentity) {
@@ -26,15 +27,15 @@ export default class IndexPage extends React.Component {
     const { Banner: banner } = data.site.siteMetadata.IndexPage[0];
     const { Separator: separator } = data.site.siteMetadata.IndexPage[0];
     const { SocialLinks: socialLinks } = data.site.siteMetadata;
-    console.log("separator", separator);
+    // console.log("separator", separator);
 
     return (
         <div id="main">
           <Banner banner={banner}/>
           <Separator separator={separator} socialLinks={socialLinks}/>
           <CarList carItems={carItems}/>
-         <section id="three" className="wrapper style3 special">
-         <div className="inner">
+          <section id="three" className="wrapper style3 special">
+          <div className="inner">
           <header className="major">
             <h2>See Our latest post</h2>
           </header>

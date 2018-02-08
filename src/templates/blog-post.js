@@ -13,7 +13,7 @@ export const BlogPostTemplate = ({
   return (
    <div>
      <PageHeading pageHeading={pageHeading}/>
-    <section className="section section--gradient">
+    <section className="section section--gradient blog-post">
       { helmet || ''}
       <div className="wrapper style5">
         <div className="inner">

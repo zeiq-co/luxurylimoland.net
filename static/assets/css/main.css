@@ -3819,3 +3819,8 @@
 	body.is-mobile.landing #footer {
 		background-color: #1d242a;
 	}
+
+	.blog-post img {
+		max-width: 100%;
+		height: auto;
+	}
