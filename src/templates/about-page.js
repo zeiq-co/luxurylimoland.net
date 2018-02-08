@@ -1,5 +1,6 @@
 import React from 'react';
 import graphql from 'graphql';
+import Helmet from 'react-helmet';
 import Content, { HTMLContent } from '../components/Content';
 import PageHeading from '../components/PageHeading'
 
@@ -8,7 +9,8 @@ export const AboutPageTemplate = ({ title, content, contentComponent, pageHeadin
 
   return (
 <div>
-<PageHeading pageHeading={pageHeading}/>
+    <Helmet title="About Us | LuxuryLimoLand"/>
+    <PageHeading pageHeading={pageHeading}/>
     <section className="wrapper style3 special">
       <div className="inner">
         <h2 className="title is-size-3 has-text-weight-bold is-bold-light">{title}</h2>

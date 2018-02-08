@@ -34,10 +34,13 @@ export default class IndexPage extends React.Component {
           <Banner banner={banner}/>
           <Separator separator={separator} socialLinks={socialLinks}/>
           <CarList carItems={carItems}/>
+          <div  style={{textAlign:"center", padding:"20px"}} >
+            <Link to="/cars" className="button special">See more cars</Link>
+          </div>
           <section id="three" className="wrapper style3 special">
           <div className="inner">
           <header className="major">
-            <h2>See Our latest post</h2>
+            <h2>See Our Latest Post</h2>
           </header>
           <ul className="features">
           {posts
@@ -52,6 +55,7 @@ export default class IndexPage extends React.Component {
             </li>
            ))}
           </ul>
+            <Link to="/blogs" className="button special">See More post</Link>
           </div>
         </section>
         </div>
@@ -94,7 +98,7 @@ export const pageQuery = graphql`
       }
     }
   }
-  allAirtable{
+  allAirtable(limit:4){
     edges{
       node{
         name

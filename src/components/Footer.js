@@ -9,7 +9,7 @@ const Footer = () => (
   <li><a href="/" className="icon fa-instagram"><span className="label">Instagram</span></a></li>
 </ul> */}
 <ul className="copyright">
-  <li><strong>© LuxuryLimoLand.net</strong> </li>
+  <li><strong>©2018 LuxuryLimoLand.net</strong> </li>
 </ul>
 </footer>
 

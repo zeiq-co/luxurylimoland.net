@@ -7,7 +7,7 @@ import Footer from '../components/Footer';
 
 const TemplateWrapper = ({ children }) => (
   <div>
-    <Helmet title="Home | Gatsby + Netlify CMS">
+    <Helmet title="Home | LuxuryLimoLand">
          <meta charSet="utf-8" />
           <meta httpEquiv="content-language" content="en-in" />
           <meta httpEquiv="content-language" content="en-us" />

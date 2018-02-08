@@ -1,9 +1,14 @@
 import React from 'react';
+import Link from 'gatsby-link'
 
 const CarList = ({carItems}) => (
   <section id="two" className="wrapper alt style2">
   {carItems.map(data => {
     // console.log('dddd', data.node.image)
+    if (data.node.name === null || data.node.name.length < 1) {
+      return null;
+    }
+
     return (
      <section className="spotlight" id="spotlight">
        {data.node.image !== null && <div className="image"><img src={data.node.image[0].url} alt="" /></div>}

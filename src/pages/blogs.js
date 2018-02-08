@@ -1,6 +1,7 @@
 import React from "react";
 import Link from "gatsby-link";
 import graphql from "graphql";
+import Helmet from 'react-helmet';
 import PageHeading from '../components/PageHeading'
 
 export default class Blogs extends React.Component {
@@ -11,6 +12,7 @@ export default class Blogs extends React.Component {
 
     return (
         <div>
+          <Helmet title="Blogs | LuxuryLimoLand"/>
           <PageHeading pageHeading={pageHeading}/>
          <section id="three" className="wrapper style3 special">
          <div className="inner">

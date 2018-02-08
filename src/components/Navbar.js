@@ -6,7 +6,9 @@ import logo from '../img/logo.svg';
 
 const Navbar = () => (
   <header id="header" className="alt">
-  <h1><Link to="/">LuxuryLimoLand</Link></h1>
+ 
+    <Link to="/"><span className="logo">LuxuryLimoLand</span></Link>
+
   <nav id="nav">
     <ul>
       <li className="special">
