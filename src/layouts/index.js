@@ -4,10 +4,11 @@ import Helmet from 'react-helmet';
 
 import Navbar from '../components/Navbar';
 import Footer from '../components/Footer';
+import config from '../config';
 
 const TemplateWrapper = ({ children }) => (
   <div>
-    <Helmet title="Home | LuxuryLimoLand">
+    <Helmet title={`Home | ${config.title}`}>
       <meta charSet="utf-8" />
       <meta httpEquiv="content-language" content="en-in" />
       <meta httpEquiv="content-language" content="en-us" />
@@ -16,28 +17,25 @@ const TemplateWrapper = ({ children }) => (
         name="viewport"
         content="width=device-width, initial-scale=1.0, maximum-scale=1.0, viewport-fit=cover"
       />
-      <meta
-        name="keywords"
-        content="rent a car, wedding car, luxury car rental, luxury car rental, car rental Jalandhar, wedding car rental, wedding car hire, luxury car on rent."
-      />
+      <meta name="keywords" content={config.keywords} />
       <meta
         name="description"
-        content="Luxury Limo Land Wedding Cars In Punjab are committed to providing you the finest quality luxury wedding cars and service available in Punjab."
+        content={config.description}
       />
       <meta name="theme-color" content="#ffffff" />
       <meta
         name="og:description"
-        content="Luxury Limo Land Wedding Cars In Punjab are committed to providing you the finest quality luxury wedding cars and service available in Punjab."
+        content={config.description}
       />
       <meta name="twitter:card" content="luxurylimoLand" />
       <meta name="twitter:site" content="@luxurylimoland" />
       <meta
         name="twitter:title"
-        content="luxury limo land luxury cars rental company"
+        content={config.title}
       />
       <meta
         name="twitter:description"
-        content="Luxury Limo Land Wedding Cars In Punjab are committed to providing you the finest quality luxury wedding cars and service available in Punjab."
+        content={config.description}
       />
       <meta
         name="twitter:image"
@@ -51,7 +49,7 @@ const TemplateWrapper = ({ children }) => (
 );
 
 TemplateWrapper.propTypes = {
-  children: PropTypes.func,
+  children: PropTypes.func.isRequired,
 };
 
 export default TemplateWrapper;

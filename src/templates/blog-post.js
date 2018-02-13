@@ -8,8 +8,9 @@ export const BlogPostTemplate = ({
   content, contentComponent, description, title, helmet,
 }) => {
   const PostContent = contentComponent || Content;
-  const pageHeading ={title, description};
+  const pageHeading = {title, description};
   // console.log("blog", pageHeading )
+
   return (
     <div>
       <PageHeading pageHeading={pageHeading} />
@@ -34,7 +35,7 @@ export default ({ data }) => {
     content={post.html}
     contentComponent={HTMLContent}
     description={post.frontmatter.description}
-    helmet={<Helmet title={`Blog | ${post.frontmatter.title}`} />}
+    helmet={<Helmet title={post.frontmatter.title} />}
     title={post.frontmatter.title}
   />);
 };

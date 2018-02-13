@@ -1,10 +1,13 @@
 import React from "react";
 import Link from "gatsby-link";
 import graphql from "graphql";
+import Helmet from 'react-helmet';
 
 import Banner from "../components/Banner";
 import CarList from '../components/CarList';
 import Separator from '../components/Separator';
+import LatestPosts from '../components/LatestPosts';
+import config from '../config';
 
 export default class IndexPage extends React.Component {
   handleScriptLoad() {
@@ -27,37 +30,18 @@ export default class IndexPage extends React.Component {
     const { Banner: banner } = data.site.siteMetadata.IndexPage[0];
     const { Separator: separator } = data.site.siteMetadata.IndexPage[0];
     const { SocialLinks: socialLinks } = data.site.siteMetadata;
-    // console.log("separator", separator);
+    // console.log("posts", posts);
 
     return (
       <div id="main">
+        <Helmet title={`Home | ${config.title}`} />
         <Banner banner={banner} />
         <Separator separator={separator} socialLinks={socialLinks} />
         <CarList carItems={carItems} />
         <div  style={{textAlign:"center", padding:"20px"}} >
           <Link to="/cars" className="button special">See more cars</Link>
         </div>
-        <section id="three" className="wrapper style3 special">
-          <div className="inner">
-            <header className="major">
-              <h2>See Our Latest Post</h2>
-            </header>
-            <ul className="features">
-              {posts
-            .filter(post => post.node.frontmatter.templateKey === "blog-post")
-            .map(({ node: post }) =>(
-              <li className="icon fa-paper-plane-o" key={post.frontmatter.id}>
-                <h3>{post.frontmatter.title}</h3>
-                <p>{post.excerpt}</p>
-                <Link className="button is-small" to={post.frontmatter.path}>
-                   Keep Reading →
-                </Link>
-              </li>
-           ))}
-            </ul>
-            <Link to="/blogs" className="button special">See More post</Link>
-          </div>
-        </section>
+        <LatestPosts posts={posts} />
       </div>
     );
   }

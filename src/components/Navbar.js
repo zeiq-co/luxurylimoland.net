@@ -1,10 +1,11 @@
 import React from 'react';
 import Link from 'gatsby-link';
+import config from '../config';
 
 const Navbar = () => (
   <header id="header" className="alt">
 
-    <Link to="/"><span className="logo">LuxuryLimoLand</span></Link>
+    <Link to="/"><span className="logo">{config.title}</span></Link>
 
     <nav id="nav">
       <ul>
@@ -24,7 +25,7 @@ const Navbar = () => (
               </li>
               <li>
                 <Link to="/blogs">
-                  Blog
+                  News
                 </Link>
               </li>
               <li>

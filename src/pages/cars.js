@@ -2,8 +2,9 @@ import React from "react";
 import Helmet from 'react-helmet';
 import graphql from "graphql";
 
-import PageHeading from '../components/PageHeading'
-import CarList from '../components/CarList'
+import PageHeading from '../components/PageHeading';
+import CarList from '../components/CarList';
+import config from '../config';
 
 export default class Cars extends React.Component {
 
@@ -13,7 +14,7 @@ export default class Cars extends React.Component {
 
     return (
       <div>
-        <Helmet title="Cars | LuxuryLimoLand" />
+        <Helmet title={`Cars | ${config.title}`} />
         <PageHeading pageHeading={pageHeading} />
         <section  className=" style3 special">
           <div className="inner">

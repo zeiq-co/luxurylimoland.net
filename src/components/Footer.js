@@ -1,14 +1,14 @@
 import React from 'react';
+import config from '../config';
 
 const Footer = () => (
   <footer id="footer" style={{background:"#34b2a5"}}>
-    {/* <ul className="icons">
-  <li><a href="/" className="icon fa-twitter"><span className="label">Twitter</span></a></li>
-  <li><a href="/" className="icon fa-facebook"><span className="label">Facebook</span></a></li>
-  <li><a href="/" className="icon fa-instagram"><span className="label">Instagram</span></a></li>
-</ul> */}
     <ul className="copyright">
-      <li><strong>©2018 LuxuryLimoLand.net</strong> </li>
+      <li><strong>Telephone: <a href={`tel:${config.telephone}`}>{config.telephone}</a></strong></li>
+      <li><strong>Email:  <a href={`mailto:${config.email}`}>{config.email}</a></strong> </li>
+    </ul>
+    <ul className="copyright">
+      <li><strong>©2018 {config.title}</strong> </li>
     </ul>
   </footer>
 

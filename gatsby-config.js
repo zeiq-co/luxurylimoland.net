@@ -1,41 +1,7 @@
-module.exports = {
-  siteMetadata: {
-    title: 'Gatsby Default Starter',
-    SocialLinks:{
-      twitter: "https://twitter.com/luxurylimoland",
-      facebook:"https://facebook.com/luxurylimoland",
-      instagram:"https://instagram.com/luxurylimoland",
-    },
-    IndexPage:[{
-     Banner:{
-       title:"Luxury Limo Land ",
-       heading:"Best Luxury Cars Rental in the Jalandhar, Punjab and Nationwide."
-     },
-     Separator:{
-      title:"Follow Us",
-      heading:"Best Luxury Cars Rental in the Jalandhar, Punjab and Nationwide."
-    },
-    }],
-    BlogsPage:[{
-      Posts:{
-        title:"Our Latest Posts",
-        description:"Best Luxury Cars Rental in the Jalandhar, Punjab and Nationwide."
-      },
-     }],
-     CarsPage:[{
-      TopContent:{
-        title:"See Our Collection",
-        description:"Best Luxury Cars Rental in the Jalandhar, Punjab and Nationwide."
-      },
-     }],
-     AboutPage:[{
-      TopContent:{
-        title:"Know More About Us",
-        description:"Best Luxury Cars Rental in the Jalandhar, Punjab and Nationwide."
-      },
-     }],  
-  },
+const config = require('./src/config');
 
+module.exports = {
+  siteMetadata: config,
   plugins: [
     'gatsby-plugin-react-helmet',
     'gatsby-plugin-sass',

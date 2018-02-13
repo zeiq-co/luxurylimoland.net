@@ -1,4 +1,5 @@
 import React from 'react';
+import config from '../config';
 
 const Separator = ({separator, socialLinks}) => (
   <section id="one" className="wrapper style1 special">
@@ -23,6 +24,10 @@ const Separator = ({separator, socialLinks}) => (
             <span className="icon fa-instagram major style3" />
           </a>
         </li>
+      </ul>
+      <ul className="icons major">
+        <li><strong>Telephone: <a href={`tel:${config.telephone}`}>{config.telephone}</a></strong></li>
+        <li><strong>Email:  <a href={`mailto:${config.email}`}>{config.email}</a></strong> </li>
       </ul>
     </div>
   </section>

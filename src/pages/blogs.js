@@ -2,7 +2,9 @@ import React from "react";
 import Link from "gatsby-link";
 import graphql from "graphql";
 import Helmet from 'react-helmet';
-import PageHeading from '../components/PageHeading'
+
+import PageHeading from '../components/PageHeading';
+import config from '../config';
 
 export default class Blogs extends React.Component {
   render() {
@@ -12,7 +14,7 @@ export default class Blogs extends React.Component {
 
     return (
       <div>
-        <Helmet title="Blogs | LuxuryLimoLand" />
+        <Helmet title={`News | ${config.title}`} />
         <PageHeading pageHeading={pageHeading} />
         <section id="three" className="wrapper style3 special">
           <div className="inner">
@@ -20,8 +22,8 @@ export default class Blogs extends React.Component {
               {posts
             .filter(post => post.node.frontmatter.templateKey === "blog-post")
             .map(({ node: post }) =>(
-              <li className="icon fa-paper-plane-o">
-                <h3>{post.frontmatter.title}</h3>
+              <li className="icon fa-paper-plane-o" key={post.id}>
+                <h3><Link to={post.frontmatter.path}>{post.frontmatter.title}</Link></h3>
                 <p>{post.excerpt}</p>
                 <Link className="button is-small" to={post.frontmatter.path}>
                   Keep Reading →
