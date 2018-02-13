@@ -1,5 +1,4 @@
 import React from "react";
-import Link from "gatsby-link";
 import Helmet from 'react-helmet';
 import graphql from "graphql";
 
@@ -13,15 +12,15 @@ export default class Cars extends React.Component {
     const { TopContent: pageHeading } = data.site.siteMetadata.CarsPage[0];
 
     return (
-        <div>
-          <Helmet title="Cars | LuxuryLimoLand"/>
-          <PageHeading pageHeading={pageHeading}/>
-          <section  className=" style3 special">
+      <div>
+        <Helmet title="Cars | LuxuryLimoLand" />
+        <PageHeading pageHeading={pageHeading} />
+        <section  className=" style3 special">
           <div className="inner">
-            <CarList carItems={data.allAirtable.edges}/>
+            <CarList carItems={data.allAirtable.edges} />
           </div>
         </section>
-        </div>
+      </div>
     );
   }
 }

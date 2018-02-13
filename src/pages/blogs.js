@@ -11,27 +11,27 @@ export default class Blogs extends React.Component {
     const { Posts: pageHeading } = data.site.siteMetadata.BlogsPage[0];
 
     return (
-        <div>
-          <Helmet title="Blogs | LuxuryLimoLand"/>
-          <PageHeading pageHeading={pageHeading}/>
-         <section id="three" className="wrapper style3 special">
-         <div className="inner">
-          <ul className="features">
-          {posts
+      <div>
+        <Helmet title="Blogs | LuxuryLimoLand" />
+        <PageHeading pageHeading={pageHeading} />
+        <section id="three" className="wrapper style3 special">
+          <div className="inner">
+            <ul className="features">
+              {posts
             .filter(post => post.node.frontmatter.templateKey === "blog-post")
             .map(({ node: post }) =>(
-            <li className="icon fa-paper-plane-o">
-            <h3>{post.frontmatter.title}</h3>
-            <p>{post.excerpt}</p>
-            <Link className="button is-small" to={post.frontmatter.path}>
-                Keep Reading →
-              </Link>
-          </li>
+              <li className="icon fa-paper-plane-o">
+                <h3>{post.frontmatter.title}</h3>
+                <p>{post.excerpt}</p>
+                <Link className="button is-small" to={post.frontmatter.path}>
+                  Keep Reading →
+                </Link>
+              </li>
            ))}
-          </ul>
+            </ul>
           </div>
         </section>
-        </div>
+      </div>
     );
   }
 }

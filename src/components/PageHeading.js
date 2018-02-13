@@ -1,11 +1,10 @@
 import React from 'react';
-import Link from 'gatsby-link';
 
 const PageHeading = ({pageHeading}) => (
 
-<article id="main">
+  <article id="main">
     <header className="major">
-    {/* {pageHeading = !undefined ?(
+      {/* {pageHeading = !undefined ?(
         <div>
         <h2>See Our latest post</h2>
         <p>Aliquam ut ex ut augue consectetur interdum. Donec amet imperdiet eleifend<br />
@@ -16,14 +15,14 @@ const PageHeading = ({pageHeading}) => (
         )
         :
         ( */}
-            <div style={{paddingLeft:"307px", paddingRight:"307px"}}>
-            <h2>{pageHeading.title}</h2>
-            <p>{pageHeading.description}</p>
-            </div>
+      <div style={{paddingLeft:"307px", paddingRight:"307px"}}>
+        <h2>{pageHeading.title}</h2>
+        <p>{pageHeading.description}</p>
+      </div>
 
-        {/* )} */}
+      {/* )} */}
     </header>
-</article>
+  </article>
 );
 
 export default PageHeading;

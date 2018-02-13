@@ -8,16 +8,16 @@ export const AboutPageTemplate = ({ title, content, contentComponent, pageHeadin
   const PageContent = contentComponent || Content;
 
   return (
-<div>
-    <Helmet title="About Us | LuxuryLimoLand"/>
-    <PageHeading pageHeading={pageHeading}/>
-    <section className="wrapper style3 special">
-      <div className="inner">
-        <h2 className="title is-size-3 has-text-weight-bold is-bold-light">{title}</h2>
+    <div>
+      <Helmet title="About Us | LuxuryLimoLand" />
+      <PageHeading pageHeading={pageHeading} />
+      <section className="wrapper style3 special">
+        <div className="inner">
+          <h2 className="title is-size-3 has-text-weight-bold is-bold-light">{title}</h2>
           <PageContent className="content" content={content} />
         </div>
-    </section>
-</div>
+      </section>
+    </div>
   );
 };
 

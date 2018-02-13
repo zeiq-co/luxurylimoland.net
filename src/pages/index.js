@@ -1,7 +1,7 @@
 import React from "react";
 import Link from "gatsby-link";
-import Script from "react-load-script";
 import graphql from "graphql";
+
 import Banner from "../components/Banner";
 import CarList from '../components/CarList';
 import Separator from '../components/Separator';
@@ -30,35 +30,35 @@ export default class IndexPage extends React.Component {
     // console.log("separator", separator);
 
     return (
-        <div id="main">
-          <Banner banner={banner}/>
-          <Separator separator={separator} socialLinks={socialLinks}/>
-          <CarList carItems={carItems}/>
-          <div  style={{textAlign:"center", padding:"20px"}} >
-            <Link to="/cars" className="button special">See more cars</Link>
-          </div>
-          <section id="three" className="wrapper style3 special">
+      <div id="main">
+        <Banner banner={banner} />
+        <Separator separator={separator} socialLinks={socialLinks} />
+        <CarList carItems={carItems} />
+        <div  style={{textAlign:"center", padding:"20px"}} >
+          <Link to="/cars" className="button special">See more cars</Link>
+        </div>
+        <section id="three" className="wrapper style3 special">
           <div className="inner">
-          <header className="major">
-            <h2>See Our Latest Post</h2>
-          </header>
-          <ul className="features">
-          {posts
+            <header className="major">
+              <h2>See Our Latest Post</h2>
+            </header>
+            <ul className="features">
+              {posts
             .filter(post => post.node.frontmatter.templateKey === "blog-post")
             .map(({ node: post }) =>(
-            <li className="icon fa-paper-plane-o" key={post.frontmatter.id}>
-            <h3>{post.frontmatter.title}</h3>
-            <p>{post.excerpt}</p>
+              <li className="icon fa-paper-plane-o" key={post.frontmatter.id}>
+                <h3>{post.frontmatter.title}</h3>
+                <p>{post.excerpt}</p>
                 <Link className="button is-small" to={post.frontmatter.path}>
                    Keep Reading →
                 </Link>
-            </li>
+              </li>
            ))}
-          </ul>
+            </ul>
             <Link to="/blogs" className="button special">See More post</Link>
           </div>
         </section>
-        </div>
+      </div>
     );
   }
 }
