@@ -2,6 +2,7 @@ import React from "react";
 import Link from "gatsby-link";
 import graphql from "graphql";
 import Helmet from 'react-helmet';
+import Script from 'react-load-script';
 
 import Banner from "../components/Banner";
 import CarList from '../components/CarList';
@@ -34,6 +35,10 @@ export default class IndexPage extends React.Component {
 
     return (
       <div id="main">
+        <Script
+          url="https://identity.netlify.com/v1/netlify-identity-widget.js"
+          onLoad={() => this.handleScriptLoad()}
+        />
         <Helmet title={`Home | ${config.title}`} />
         <Banner banner={banner} />
         <Separator separator={separator} socialLinks={socialLinks} />
