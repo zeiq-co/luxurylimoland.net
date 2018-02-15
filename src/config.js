@@ -1,7 +1,7 @@
 module.exports = {
   siteUrl: 'www.luxurylimoland.net',
   title: 'LuxuryLimoLand',
-  keywords: 'rent a car, wedding car, luxury car rental, luxury car rental, car rental Jalandhar, wedding car rental, wedding car hire, luxury car on rent.',
+  keywords: 'rent a cars, wedding car, luxury car rental, luxury car rental, car rental Jalandhar, wedding car rental, wedding car hire, luxury car on rent.',
   description: 'Luxury Limo Land Wedding Cars In Punjab are committed to providing you the finest quality luxury wedding cars and service available in Punjab.',
   telephone: '0091–9888930002',
   email: 'johal@anmoldeep.com',
