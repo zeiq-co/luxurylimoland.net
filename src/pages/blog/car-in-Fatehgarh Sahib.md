@@ -1,7 +1,7 @@
 ---
 templateKey: blog-post
 path: /car-in-Fatehgarh Sahib
-title: Car-IN-Fatehgarh Sahib
+title: Car IN Fatehgarh Sahib
 date: 2018-08-17T15:04:10.000Z
 description: >-
   Descriptions - Here you will get all type of services of luxury rental cars like decorated doli cars and wedding cars for a wedding, pre-wedding shoots, tours & travels, movies & song shoots, airport & hotel pickups in Fatehgarh Sahib. Available cars are  Audi A6/A4, Limousine, Mercedes, BMW 5/7, Jaguar XF/XJL, Range Rover, Chrysler 300, Rolls Royce. 
