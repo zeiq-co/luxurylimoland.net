@@ -15,7 +15,7 @@ const PageHeading = ({pageHeading}) => (
         )
         :
         ( */}
-      <div style={{paddingLeft:"307px", paddingRight:"307px"}}>
+      <div>
         <h2>{pageHeading.title}</h2>
         <p>{pageHeading.description}</p>
       </div>
